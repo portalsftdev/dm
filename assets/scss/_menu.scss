@@ -1,0 +1,280 @@
+@import "compass";
+@import "variables";
+
+/* =============================================================================
+  MENU TOGGLE SWITCHES
+============================================================================= */
+/**
+ * Toggle Switch Globals
+ *
+ * All switches should take on the class `cmn-toggle-switch` as well as their
+ * variant that will give them unique properties. This class is an overview
+ * class that acts as a reset for all versions of the icon.
+ */
+
+
+
+.cmn-toggle-switch {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-indent: 26px;
+  text-transform: uppercase;
+  @include appearance(none);
+  box-shadow: none;
+  @include box-shadow(inset 0 0 2px $orange);
+  @include border-radius(none);
+  border: 1px solid $orange;
+  cursor: pointer;
+  @include transition(all 0.3s);
+  @include transition(width 0.5s);
+
+  &:focus {
+    outline: none;
+  }
+
+  i {
+    font-style: normal;
+    padding: 0 1rem;
+  }
+
+  //&.active {
+  //  @include animation(text-collapse .8s 0s ease-out);
+  //
+  //}
+
+
+  span {
+    display: block;
+    position: absolute;
+    top: 23px;
+    left: 16px;
+    width: 16px;
+    height: 2px;
+    background: $black;
+  }
+
+  span::before,
+  span::after {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $black;
+    content: "";
+  }
+
+  span::before {
+    top: -6px;
+  }
+
+  span::after {
+    bottom: -6px;
+  }
+}
+
+
+.text-white .cmn-toggle-switch {
+  span, span::before, span::after {
+    background-color: $white;
+  }
+}
+
+  @keyframes text-collapse {
+    0% {letter-spacing: 0;}
+    50% {letter-spacing: -8px;}
+    100% {letter-spacing: 0;}
+  }
+
+
+  /**
+   * Style 1
+   *
+   * Rotating hamburger icon (rot), that simply rotates 90 degrees when activated.
+   * Nothing too fancy, simple transition.
+   */
+  .cmn-toggle-switch__rot {
+    background-color: #28aadc;
+  }
+
+  .cmn-toggle-switch__rot span {
+    @include transition(transform 0.3s);
+  }
+
+  /* active state, i.e. menu open */
+  .cmn-toggle-switch__rot.active {
+    background-color: #166888;
+  }
+
+  .cmn-toggle-switch__rot.active span {
+    @include transform(rotate(90deg));
+  }
+
+  /**
+   * Style 2
+   *
+   * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
+   * down to center and transform into an "x".
+   */
+  .cmn-toggle-switch__htx {
+    background-color: rgba($white,.5);
+
+    .text-white & {
+      color: $white;
+      background-color: rgba($black,.5);
+    }
+  }
+
+  .cmn-toggle-switch__htx span {
+    @include transition(background 0s 0.3s);
+  }
+
+  .cmn-toggle-switch__htx span::before,
+  .cmn-toggle-switch__htx span::after {
+    @include transition-duration(0.3s, 0.3s);
+    @include transition-delay(0.3s, 0s);
+  }
+
+  .cmn-toggle-switch__htx span::before {
+    @include transition-property(top, transform);
+  }
+
+  .cmn-toggle-switch__htx span::after {
+    @include transition-property(bottom, transform);
+  }
+
+  /* active state, i.e. menu open */
+  .cmn-toggle-switch__htx.active {
+    border-color: $black;
+    @include box-shadow(inset 0 0 2px $black);
+
+    .text-white & {
+      border-color: $white;
+      @include box-shadow(inset 0 0 2px $white);
+
+    }
+  }
+
+  .cmn-toggle-switch__htx.active span {
+    background: none;
+  }
+
+  .cmn-toggle-switch__htx.active span::before {
+    top: 0;
+    @include transform(rotate(45deg));
+  }
+
+  .cmn-toggle-switch__htx.active span::after {
+    bottom: 0;
+    @include transform(rotate(-45deg));
+  }
+
+  .cmn-toggle-switch__htx.active span::before,
+  .cmn-toggle-switch__htx.active span::after {
+    @include transition-delay(0s, 0.3s);
+  }
+
+  /**
+   * Style 3
+   *
+   * Hamburger to left-arrow (htla). Hamburger menu transforms to a left-pointing
+   * arrow. Usually indicates an off canvas menu sliding in from left that
+   * will be close on re-click of the icon.
+   */
+  .cmn-toggle-switch__htla {
+    background-color: #32dc64;
+  }
+
+  .cmn-toggle-switch__htla span {
+    @include transition(transform 0.3s);
+  }
+
+  .cmn-toggle-switch__htla span::before {
+    @include transform-origin(top right);
+    @include transition(transform 0.3s, width 0.3s, top 0.3s);
+  }
+
+  .cmn-toggle-switch__htla span::after {
+    @include transform-origin(bottom right);
+    @include transition(transform 0.3s, width 0.3s, bottom 0.3s);
+  }
+
+  /* active state, i.e. menu open */
+  .cmn-toggle-switch__htla.active {
+    background-color: #18903c;
+  }
+
+  .cmn-toggle-switch__htla.active span {
+    @include transform(rotate(180deg));
+  }
+
+  .cmn-toggle-switch__htla.active span::before,
+  .cmn-toggle-switch__htla.active span::after {
+    width: 50%;
+  }
+
+  .cmn-toggle-switch__htla.active span::before {
+    top: 0;
+    @include transform(translateX(42px) translateY(3px) rotate(45deg));
+  }
+
+  .cmn-toggle-switch__htla.active span::after {
+    bottom: 0;
+    @include transform(translateX(42px) translateY(-3px) rotate(-45deg));
+  }
+
+  /**
+   * Style 4
+   *
+   * Hamburger to right-arrow (htra). Hamburger menu transforms to a
+   * right-pointing arrow. Usually indicates an off canvas menu sliding in from
+   * right that will be close on re-click of the icon.
+   */
+  .cmn-toggle-switch__htra {
+    background-color: #ff9650;
+  }
+
+  .cmn-toggle-switch__htra span {
+    @include transition(transform 0.3s);
+  }
+
+  .cmn-toggle-switch__htra span::before {
+    @include transform-origin(top left);
+    @include transition(transform 0.3s, width 0.3s, top 0.3s);
+  }
+
+  .cmn-toggle-switch__htra span::after {
+    @include transform-origin(bottom left);
+    @include transition(transform 0.3s, width 0.3s, bottom 0.3s);
+  }
+
+  /* active state, i.e. menu open */
+  .cmn-toggle-switch__htra.active {
+    background-color: #e95d00;
+  }
+
+  .cmn-toggle-switch__htra.active span {
+    @include transform(rotate(180deg));
+  }
+
+  .cmn-toggle-switch__htra.active span::before,
+  .cmn-toggle-switch__htra.active span::after {
+    width: 50%;
+  }
+
+  .cmn-toggle-switch__htra.active span::before {
+    top: 0;
+    @include transform(translateX(-6px) translateY(3px) rotate(-45deg));
+  }
+
+  .cmn-toggle-switch__htra.active span::after {
+    bottom: 0;
+    @include transform(translateX(-6px) translateY(-3px) rotate(45deg));
+  }
+

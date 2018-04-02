@@ -1,0 +1,102 @@
+
+.tag {
+  font-weight: bold;
+  display: inline-block;
+  padding: .6em 1.3em;
+}
+
+.tag-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.tag-red {
+  @include tag-variant($white, $red);
+}
+.tag-green {
+  @include tag-variant($white, $green);
+}
+.tag-blue {
+  @include tag-variant($white, $blue);
+}
+.tag-yellow {
+  @include tag-variant($gray-dark, $yellow);
+}
+.tag-teal {
+  @include tag-variant($gray-dark, $teal);
+}
+.tag-orange {
+  @include tag-variant($white, $orange);
+}
+.tag-pink {
+  @include tag-variant($white, $pink);
+}
+.tag-purple {
+  @include tag-variant($white, $purple);
+}
+
+.tag-outline-red {
+  @include tag-outline-variant($red);
+}
+.tag-outline-green {
+  @include tag-outline-variant($green);
+}
+.tag-outline-blue {
+  @include tag-outline-variant($blue);
+}
+.tag-outline-yellow {
+  @include tag-outline-variant($yellow);
+}
+.tag-outline-teal {
+  @include tag-outline-variant($teal);
+}
+.tag-outline-orange {
+  @include tag-outline-variant($orange);
+}
+.tag-outline-pink {
+  @include tag-outline-variant($pink);
+}
+.tag-outline-purple {
+  @include tag-outline-variant($purple);
+}
+
+.tag-layer-red {
+  @include tag-layer-variant($red);
+}
+.tag-layer-green {
+  @include tag-layer-variant($green);
+}
+.tag-layer-blue {
+  @include tag-layer-variant($blue);
+}
+.tag-layer-yellow {
+  @include tag-layer-variant($yellow);
+}
+.tag-layer-teal {
+  @include tag-layer-variant($teal);
+}
+.tag-layer-orange {
+  @include tag-layer-variant($orange);
+}
+.tag-layer-pink {
+  @include tag-layer-variant($pink);
+}
+.tag-layer-purple {
+  @include tag-layer-variant($purple);
+}
+
+
+
+
+.tag-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  @include tag-size($font-size-lg, $tag-border-width-lg);
+}
+.tag-sm {
+  // line-height: ensure proper height of button next to small input
+  @include tag-size($font-size-sm, $tag-border-width-sm);
+}
+

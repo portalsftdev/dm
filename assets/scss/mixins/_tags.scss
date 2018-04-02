@@ -1,0 +1,31 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin tag-variant($color, $background) {
+  color: $color;
+  border: none;
+  background-color: $background;
+}
+
+@mixin tag-outline-variant($background) {
+  border: $tag-border-width $background solid;
+  background-color: transparent;
+}
+
+@mixin tag-layer-variant($background) {
+  $offset: .5rem;
+
+  color: $background;
+  padding: $offset*2;
+  background-color: $white;
+  @include box-shadow($offset $offset 0 0 $background);
+
+}
+
+// Button sizes
+@mixin tag-size($font-size, $border-width) {
+  font-size: $font-size;
+  border-width: $border-width;
+}

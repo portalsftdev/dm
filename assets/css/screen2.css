@@ -1,0 +1,384 @@
+.switchable-filter {
+    display: none;
+}
+
+#mse2_filters {
+    width: 100%;
+}
+
+.color-checkbox + label, 
+.color-checkbox:checked + label, 
+.color-checkbox:not(:checked) + label {
+    margin-right: 4px;
+}
+
+#mfilter-reset-row {
+    margin-bottom: 25px;
+}
+
+.sort.active {
+    font-weight: bold;
+}
+
+#mse2_mfilter .pagination {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+.check-mark {
+    display: inline-block;
+    margin-left: 20px;
+    /* Duplicate of .color-checkbox:checked + label::before */
+    top: 10px;
+    left: 19px;
+    width: 12px;
+    height: 25px;
+    border-radius: 0;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    /* Font color from .alert-success */
+    border-right: 2px solid #3c763d;
+    border-bottom: 2px solid #3c763d;
+    transform: rotate(40deg);
+}
+
+/* Fix for check mark */
+.ajax_form .form-control {
+    display: inline-block !important;
+}
+
+
+/* Error under an input */
+.ajax_form .error {
+    display: block;
+}
+
+/* Forms */
+
+.servicedesk span.error {
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.servicedesk-p.success-message {
+    color :#3c763d;
+}
+
+.coupon span.error {
+    margin-top: 0.25rem;
+}
+
+.coupon .captcha .captcha-refresh {
+    color: #464a4c;
+    border-bottom: 1px solid;
+    cursor: pointer;
+}
+
+.coupon .captcha .captcha-refresh:hover {
+    border-bottom: none;
+    color: #464a4c;
+}
+
+.coupon .success-message {
+    display: inline;
+    margin-left: 1rem;
+    position: relative;
+    top: -1.5rem;
+    color:green;
+}
+
+.coupon .check-mark {
+    position: relative;
+    left: 0;
+    top: -1.5rem;
+    border-right: 2px solid green;
+    border-bottom: 2px solid green;
+}
+
+.product-availability span.error,
+.product-availability .success-message,
+.product-price-order span.error, 
+.product-price-order .success-message {
+    margin-top: -0.25rem;
+    float: left;
+}
+
+.product-availability .success-message,
+.product-price-order .success-message {
+    color: #3c763d;
+}
+
+.city {
+    cursor: pointer;
+}
+
+.city.active {
+    color: #ff9225;
+}
+
+/* Cart form */
+
+#requisites {
+    color: #464a4c;
+    width: 100%;
+    border: 2px dashed #7b848a;
+    padding: .6rem 1.2rem;
+}
+
+#requisites .dz-message {
+    margin: 0 0 2rem;
+    text-align: center;
+}
+
+#requisites .dz-message .dz-message-placeholder {
+    color: #7b848a;
+    text-transform: uppercase;
+    line-height: 2.2;
+    text-align: left;
+}
+
+#requisites .dz-message > .o-icon {
+    width: 35px;
+    fill: #464a4c;
+}
+
+/* dropzone.css overriding */
+
+.dz-remove {
+    margin-top: .5rem;
+}
+
+/* Fix for #msCart th, #msCart td */
+
+#msCart th, #msCart td {
+    text-align: left !important;
+    line-height: inherit !important;
+}
+
+#msCart th.text-right {
+    text-align: right !important;
+}
+
+/* Promo */
+
+/*
+.text-red {
+    color: #cc0101;
+}
+
+.promo-mask--red {
+    background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(121, 0, 0, 0.4)), color-stop(40%, rgba(0, 0, 0, 0)));
+    background: -moz-linear-gradient(left, rgba(121, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
+    background: -webkit-linear-gradient(left, rgba(121, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
+    background: linear-gradient(to right, rgba(121, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+}
+
+.promo-container:hover .promo-mask--red {
+    filter: progid: DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    -moz-animation: light-pulse 8s 2s ease-out infinite;
+    -webkit-animation: light-pulse 8s 2s ease-out infinite;
+    animation: light-pulse 8s 2s ease-out infinite;
+}
+.promo-container.open .promo-mask--red {
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    display: none;
+}
+*/
+
+/* Category */
+
+a.btn[type="button"] {
+    border-bottom-color: transparent;
+}
+
+/* Door complectation */
+
+/* 
+.table-responsive > .table: https://github.com/twbs/bootstrap/issues/21577#issuecomment-272117877
+*/
+
+#door-complectation table {
+    margin-bottom: 0;
+}
+
+#door-complectation td {
+    vertical-align: middle;
+}
+
+#door-complectation tr:first-child td {
+    border-top: none;
+}
+
+#door-complectation .lead,
+#door-complectation .card-price {
+    margin-top: .4rem;
+}
+
+#door-complectation .card-price,
+#door-complectation .ms2_total_row_cost {
+    white-space: nowrap;
+}
+
+#door-complectation .input-group {
+    margin: .5rem 0;
+}
+
+#door-complectation .ms2_form button[type="submit"] {
+    display: none;
+}
+
+#door-complectation .input-group-addon {
+    background: transparent;
+    width: 2.5rem;
+}
+
+/* Question mark icon */
+
+.question-mark-icon:before {
+    content: url('../i/question-mark-icon.svg');
+}
+
+.question-mark-icon {
+    position: relative;
+    top: 6px;
+    left: 3px;
+    cursor: pointer;
+}
+
+/* No photo */
+
+.overlay-door.no-photo {
+    background: none;
+    padding-left: 0;
+}
+
+.overlay-door.no-photo img {
+    width: 150px;
+    height: 150px;
+}
+
+/* Clean cart */
+
+#cartClean {
+    float: left;
+}
+
+/* Cart furniture */
+
+.cart-item .furniture .overlay-door {
+    float: none;
+    background: none;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item .furniture img {
+    height: auto; 
+    width: auto; 
+    max-width: 150px;
+    max-height: 200px;
+}
+
+/* Nothing found */
+
+#nothing-found {
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+    margin: 4rem 0;
+}
+
+/* Favorites */
+
+.msfavorites.load.voted.icon-heart-o::before {
+    content: "\77";
+}
+
+.msfavorites.icon-heart-o {
+    position: relative;
+}
+
+.msfavorites .tooltip-title.msfavorites-text-add,
+.msfavorites .tooltip-title.msfavorites-text-remove {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+}
+
+.msfavorites .product.msfavorites-text-add,
+.msfavorites .product.msfavorites-text-remove {
+    color: #292b2c;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+    position: relative;
+    top: -.5rem;
+    left: .125rem;
+    /* .msfavorites-text-add and .msfavorites-text-remove functionality doens't work with "a" element */
+    /* span.product.msfavorites-text-add|msfavorites-text-remove has 2 pixels more height than "a" without class */
+}
+
+.msfavorites .product.msfavorites-text-add:hover,
+.msfavorites .product.msfavorites-text-remove:hover {
+    border-bottom: 0;
+}
+
+/* Social networks */
+
+#social-networks a {
+    border-bottom: 0;
+}
+
+#social-networks a:not(:last-child) {
+    margin-right: .25rem;
+}
+
+#social-networks a img {
+    width: 41px;
+    height: 41px;
+}
+
+/* Blog lightGallery */
+
+#blog-lightGallery img {
+    cursor: pointer;
+}
+
+/* Fix price of a product page at small screens */
+
+@media (max-width: 576px) {
+    .expo-price {
+        font-size: 2.5rem;
+    }
+}
+
+.promo-header .promo-title {
+    text-decoration: underline;
+}
+
+.promo-header .promo-title:hover,
+.promo-header .promo-title:focus {
+    text-decoration: none !important;
+}
+
+/* Fix not-touchable modal at browsers with Webkit engine */
+
+#expo_custom {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Always show spinners for number inputs */
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {  
+   opacity: 1 !important;
+   -webkit-appearance: inner-spin-button !important;
+}
