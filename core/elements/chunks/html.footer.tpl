@@ -127,3 +127,9 @@
     });
     {/ignore}
 </script>
+
+{if $_modx->config.site_debug_info}
+<!--
+{$_modx->getInfo()}
+-->
+{/if}
