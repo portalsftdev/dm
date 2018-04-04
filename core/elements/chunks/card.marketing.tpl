@@ -3,6 +3,7 @@
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
     </ol>
     <div class="carousel-inner" role="listbox">
         <!--
@@ -45,6 +46,19 @@
                     <div class="tag tag-layer-orange mb-5"><h2 class="card-title m-0 py-1"><strong>10%</strong></h2></div>
                     <h4 class="card-title mb-0">Комплект с дополнительной выгодой</h4>
                     <h2 class="card-title">Купи <strong>межкомнатную</strong> <br>и <strong>входную</strong> дверь<br>со скидкой</h2>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card card-overlay card-overlay--marketing hover-effect-control mb-4" style="width: 100%; background-image: url('/assets/i/bg-zeus-siberia-legion.jpg')">
+                <div class="card-block text-xs-center gr-white-r">
+                    <h4 class="card-title mb-0 mt-5">Входные двери</h4>
+                    <h2 class="card-title">
+                      <strong>Зевс</strong><br />
+                      <strong>Легион</strong><br />
+                      <strong>Сибирь</strong><br />
+                      по ценам<br />производителя
+                    </h2>
                 </div>
             </div>
         </div>
