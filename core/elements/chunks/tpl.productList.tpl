@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    {if $_modx->resource.id != 5}
+    {if $_modx->resource.id != 5 && $_modx->resource.parent != 31}
     <div class="card container-fluid bg-faded pt-3">
         <form action="{$_modx->makeUrl($_modx->resource.id)}" method="post" id="mse2_filters">
             <div class="container ">

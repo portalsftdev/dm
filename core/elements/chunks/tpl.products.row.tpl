@@ -12,7 +12,7 @@
     {set $card_tile = 'card-tile-wide'}
     {set $card_mask = 'mask-door'}
 {/if}
-{if ($_modx->resource.id in [101, 5])}
+{if ($_modx->resource.id in [101, 5]) or $_modx->resource.parent == 31}
     {set $card_tile = 'card-tile-narrow card-product--vert'}
     {set $card_height = 'h-rem-8'}
 {/if}
