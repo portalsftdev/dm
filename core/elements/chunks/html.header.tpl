@@ -23,7 +23,7 @@
             {$_modx->RunSnippet('!msMiniCart', ['tpl' => 'miniCart'])}
             <!--<div class="toolbox ml-2"><a href="" class="btn-icon icon-cart" ></a><div class="toolbox-counter ms2_total_numrows">2</div><span class="toolbox-label ml-1 ms2_total_cost">12&nbsp;798</span><span class="toolbox-label icon-rub"></span></div>-->
         </div>
-        <div class="logo"><h1><a href="" class="no_underline"><img src="/assets/i/logo-w.png"></a></h1></div>
+        <div class="logo"><h1><a href="" class="no_underline"><img src="/assets/i/logo-w.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>
     </div>
     <!--<div class="container-fluid">-->
     <!--<div class="d-inline-block menu-btn-push mr-5"></div>-->
@@ -124,6 +124,6 @@
                 {$_modx->RunSnippet('!msMiniCart', ['tpl' => 'miniCart'])}
             </div>
         </div>
-        <div class="logo"><h1><a href="{$_modx->config.site_url}" class="no_underline"><img src="{$_modx->config.assets_url}i/logo.png"></a></h1></div>
+        <div class="logo"><h1><a href="{$_modx->config.site_url}" class="no_underline"><img src="{$_modx->config.assets_url}i/logo.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>
     </div>
 </header>

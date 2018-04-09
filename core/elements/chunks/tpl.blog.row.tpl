@@ -3,7 +3,7 @@
         <div class="card">
             <div class="view overlay hm-white-slight">
                 <a href="{$_modx->makeUrl($id)}">
-                    <img src="{$card}" class="img-fluid">
+                    <img src="{$card}" class="img-fluid" alt="{$pagetitle | escape}">
                     <div class="mask"></div>
                 </a>
             </div>

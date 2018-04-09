@@ -4,7 +4,7 @@
         <div class="expo">
             <div class="container-fluid">
                 <div class="row">
-
+                    {$_modx->setPlaceholder('productImageTitle', $_modx->resource.longtitle ?: $_modx->resource.pagetitle)}
                     {$_modx->runSnippet('!msGallery@PropertySet', [
                     'tpl' => '@FILE chunks/tpl.product.gallery.tpl',
                     'frontend_css=' => '',
@@ -15,7 +15,7 @@
                         <div class="container pt-4 pb-1">
                             <div class="row">
                                 <div class="col">
-                                    <h1 class="expo-title">{$_modx->resource.longtitle?:$_modx->resource.pagetitle}</h1>
+                                    <h1 class="expo-title">{$_modx->resource.longtitle ?: $_modx->resource.pagetitle}</h1>
                                     <p>
                                     {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'onlyOptions' => 'pattern,cover'])}
                                     </p>
@@ -24,7 +24,7 @@
                                     <div class="row mx-0">
                                         <div>
                                             <!--<img src="/assets/images/brands/brand-zadoor-color.jpg" class="expo-logo" data-toggle="popover" data-placement="bottom" data-html="true" title="<p class='align-left'>Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу.</p>">-->
-                                            <a class="no_underline" data-toggle="popover" data-trigger="hover" data-delay='{ "show": 0, "hide": 1000 }' title="{$_pls['vendor.name']}" data-placement="bottom" data-html="true" data-content="Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу. Можно <a href=''>со ссылкой</a>"><img src="{$_pls['vendor.logo']}" class="expo-logo"></a>
+                                            <a class="no_underline" data-toggle="popover" data-trigger="hover" data-delay='{ "show": 0, "hide": 1000 }' title="{$_pls['vendor.name']}" data-placement="bottom" data-html="true" data-content="Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу. Можно <a href=''>со ссылкой</a>"><img src="{$_pls['vendor.logo']}" class="expo-logo" alt="Бренд «{$_pls['vendor.name'] | escape}»"></a>
                                         </div>
                                     </div>
                                 </div>

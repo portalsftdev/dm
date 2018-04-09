@@ -10,7 +10,7 @@
                 </div>
                 <div class="back">
                     <div class="label-360 label-360--orange mt-4 animate-tremor">ЖМИ</div>
-                    <img src="assets/i/360-icon.png" class="h-rem-3 mt-1">
+                    <img src="assets/i/360-icon.png" class="h-rem-3 mt-1" alt="3D тур">
                 </div>
             </a>
             <div class="text-360">

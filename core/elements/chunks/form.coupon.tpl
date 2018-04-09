@@ -21,7 +21,7 @@
                                 <input name="phone" class="form-control form-control--border mt-4" placeholder="+7 (___) ___-_____" type="tel">
                                 <span class="error_phone"></span>
                                 <div class="captcha mt-4">
-                                    <img class="form-control--border" src="assets/components/captcha/connector.php" />
+                                    <img class="form-control--border" src="assets/components/captcha/connector.php" alt="Введите код с картинки" title="Введите код с картинки" />
                                     <a class="captcha-refresh ml-3">Не вижу код</a>
                                 </div>
                                 <input name="captcha" class="form-control form-control--border mt-4" placeholder="Введите код с картинки" type="text" />

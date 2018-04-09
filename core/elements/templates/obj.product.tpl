@@ -4,7 +4,7 @@
         <div class="expo">
             <div class="container-fluid">
                 <div class="row">
-
+                    {$_modx->setPlaceholder('productImageTitle', $_pls['model.value'] ?: $_modx->resource.pagetitle)}
                     {$_modx->runSnippet('!msGallery@PropertySet', [
                     'limit' => 2,
                     'tpl' => '@FILE chunks/tpl.product.expo.tpl',
@@ -25,15 +25,15 @@
                                     <div class="row mx-0">
                                         <div>
                                             <!--<img src="/assets/images/brands/brand-zadoor-color.jpg" class="expo-logo" data-toggle="popover" data-placement="bottom" data-html="true" title="<p class='align-left'>Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу.</p>">-->
-                                            <a class="no_underline" data-toggle="popover" data-trigger="hover" data-delay='{ "show": 0, "hide": 1000 }' title="{$_pls['vendor.name']}" data-placement="bottom" data-html="true" data-content="Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу. Можно <a href=''>со ссылкой</a>"><img src="{$_pls['vendor.logo']}" class="expo-logo"></a>
+                                            <a class="no_underline" data-toggle="popover" data-trigger="hover" data-delay='{ "show": 0, "hide": 1000 }' title="{$_pls['vendor.name']}" data-placement="bottom" data-html="true" data-content="Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу. Можно <a href=''>со ссылкой</a>"><img src="{$_pls['vendor.logo']}" alt="Бренд «{$_pls['vendor.name'] | escape}»" class="expo-logo"></a>
                                         </div>
                                         {if $_pls['vendor.name'] == 'Фрегат'}
                                          <div id="lg-serts">
 <!--                                             <a href="/assets/i/sert2a.jpg" class="no_underline">
-    <img src="/assets/i/sert2.jpg" class="expo-sert float-right ml-2">
+    <img src="/assets/i/sert2.jpg" class="expo-sert float-right ml-2" alt="Сертификат соответствия">
 </a> -->
                                             <a href="/assets/i/sert1a.jpg" class="no_underline">
-                                                <img src="/assets/i/sert.jpg" class="expo-sert float-right ml-2">
+                                                <img src="/assets/i/sert.jpg" class="expo-sert float-right ml-2" alt="Сертификат соответствия">
                                             </a>
                                         </div>
                                         {/if}
