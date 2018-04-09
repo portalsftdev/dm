@@ -6,8 +6,8 @@
     width: 100%;
 }
 
-.color-checkbox + label, 
-.color-checkbox:checked + label, 
+.color-checkbox + label,
+.color-checkbox:checked + label,
 .color-checkbox:not(:checked) + label {
     margin-right: 4px;
 }
@@ -97,7 +97,7 @@
 
 .product-availability span.error,
 .product-availability .success-message,
-.product-price-order span.error, 
+.product-price-order span.error,
 .product-price-order .success-message {
     margin-top: -0.25rem;
     float: left;
@@ -197,7 +197,7 @@ a.btn[type="button"] {
 
 /* Door complectation */
 
-/* 
+/*
 .table-responsive > .table: https://github.com/twbs/bootstrap/issues/21577#issuecomment-272117877
 */
 
@@ -279,8 +279,8 @@ a.btn[type="button"] {
 }
 
 .cart-item .furniture img {
-    height: auto; 
-    width: auto; 
+    height: auto;
+    width: auto;
     max-width: 150px;
     max-height: 200px;
 }
@@ -377,8 +377,8 @@ a.btn[type="button"] {
 
 /* Always show spinners for number inputs */
 
-input[type="number"]::-webkit-inner-spin-button, 
-input[type="number"]::-webkit-outer-spin-button {  
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
    opacity: 1 !important;
    -webkit-appearance: inner-spin-button !important;
 }

@@ -8,7 +8,7 @@
 <title>{$_modx->runSnippet('!pdoTitle')} / {$_modx->config.site_name}</title>
 
 {$_modx->RunSnippet('!MinifyX', [
-    'cssSources' => 
+    'cssSources' =>
         $_modx->config.assets_url ~ 'css/bootstrap.css' ~ ', ' ~
         $_modx->config.assets_url ~ 'css/lightgallery.css' ~ ', ' ~
         $_modx->config.assets_url ~ 'css/screen.css' ~ ', ' ~

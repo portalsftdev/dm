@@ -1,7 +1,7 @@
 {ignore}
-{ 
+{
 {/ignore}
-    lat: {$lat}, lng: {$lng} 
+    lat: {$lat}, lng: {$lng}
 {ignore}
-}, 
+},
 {/ignore}

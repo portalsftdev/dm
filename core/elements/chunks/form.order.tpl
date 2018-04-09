@@ -49,7 +49,7 @@
                                 <input type="text" name="legal-address" class="form-control form-control--border  mb-3 mr-2 " placeholder="Юр. адрес">
                                 <input type="tet" name="kpp" class="form-control form-control--border  mb-3 mr-2 " placeholder="КПП">
                             </div>
-                           
+
                             <div class="col-12 p-3">
                                 <div class="dropzone" id="requisites">
                                     <div class="dz-default dz-message">

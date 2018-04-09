@@ -8,7 +8,7 @@
         <div class="container" id="msCart">
 
             <h1>Корзина покупок</h1>
-            
+
             {if count($products) == 0}
                 <div style="margin:7rem 0 10rem;text-align:center;font-size:2rem">Корзина пуста.</div>
             </div>

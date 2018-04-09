@@ -5,7 +5,7 @@
 
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="apple-mobile-web-app-status-bar-style" content="default">
-		
+
 		<style type="text/css">
 			@-ms-viewport { width: device-width; }
 			@media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
@@ -38,7 +38,7 @@
 		<!--[if gt IE 8]>
 		<script type="text/javascript" src="/assets/virtual-tour/lib/jquery-2.0.3.min.js"></script>
 		<![endif]-->
-		
+
 		<script type="text/javascript">
 		function readDeviceOrientation() {
 			// window.innerHeight is not supported by IE
@@ -70,7 +70,7 @@
 			<div id="tourDIV">
 				<div id="panoDIV">
 					<noscript>
-						
+
 						<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100%" height="100%" id="/assets/virtual-tour/02.04">
 							<param name="movie" value="/assets/virtual-tour/02.04.swf"/>
 							<param name="allowFullScreen" value="true"/>
@@ -86,20 +86,20 @@
 							</object>
 							<!--<![endif]-->
 						</object>
-						
+
 					</noscript>
 				</div>
-				
+
 				<script type="text/javascript" src="/assets/virtual-tour/02.04.js"></script>
 				<script type="text/javascript">
 					embedpano({
-					
+
 					swf:"/assets/virtual-tour/02.04.swf"
-					
+
 					,target:"panoDIV"
 					,passQueryParameters:true
-					
-					
+
+
 					});
 				</script>
 			</div>

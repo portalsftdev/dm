@@ -49,27 +49,27 @@
 <!--<script src="/assets/js/jquery-3.1.1.slim.min.js" ></script>-->
 
 {$_modx->RunSnippet('!MinifyX', [
-    'jsSources' => 
+    'jsSources' =>
         $_modx->config.assets_url ~ 'js/jquery.min.js' ~ ', ' ~
         $_modx->config.assets_url ~ 'js/tether.min.js' ~ ', ' ~
         $_modx->config.assets_url ~ 'js/popper.js' ~ ', ' ~
         $_modx->config.assets_url ~ 'js/bootstrap.min.js' ~ ', ' ~
         $_modx->config.assets_url ~ 'js/masonry.pkgd.min.js' ~ ', ' ~
         $_modx->config.assets_url ~ 'js/screen.js' ~  ', ' ~
-        
+
         $_modx->config.assets_url ~ 'js/jquery.flex-images.min.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/lightgallery/lightgallery.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/lightgallery/lg-fullscreen.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/lightgallery/lg-thumbnail.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/lightgallery/lg-hash.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/lightgallery/lg-pager.js' ~  ', ' ~
-        
+
         $_modx->config.assets_url ~ 'js/jquery.kladr.min.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/dropzone.js' ~  ', ' ~
-        
+
         $_modx->config.assets_url ~ 'js/inputmask.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/inputmask.phone.extensions.js' ~  ', ' ~
-        
+
         $_modx->config.assets_url ~ 'js/app.js' ~  ', ' ~
     ,
     'minifyJs' => true,
@@ -95,7 +95,7 @@
             transitionDuration: '.3s',
             percentPosition: true
         });
-        
+
     })
     {/ignore}
 </script>

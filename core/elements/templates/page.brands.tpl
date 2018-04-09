@@ -18,4 +18,3 @@
         {/block}
     </main>
 {/block}
-

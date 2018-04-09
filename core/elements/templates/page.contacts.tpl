@@ -43,11 +43,11 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTHBPz82OEgRIIKH2kv_ThzBkpdo-86Po&callback=initMap&language=ru">
     </script>
     {/ignore}
-    
+
 
 <style>
-    
-</style>    
+
+</style>
 
 <div class="row" id="location-info-header" style="margin:0;">
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Режим работы отдела продаж</div>
@@ -64,9 +64,9 @@
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Адрес</div>
 </div>
 {$_modx->runSnippet('!citySelector', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
-    
+
 </div>
-    
+
 
 </section>
 
