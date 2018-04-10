@@ -8,7 +8,7 @@
                class="price-option msal_input"
                data-price="{$input.price}"
                data-discount="{$input.discount}"
-               {if $input.input_type != 'checkbox'}value="{$input.value}"{/if}
+               {if $input.input_type != 'checkbox'}value="{$input.value | escape}"{/if}
                {if $input.input_type == 'checkbox' and $input.value !== ''}checked{/if}><label for="msal_{$input.id}">{$input.menutitle?:$input.pagetitle} <strong>+{$input.price}<span class="icon-rub"></span></strong></label>
     </div>
 {/foreach}

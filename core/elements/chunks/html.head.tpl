@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width">
 {*<meta name="viewport" content="width=device-width, initial-scale=1.0">*}
-<meta name="description" content="{$_modx->resource.description}">
+<meta name="description" content="{$_modx->resource.description | escape}">
 <meta name="author" content="">
 <base href="{$_modx->config.site_url}" />
 <title>{$_modx->runSnippet('!pdoTitle')} / {$_modx->config.site_name}</title>

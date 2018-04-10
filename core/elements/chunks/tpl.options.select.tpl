@@ -4,10 +4,9 @@
         <div class="mb-3">
             <select class="form-control form-control--border w-rem-11" name="options[{$name}]" id="option_{$name}">
                 {foreach $values as $value}
-                    <option value="{$value}">{$value}</option>
+                    <option value="{$value | escape}">{$value}</option>
                 {/foreach}
             </select>
         </div>
     </div>
 {/foreach}
-

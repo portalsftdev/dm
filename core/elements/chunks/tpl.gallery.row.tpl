@@ -5,10 +5,10 @@
              data-w="{$file.properties.width}"
              data-h="{$file.properties.height}"
              data-responsive="{$file.w480} 480, {$file.w800} 800, {$file.w1200} 1200"
-             data-src="{$file.url}" {$file.description? "data-sub-html='<h4>$file.description</h4>'" : ""}
+             data-src="{$file.url}" {$file.description? "data-sub-html='<h4>" ~ $file.description | escape ~ "</h4>'" : ""}
             >
-            {*<img class="img-responsive" alt="{$file.alt}" src="{$file.preview}">*}
-            <img class="img-responsive" alt="{$file.alt}" src="assets/i/blank.gif" data-src="{$file.preview}">
+            {*<img class="img-responsive" alt="{$file.alt | escape}" src="{$file.preview}">*}
+            <img class="img-responsive" alt="{$file.alt | escape}" src="assets/i/blank.gif" data-src="{$file.preview}">
         </div>
     {/foreach}
     </div>

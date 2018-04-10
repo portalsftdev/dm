@@ -22,14 +22,14 @@
         <div class="mask {$card_mask}">
             <a href="{$id | url}">
                 {if $thumb?}
-                    <img src="{$thumb}" alt="{$pagetitle}" title="{$pagetitle}"/>
+                    <img src="{$thumb}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}"/>
                 {else}
                     <img src="{'assets_url' | option}components/minishop2/img/web/ms2_small.png"
                          srcset="{'assets_url' | option}components/minishop2/img/web/ms2_small@2x.png 2x"
-                         alt="{$pagetitle}" title="{$pagetitle}"/>
+                         alt="{$pagetitle | escape}" title="{$pagetitle | escape}"/>
                 {/if}
                 {if $thumb1?}
-                    <img src="{$thumb1}" alt="{$pagetitle}" title="{$pagetitle}"/>
+                    <img src="{$thumb1}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}"/>
                 {/if}
             </a>
         </div>

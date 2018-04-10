@@ -33,9 +33,9 @@
                                         <div class="mask mask-door">
                                             <a href="{$product.id | url}">
                                             {if $product.thumb?}
-                                                <img src="{$product.thumb}" alt="{$product.pagetitle}" title="{$product.pagetitle}"/>
+                                                <img src="{$product.thumb}" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
                                             {else}
-                                                <img style="width:150px;" src="{$_modx->config.assets_url}images/no-photo.png" alt="{$product.pagetitle}" title="{$product.pagetitle}"/>
+                                                <img style="width:150px;" src="{$_modx->config.assets_url}images/no-photo.png" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
                                             {/if}
                                             </a>
                                         </div>
