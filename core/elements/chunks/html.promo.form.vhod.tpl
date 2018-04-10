@@ -27,6 +27,12 @@
             {$_modx->getPlaceholder('mFilter2.msoption|metal_thickness')}
         </div>
     </div>
+    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+        <h5>
+            <input id="mse2_vhod_ms|favorite_1" name="ms|favorite" value="1" type="checkbox" />
+            <label for="mse2_vhod_ms|favorite_1">Акция месяца</label>
+        </h5>
+    </div>
 <!--     <div class="col-12 col-lg-5">
     <h5>Цена</h5>
     <div><input type="radio" id="vhod_price0" name="ms|price" value="0,7000"><label for="vhod_price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>

@@ -15,6 +15,12 @@
             {$_modx->getPlaceholder('mFilter2.msoption|furniture_type')}
         </div>
     </div>
+    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+        <h5>
+            <input id="mse2_furniture_ms|favorite_1" name="ms|favorite" value="1" type="checkbox" />
+            <label for="mse2_furniture_ms|favorite_1">Акция месяца</label>
+        </h5>
+    </div>
 <!--     <div class="col-6 col-lg-4 mt-2">
     <h5>Цена</h5>
     <div><input type="radio" id="furniture_price0" name="ms|price" value="0,7000"><label for="furniture_price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>

@@ -97,6 +97,7 @@
                 msoc|shield_color~value~pattern,
                 msvendor|name:vendor,
                 msoption|metal_thickness:metal_thickness,
+                ms|favorite:favorite,
             ',
             'values_delimeter' => ';',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
@@ -136,6 +137,7 @@
                 msoption|width:width,
                 msoption|doorType:doorType,
                 msoc|glass~value~pattern,
+                ms|favorite:favorite,
             ',
             'values_delimeter' => ';',
             'leftJoin' => '{
@@ -182,6 +184,7 @@
                 msoc|mscolor~value~pattern,
                 msvendor|name:vendor,
                 msoption|furniture_type:furniture_type,
+                ms|favorite:favorite,
             ',
             'values_delimeter' => ';',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',

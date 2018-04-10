@@ -38,6 +38,12 @@
                             {$_modx->getPlaceholder('mFilter2.msoption|metal_thickness')}
                         </div>
                     </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>
+                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" class="" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <label for="mse2_ms|favorite_1">Акция месяца</label>
+                        </h5>
+                    </div>
 <!--                     <div>
     <h5>Цена</h5>
     {set $price = $.get.'ms|price'}
@@ -83,6 +89,12 @@
                             {$_modx->getPlaceholder('mFilter2.msoc|glass')}
                         </div>
                     </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>
+                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <label for="mse2_ms|favorite_1">Акция месяца</label>
+                        </h5>
+                    </div>
 <!--                     </div>
 <div>
     <h5>Цена</h5>
@@ -114,6 +126,12 @@
                             {$_modx->getPlaceholder('mFilter2.msoption|furniture_type')}
                         </div>
                     </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>
+                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <label for="mse2_ms|favorite_1">Акция месяца</label>
+                        </h5>
+                    </div>
 <!--                     <div>
     <h5>Цена</h5>
     {set $price = $.get.'ms|price'}
@@ -132,7 +150,7 @@
         </form>
     </div>
     {/if}
-    
+
     <div class="container py-3">
         <div id="mse2_sort" class="sorts text-uppercase">
             {set $sortBy = $_modx->getPlaceholder('mse2_sort')}
@@ -144,22 +162,22 @@
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms|price') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms|price" data-dir="{if $mse2_sort == 'ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms|price') !== false} active{/if}">Цене</a>
         </div>
     </div>
-	
+
     <section class="px-3 pb-2">
         <div class="container-fluid">
-            
+
             <div class="row" id="mse2_results">
                 {$_modx->getPlaceholder('mFilter2.results')}
 	        </div>
-	        
+
 	        {$_modx->getChunk('@FILE chunks/modal.productPriceOrder.tpl')}
-	        
+
             <div class="row mt-4">
                 <nav class="m-auto mse2_pagination">
                     {$_modx->getPlaceholder('page.nav')}
                 </nav>
     	    </div>
-    	    
+
         </div>
     </section>
 </div>
