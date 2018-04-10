@@ -25,7 +25,7 @@
                                     <div class="row mx-0">
                                         <div>
                                             <!--<img src="/assets/images/brands/brand-zadoor-color.jpg" class="expo-logo" data-toggle="popover" data-placement="bottom" data-html="true" title="<p class='align-left'>Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу.</p>">-->
-                                            <a class="no_underline" data-toggle="popover" data-trigger="hover" data-delay='{ "show": 0, "hide": 1000 }' title="{$_pls['vendor.name']}" data-placement="bottom" data-html="true" data-content="Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу. Можно <a href=''>со ссылкой</a>"><img src="{$_pls['vendor.logo']}" alt="Бренд «{$_pls['vendor.name'] | escape}»" class="expo-logo"></a>
+                                            <a class="no_underline" title="{$_pls['vendor.name'] | escape}" href="{$_modx->makeUrl($_modx->resource.parent, '', ['msvendor|name' => $_pls['vendor.name'] | escape])}"><img src="{$_pls['vendor.logo']}" class="expo-logo" alt="Бренд «{$_pls['vendor.name'] | escape}»"></a>
                                         </div>
                                         {if $_pls['vendor.name'] == 'Фрегат'}
                                          <div id="lg-serts">
