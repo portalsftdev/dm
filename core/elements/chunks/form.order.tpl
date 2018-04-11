@@ -3,7 +3,6 @@
         <div class="container-fluid px-0">
             <h3 class="doc-title "><span>Оформить заказ</span></h3>
         </div>
-
         <h3 class="card-title text-center mt-5">Получатель</h3>
         <div class="container container--narrow">
             <div class="card-overlay mt-3">
@@ -16,6 +15,7 @@
                         <a class="nav-link" data-payer-type="Юридическое лицо" data-toggle="tab" href="#company" role="tab">Юридическое лицо</a>
                     </li>
                 </ul>
+                <!-- /Nav tabs -->
                 <input type="hidden" name="payer-type" value="Физическое лицо" />
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -63,11 +63,11 @@
                                         <input type="file" name="requisites" />
                                     </div>
                                 </div>
-                                <!-- <textarea class="form-control form-control--border" id="exampleTextarea" placeholder="Реквизиты" rows="3"></textarea> -->
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /Tab panes -->
             </div>
             <input type="hidden" name="receiver" value="Не указан" />
 

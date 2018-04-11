@@ -10,7 +10,6 @@
                     'frontend_css=' => '',
                     'frontend_js' => '',
                     ])}
-
                     <div class="col-xl-6 bg-shadow-l">
                         <div class="container pt-4 pb-1">
                             <div class="row">
@@ -23,7 +22,6 @@
                                 <div class="col">
                                     <div class="row mx-0">
                                         <div>
-                                            <!--<img src="/assets/images/brands/brand-zadoor-color.jpg" class="expo-logo" data-toggle="popover" data-placement="bottom" data-html="true" title="<p class='align-left'>Здесь небольшой текст о компании. Буквально два или три предложения без воды, по существу.</p>">-->
                                             <a class="no_underline" title="{$_pls['vendor.name'] | escape}" href="{$_modx->makeUrl($_modx->resource.parent, '', ['msvendor|name' => $_pls['vendor.name'] | escape])}"><img src="{$_pls['vendor.logo']}" class="expo-logo" alt="Бренд «{$_pls['vendor.name'] | escape}»"></a>
                                         </div>
                                     </div>
@@ -51,14 +49,10 @@
                                         <input type="hidden" name="count" value="1">
                                         <input type="hidden" name="options" value="[]">
                                     </form>
-                                    <!--<div class="d-inline-block "><a class="btn-icon btn-icon-dvmk icon-cube text-primary"></a><a class="font-weight-bold no_underline">В наличии</a></div>-->
-                                    <!--<div class="d-inline-block py-3"><div class="expo-label m-0">В наличии</div></div>-->
                                     <div data-toggle="modal" data-target="#expo_available"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
                                     <div>
                                         {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
                                     </div>
-                                    <!--<a href="" class="btn-icon btn-icon-dvmk icon-print ml-3"></a><a href="">Распечатать</a>-->
-
                                     <div id="expo_available" class="modal fade" tabindex="-1" role="dialog" >
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">

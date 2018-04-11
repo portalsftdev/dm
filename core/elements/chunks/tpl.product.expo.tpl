@@ -1,8 +1,4 @@
 <div class="expo-interior expo-interior--dark col-xl-6 px-0">
-    <!--<div class="promo-labels-left mt-4 ml-0">-->
-    <!--<div class="promo-label-left promo-label&#45;&#45;black">В наличии</div>-->
-    <!--<div class="promo-label-left promo-label&#45;&#45;primary">-30%</div>-->
-    <!--</div>-->
     {if count($files) > 0}
         <div class="expo-door card-wrapper">
             <div id="expo-door" class="card-rotating effect__click">

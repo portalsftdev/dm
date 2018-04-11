@@ -44,15 +44,6 @@
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
-<!--                     <div>
-    <h5>Цена</h5>
-    {set $price = $.get.'ms|price'}
-    <div><input type="radio" id="price0" name="ms|price" value="0,7000"{if $price == '0,7000'} checked{/if}><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price1" name="ms|price" value="7000,10000"{if $price == '7000,10000'} checked{/if}><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price2" name="ms|price" value="10000,15000"{if $price == '10000,15000'} checked{/if}><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price3" name="ms|price" value="15000,25000"{if $price == '15000,25000'} checked{/if}><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"{if $price == '25000,1000000'} checked{/if}><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
-</div> -->
                 </div>
                 {elseif $_modx->resource.id == 7}
                 <div class="row">
@@ -95,16 +86,15 @@
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
-<!--                     </div>
-<div>
-    <h5>Цена</h5>
-    {set $price = $.get.'ms|price'}
-    <div><input type="radio" id="price0" name="ms|price" value="0,7000"{if $price == '0,7000'} checked{/if}><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price1" name="ms|price" value="7000,10000"{if $price == '7000,10000'} checked{/if}><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price2" name="ms|price" value="10000,15000"{if $price == '10000,15000'} checked{/if}><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price3" name="ms|price" value="15000,25000"{if $price == '15000,25000'} checked{/if}><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"{if $price == '25000,1000000'} checked{/if}><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
-</div> -->
+                    {*<div>
+                        <h5>Цена</h5>
+                        {set $price = $.get.'ms|price'}
+                        <div><input type="radio" id="price0" name="ms|price" value="0,7000"{if $price == '0,7000'} checked{/if}><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
+                        <div><input type="radio" id="price1" name="ms|price" value="7000,10000"{if $price == '7000,10000'} checked{/if}><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
+                        <div><input type="radio" id="price2" name="ms|price" value="10000,15000"{if $price == '10000,15000'} checked{/if}><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
+                        <div><input type="radio" id="price3" name="ms|price" value="15000,25000"{if $price == '15000,25000'} checked{/if}><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
+                        <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"{if $price == '25000,1000000'} checked{/if}><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
+                    </div>*}
                 </div>
                 {elseif $_modx->resource.id == 8}
                 <div class="row">
@@ -132,15 +122,6 @@
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
-<!--                     <div>
-    <h5>Цена</h5>
-    {set $price = $.get.'ms|price'}
-    <div><input type="radio" id="price0" name="ms|price" value="0,7000"{if $price == '0,7000'} checked{/if}><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price1" name="ms|price" value="7000,10000"{if $price == '7000,10000'} checked{/if}><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price2" name="ms|price" value="10000,15000"{if $price == '10000,15000'} checked{/if}><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price3" name="ms|price" value="15000,25000"{if $price == '15000,25000'} checked{/if}><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"{if $price == '25000,1000000'} checked{/if}><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
-</div> -->
                 </div>
                 {/if}
                 <div class="row" id="mfilter-reset-row">

@@ -21,7 +21,6 @@
                 <div class="col-3 push-9 text-right">
                     <div class="promo-labels">
                         <div class="promo-label promo-label--red">Акция&nbsp;месяца</div>
-                        <!--<div class="promo-label promo-label&#45;&#45;green">Под заказ</div>-->
                     </div>
                 </div>
                 {*<div class="col-9 pull-xxl-3 pull-xl-4 pull-lg-9 pull-md-3">

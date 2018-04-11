@@ -4,8 +4,7 @@
             <div class="row">
                 <div class="col-12">
                     <h3 class="card-title mb-0">{$introtext}</h3>
-                    <!-- 6 => dvmk|primary, 7 => danger|red, 8 => dariano|green|success -->
-                    <p class="text-{if $content == 6}primary{elseif $content == 7}primary{elseif $content == 8}primary{/if}">{$description}</p>
+                    <p class="text-primary">{$description}</p>
                 </div>
             </div>
             {if $content==6}
@@ -98,8 +97,7 @@
             {/if}
                 <div class="row mt-3">
                     <div class="col-12" style="padding-top:1.5rem;">
-                        <!-- <h5 class="card-title">Мы нашли для вас <strong id="mse2_total">{$_modx->getPlaceholder('mFilter2.total')}</strong> дверь</h5> -->
-                        <button type="submit" class="btn btn-{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if} hover-effect hover-effect--apollo waves-effect waves-light">Перейти в каталог</button>
+                        <button type="submit" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light">Перейти в каталог</button>
                         <button type="button" class="btn btn-secondary waves-effect waves-light promo-switch" data-promo=".{$alias}">Закрыть</button>
                     </div>
                 </div>
@@ -114,23 +112,23 @@
     <div class="promo-block hover-effect-control">
         <div class="promo-mask promo-mask--bg" style="background-image: url({$content | pdoField : 'promo_bg'})"></div>
         <div class="promo-mask promo-mask--white"></div>
-        <div class="promo-mask promo-mask--{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if}"></div>
+        <div class="promo-mask promo-mask--dvmk"></div>
         <div class="promo-mask promo-mask--black"></div>
-        <div class="promo-header"><!-- {$link_attributes?:'dvmk'} -->
-            <a href="{$id | url}" class="h1 promo-title promo-title--dvmk">{$longtitle?:$pagetitle}</a> <!-- no_underline--hover -->
+        <div class="promo-header">
+            <a href="{$id | url}" class="h1 promo-title promo-title--dvmk">{$longtitle?:$pagetitle}</a>
         </div>
         <div class="promo-text">
             <div class="h-rem-7 clearfix">
                 <div class="promo-labels">
-                    <div class="promo-label promo-label--{if $content == 6}primary{elseif $content == 7}primary{elseif $content == 8}primary{/if}">{$_modx->getPlaceholder('mFilter2.total')} в наличии</div>
+                    <div class="promo-label promo-label--primary">{$_modx->getPlaceholder('mFilter2.total')} в наличии</div>
                 </div>
             </div>
             <div class="lead h-rem-12">
                 <p>{$content | pdoField : 'introtext'}</p>
             </div>
             <div>
-                {*<button type="button" class="btn btn-{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if} hover-effect hover-effect--apollo waves-effect waves-light promo-switch" data-promo=".{$alias}">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</button>*}
-                <a href="{$content | url}" class="btn btn-{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if} hover-effect hover-effect--apollo waves-effect waves-light">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</a>
+                {*<button type="button" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light promo-switch" data-promo=".{$alias}">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</button>*}
+                <a href="{$content | url}" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</a>
             </div>
         </div>
     </div>

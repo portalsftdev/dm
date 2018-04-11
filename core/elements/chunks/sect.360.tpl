@@ -26,11 +26,6 @@
                     <div class="col-md-6 text-md-left pt-4 pt-md-0"><h2 class="card-title mb-0"><strong>Двери</strong> Маркет</h2></div>
                     <div class="col-md-6 text-md-right"><h4 class="card-title mb-0"><strong>Лучший</strong> способ купить<br>двери <strong>в Кемеровской области</strong></h4></div>
                 </div>
-                <!--<div class="row pt-5 pb-3 text-center">-->
-                <!--<div class="col-lg-4 text-lg-left"><h2 class="card-title mb-0">Выставочный <strong>зал</strong></h2></div>-->
-                <!--<div class="col-lg-4 pt-3"><p>Любите выбирать руками, а не глазами?<br>Ждем вас в нашем просторном выставочном зале</p></div>-->
-                <!--<div class="col-lg-4 text-lg-right"><p><a href="" class="btn-icon btn-icon-dvmk icon-map-point"></a> г. Кемерово, Ленинградский проспект, 21</p></div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>

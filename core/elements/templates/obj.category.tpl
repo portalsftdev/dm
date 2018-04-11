@@ -6,12 +6,10 @@
                     <div class="col-md-6 col-12 card-img-overlay gr-black-r"></div>
                     <div class="col-md-6 col-12 px-5 py-4">
                         <h1 class="promo-title h-rem-3">{$_modx->resource.pagetitle}</h1>
-                        <!--<p>В нашем интернет-магазине представлены межкомнатные двери с фото и ценами. Если у вас возникнут вопросы, мы с удовольствием проконсультируем и поможем сделать правильный выбор.</p>-->
                     </div>
                     <div class="col-md-6 col-12 px-5 py-4">
                         <div class="d-inline-block float-md-right">
                             <div class="btn-group btn-group-sm" role="group">
-                                <!-- 6 => dvmk, 7 => danger, 8 => dariano -->
                                 {$_modx->runSnippet('!pdoResources', [
                                 'parents' => 39,
                                 'limit' => 3,
@@ -19,24 +17,11 @@
                                 'where' => ['content:!=' => $_modx->resource.id],
                                 'sortby' => 'id',
                                 'sortdir' => 'asc',
-                                'tpl' => '@INLINE <a type="button" href="{$_modx->makeUrl($content)}" class="btn btn-{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if}">{$pagetitle}</a>',
+                                'tpl' => '@INLINE <a type="button" href="{$_modx->makeUrl($content)}" class="btn btn-dvmk">{$pagetitle}</a>',
                                 ])}
                             </div>
                         </div>
-                        <!--<p>В нашем интернет-магазине представлены межкомнатные двери с фото и ценами. Если у вас возникнут вопросы, мы с удовольствием проконсультируем и поможем сделать правильный выбор.</p>-->
                     </div>
-                    <!--<div class="col-lg-6 px-5 py-4">-->
-                    <!--<div class="card card-overlay text-white" style="background-image: url('/assets/i/bg-leaf-dark.jpg')">-->
-                    <!--<div class="card-block px-5 py-4 text-xs-center">-->
-                    <!--<h3 class="card-title"><strong>Пора</strong> сделать замер</h3>-->
-                    <!--<div class="md-form">-->
-                    <!--<i class="fa fa-envelope prefix"></i>-->
-                    <!--<input type="tel" id="form2" class="form-control btn-right" placeholder="+7 (___) ___-____"><button class="btn btn-dvmk">ВЫЗВАТЬ ЗАМЕРЩИКА</button>-->
-                    <!--<p class="mt-3">с <strong>9:00</strong> до <strong>21:00</strong> без выходных</p>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
                 </div>
             </div>
         </section>
@@ -64,8 +49,8 @@
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
-            'tplPagePrev' => '@INLINE <!--Arrow left--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
-            'tplPageNext' => '@INLINE <!--Arrow right--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
+            'tplPagePrev' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
+            'tplPageNext' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
             'tplPageFirst' => '@INLINE',
             'tplPageLast' => '@INLINE',
             'tplPagePrevEmpty' => '@INLINE',
@@ -112,8 +97,8 @@
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
-            'tplPagePrev' => '@INLINE <!--Arrow left--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
-            'tplPageNext' => '@INLINE <!--Arrow right--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
+            'tplPagePrev' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
+            'tplPageNext' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
             'tplPageFirst' => '@INLINE',
             'tplPageLast' => '@INLINE',
             'tplPagePrevEmpty' => '@INLINE',
@@ -162,8 +147,8 @@
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
-            'tplPagePrev' => '@INLINE <!--Arrow left--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
-            'tplPageNext' => '@INLINE <!--Arrow right--> <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
+            'tplPagePrev' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
+            'tplPageNext' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
             'tplPageFirst' => '@INLINE',
             'tplPageLast' => '@INLINE',
             'tplPagePrevEmpty' => '@INLINE',

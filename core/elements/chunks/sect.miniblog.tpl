@@ -16,11 +16,6 @@
                     'where' => ['template' => 11],
                     ])}
                 </div>
-                <!--<div class="row pt-5 pb-3 text-center">-->
-                <!--<div class="col-lg-4 text-lg-left"><h2 class="card-title mb-0">Выставочный <strong>зал</strong></h2></div>-->
-                <!--<div class="col-lg-4 pt-3"><p>Любите выбирать руками, не глазами?<br>Ждем вас в нашем просторном выставочном зале</p></div>-->
-                <!--<div class="col-lg-4 text-lg-right"><p><a href="" class="btn-icon btn-icon-dvmk icon-map-point"></a> г. Кемерово, Ленинградский проспект, 21</p></div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>

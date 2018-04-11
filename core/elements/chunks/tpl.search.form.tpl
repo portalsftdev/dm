@@ -5,7 +5,7 @@
               data-placement="bottom"
               title=""
               data-original-title="Поиск по сайту"
-              aria-describedby="tooltip237923">
+        >
         </a>
         <input type="search" class="search-input form-control form-control-sm form-control--border w-100 {$absolute == 1 ? 'absolute' : ''}"
                name="{$queryVar}" placeholder="Поиск" value="{$mse2_query}" autocomplete="off"/>

@@ -1,7 +1,6 @@
 <div id="discount-coupon-preform">
     <input type="email" name="email" class="form-control btn-right" placeholder="Ваш email">
     <button type="submit" data-toggle="modal" data-target="#discount-coupon" class="btn btn-dvmk hover-effect hover-effect--apollo">ПОЛУЧИТЬ</button>
-    <!--<p class="mt-3">Получая скидку вы даете согласие на получение<br>информационной рассылки (не чаще раза в неделю)</p>-->
 </div>
 
 <div id="discount-coupon" class="modal fade" tabindex="-1" role="dialog" >

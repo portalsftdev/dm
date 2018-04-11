@@ -1,7 +1,4 @@
 <div class="col-xl-3 col-lg-4 col-sm-6">
-    <!--<h2 class="card-title">{$longtitle}</h2>-->
-    <!--<hr>-->
-    <!--<div class="clearfix"></div>-->
     <div class="md-form mb-4">
         <p class="servicedesk-p">{$introtext}</p>
         <i class="fa fa-envelope prefix"></i>

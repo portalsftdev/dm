@@ -35,12 +35,12 @@
             <label for="mse2_ms|favorite_1">Акция месяца</label>
         </h5>
     </div>
-<!--     <div class="col-6 col-lg-4 mt-2">
-    <h5>Цена</h5>
-    <div><input type="radio" id="price0" name="ms|price" value="0,7000"><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price1" name="ms|price" value="7000,10000"><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price2" name="ms|price" value="10000,15000"><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price3" name="ms|price" value="15000,25000"><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
-    <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
-</div> -->
+    {*<div class="col-6 col-lg-4 mt-2">
+        <h5>Цена</h5>
+        <div><input type="radio" id="price0" name="ms|price" value="0,7000"><label for="price0">до 7 000&nbsp;<span class="icon-rub"></span></label></div>
+        <div><input type="radio" id="price1" name="ms|price" value="7000,10000"><label for="price1">от 7 000 до 10 000&nbsp;<span class="icon-rub"></span></label></div>
+        <div><input type="radio" id="price2" name="ms|price" value="10000,15000"><label for="price2">от 10 000 до 15 000&nbsp;<span class="icon-rub"></span></label></div>
+        <div><input type="radio" id="price3" name="ms|price" value="15000,25000"><label for="price3">от 15 000 до 25 000&nbsp;<span class="icon-rub"></span></label></div>
+        <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
+    </div>*}
 </div>

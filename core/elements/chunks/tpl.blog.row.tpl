@@ -10,6 +10,7 @@
             <div class="card-block text-xs-center py-4 {$bg_class} {$color_class}">
                 <!--Title-->
                 <div class="card-title h4 thin-300 mb-0 text-capitalize">{$pagetitle}</div>
+                <!--/Title-->
             </div>
             <div class="card-data px-4 pb-3">
             <span class="float-left">

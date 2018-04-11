@@ -30,9 +30,7 @@
                 <hr class="hidden-md-up">
             </div>
             <div class="col-md-6 text-center text-md-right">
-                <!-- <h5>&nbsp;</h5> -->
                 <div class="column-content" id="social-networks">
-                    <!-- <p class="text-muted text-uppercase">© {$_modx->config.info_copyright}</p> -->
                     <a href="https://vk.com/dveriportal" rel="nofollow" title="Мы в VK" target="_blank">
                         <img src="assets/images/icons/vk.com.png" alt="VK" />
                     </a>
@@ -41,12 +39,9 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 </footer>
-
-<!--<script src="/assets/js/jquery-3.1.1.slim.min.js" ></script>-->
 
 {$_modx->RunSnippet('!MinifyX', [
     'jsSources' =>
