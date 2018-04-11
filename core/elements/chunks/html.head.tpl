@@ -29,3 +29,11 @@
 <!--[endif]-->
 
 {$_modx->config.site_metrics}
+
+{if $_modx->config.disable_right_click && ! $_modx->hasSessionContext('mgr')}
+    {ignore}
+    <script>
+        window.oncontextmenu = function () { return false; }
+    </script>
+    {/ignore}
+{/if}
