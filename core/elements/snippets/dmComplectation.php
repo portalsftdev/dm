@@ -1,4 +1,5 @@
 <?php
+
 // Retrive options
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $linkName = $modx->getOption('linkName', $scriptProperties);
