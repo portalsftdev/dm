@@ -192,7 +192,7 @@
                                 'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
                             ])}
                             {if $_pls['doorType.value'] == 'Остекленная'}
-                                {$_modx->runSnippet('@FILE snippets/dmProductOptions.php, [
+                                {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                     'conditions' => [
                                         'model' => $_pls['model.value'],
                                         'mscolor' => $_pls['mscolor.value'],
