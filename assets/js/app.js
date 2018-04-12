@@ -180,7 +180,7 @@ $(function() {
           phone: $(this).data('phone'),
           phoneHref: 'tel:' + $(this).data('phone-href'),
         };
-        var connectorURL = '/assets/components/cityselector/connector.php';
+        var connectorURL = '/assets/components/cityselector/index.php';
         var data = {
             'selected_city': cityData.name,
         };
@@ -230,7 +230,7 @@ $(function() {
 
     // Create dropzone programmatically
     $("#requisites").dropzone({
-        url: 'assets/components/minishop2/file-upload.php',
+        url: '/assets/components/fileupload/index.php',
         autoProcessQueue: true,
         paramName: 'requisites',
         addRemoveLinks: true,
@@ -243,7 +243,6 @@ $(function() {
         dictCancelUpload: 'Отмена загрузки',
         init: function () {
             // @link https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server
-
             var dz = this;
             $.post(dz.options.url, function(data) {
                 $.each(data, function (key, value) {

@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <hr>
-                            {$_modx->runSnippet('!dmProductOptions', [
+                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                 ],

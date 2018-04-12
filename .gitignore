@@ -4,14 +4,16 @@
 # But no .gitignore
 !.gitignore
 
-# And no core/templates/elements and core/templates/chunks
+# And no core/elements/chunks, core/elements/plugins, core/elements/snippets, core/elements/templates
 !core/
 core/*
 !core/elements/
 core/elements/*
 
-!core/elements/templates
 !core/elements/chunks
+!core/elements/plugins
+!core/elements/snippets
+!core/elements/templates
 
 # And no assets/css, assets/fonts, assets/i, assets/js, assets/scss
 !assets/
@@ -22,3 +24,9 @@ assets/*
 !assets/i
 !assets/js
 !assets/scss
+
+# And no assets/components/cityselector
+!assets/components/
+assets/components/*
+
+!assets/components/cityselector

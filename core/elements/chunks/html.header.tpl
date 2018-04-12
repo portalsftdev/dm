@@ -9,7 +9,7 @@
         <div class="float-left">
             <div class="d-inline-block menu-btn-push mr-2"></div>
             <div class="d-inline-block ml-2 cities">
-                {$_modx->RunSnippet('!citySelector', [
+                {$_modx->RunSnippet('@FILE snippets/dmCities.php', [
                     'phoneTpl' => 'header.phone',
                     'cityTpl' => 'header.city',
                 ])}

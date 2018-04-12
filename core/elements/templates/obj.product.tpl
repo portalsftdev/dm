@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-6">
                                     {*$_modx->runSnippet('!msOptions', ['tpl' => '@FILE chunks/tpl.options.select.tpl', 'options' => 'size'])*}
-                                    {set $complectation = $_modx->RunSnippet('!dmComplectation', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.item.tpl', 'productNameField' => 'pagetitle', 'mandatoryCount' => true])}
+                                    {set $complectation = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.item.tpl', 'productNameField' => 'pagetitle', 'mandatoryCount' => true])}
                                     {if $complectation}
                                     <div id="complectation-items" class="pre-scrollable h-rem-15">
                                         {$complectation}
@@ -115,7 +115,7 @@
                                                             <div class="table-responsive" id="door-complectation">
                                                             <table class="table" id="msCart">
                                                                 <tbody>
-                                                                    {$_modx->RunSnippet('!productInCartInfo', [
+                                                                    {$_modx->RunSnippet('@FILE snippets/productInCartInfo.php', [
                                                                         'complectationCostPlaceholder' => 'complectationCost',
                                                                     ])}
                                                                     <tr>
@@ -145,7 +145,7 @@
                                                                             </div>
                                                                         </td>
                                                                     </tr>
-                                                                    {$_modx->RunSnippet('!dmComplectation', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl', 'complectationCostPlaceholder' => 'complectationCost'])}
+                                                                    {$_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl', 'complectationCostPlaceholder' => 'complectationCost'])}
                                                                 </tbody>
                                                             </table>
                                                             </div>
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
                             <hr>
-                            {$_modx->runSnippet('!dmProductOptions', [
+                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'mscolor' => $_pls['mscolor.value'],
@@ -179,7 +179,7 @@
                                 'tpl' => '@FILE chunks/product.otherOptionOfTheModel.item.tpl',
                                 'tplWrapper' => '@FILE chunks/product.otherOptionOfTheModel.wrapper.tpl',
                             ])}
-                            {$_modx->runSnippet('!dmProductOptions', [
+                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'doorType' => $_pls['doorType.value'],
@@ -192,7 +192,7 @@
                                 'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
                             ])}
                             {if $_pls['doorType.value'] == 'Остекленная'}
-                                {$_modx->runSnippet('!dmProductOptions', [
+                                {$_modx->runSnippet('@FILE snippets/dmProductOptions.php, [
                                     'conditions' => [
                                         'model' => $_pls['model.value'],
                                         'mscolor' => $_pls['mscolor.value'],

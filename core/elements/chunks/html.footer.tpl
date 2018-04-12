@@ -17,7 +17,7 @@
         </div>
         <div class="row wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
             <div class="col-md-6 text-center text-md-left cities">
-                {$_modx->RunSnippet('!citySelector', [
+                {$_modx->RunSnippet('@FILE snippets/dmCities.php', [
                     'phoneTpl' => '@FILE chunks/footer.phone.tpl',
                     'cityTpl' => '@FILE chunks/footer.city.tpl',
                 ])}

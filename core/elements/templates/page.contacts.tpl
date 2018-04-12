@@ -11,7 +11,7 @@
             // https://maps.googleapis.com/maps/api/geocode/json?address=QUERY_HERE&key=API_KEY_HERE
             var locations = [
     {/ignore}
-                {$_modx->runSnippet('!citySelector', ['mode' => 'locations', 'tpl' => '@FILE chunks/tpl.contacts.branchLocation.tpl'])}
+                {$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'locations', 'tpl' => '@FILE chunks/tpl.contacts.branchLocation.tpl'])}
     {ignore}
             ];
             // Set bounds
@@ -55,7 +55,7 @@
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Эл. почта</div>
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Адрес</div>
 </div>
-{$_modx->runSnippet('!citySelector', ['mode' => 'contacts', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'contacts', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
 
 <div class="row" style="margin:0;">
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Режим работы склада</div>
@@ -63,7 +63,7 @@
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Эл. почта</div>
     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Адрес</div>
 </div>
-{$_modx->runSnippet('!citySelector', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
 
 </div>
 

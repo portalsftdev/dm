@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <hr>
-                            {$_modx->runSnippet('!dmProductOptions', [
+                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'shield_color' => $_pls['shield_color.value'],
@@ -101,7 +101,7 @@
                                 'tpl' => '@FILE chunks/product.otherColorOfTheModel.item.tpl',
                                 'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
                             ])}
-                            {$_modx->runSnippet('!dmProductOptions', [
+                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'steel_door_color' => $_pls['steel_door_color.value'],
