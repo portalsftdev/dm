@@ -382,3 +382,9 @@ input[type="number"]::-webkit-outer-spin-button {
    opacity: 1 !important;
    -webkit-appearance: inner-spin-button !important;
 }
+
+/* No line breaks in product card price */
+
+.ms2-price {
+    white-space: nowrap;
+}
