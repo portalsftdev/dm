@@ -25,8 +25,9 @@ assets/*
 !assets/js
 !assets/scss
 
-# And no assets/components/cityselector
+# And no assets/components/cityselector, assets/components/captcha
 !assets/components/
 assets/components/*
 
 !assets/components/cityselector
+!assets/components/captcha
