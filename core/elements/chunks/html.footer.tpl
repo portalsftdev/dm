@@ -65,7 +65,7 @@
         $_modx->config.assets_url ~ 'js/inputmask.js' ~  ', ' ~
         $_modx->config.assets_url ~ 'js/inputmask.phone.extensions.js' ~  ', ' ~
 
-        $_modx->config.assets_url ~ 'js/app.js' ~  ', ' ~
+        $_modx->config.assets_url ~ 'js/app.js' ~  ', '
     ,
     'minifyJs' => true,
     'jsFilename' => 'app',
