@@ -3,7 +3,7 @@
         <div class="row wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
             <div class="col-12 text-center">
                 {$_modx->runSnippet('!pdoMenu@PropertySet', [
-                'parents' => 23,
+                'parents' => $_modx->config.'resources.footer_menu',
                 'level' => 1,
                 'firstClass' => '',
                 'lastClass' => '',

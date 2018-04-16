@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="card-block">
                                         <a href="{$product.id | url}" class="card-title">{$product.pagetitle}</a>
-                                        {if $product.'type_of_goods.value' == 'Межкомнатные двери'}
+                                        {if $_modx->config.'resources.room_doors' == $product.parent}
                                         <div class="mt-2">
                                             Размер: {$product.'width.value'}х{$product.'height.value'}
                                         </div>
@@ -42,7 +42,7 @@
                                         <div>Количество</div>
                                         <form method="post" class="ms2_form" role="form">
                                             <input type="hidden" name="key" value="{$product.key}"/>
-                                            <input type="number" class="form-control form-control-sm form-control--border w-rem-4 mb-3 mr-2 d-inline-block" value="{$product.count}" min="0" step="{if $product.'molding_type.value' == 'Короб' || $product.'molding_type.value' == 'Наличник'}0.2{else}1{/if}" name="count" placeholder="">
+                                            <input type="number" class="form-control form-control-sm form-control--border w-rem-4 mb-3 mr-2 d-inline-block" value="{$product.count}" min="0" step="{if $product.menutitle == 'Короб' || $product.menutitle == 'Наличник'}0.2{else}1{/if}" name="count" placeholder="">
                                             <button type="submit" name="ms2_action" value="cart/change" style="display:none;"></button>
                                             <div class="card-price d-inline-block">
                                                 x&nbsp;<span class="price ms2_product_price">{$product.price}</span>&nbsp;<span class="icon-rub"></span>

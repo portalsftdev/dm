@@ -5,7 +5,7 @@
                 <div class="row pt-4 pb-3">
                     <div class="col-lg-4 text-lg-left"><h2 class="card-title pt-4 pt-lg-0 mb-3">Советы <br class="hidden-md-down"><strong>Двери</strong> Маркет</h2></div>
                     {$_modx->runSnippet('!pdoResources@PropertySet', [
-                    'parents' => 17,
+                    'parents' => $_modx->config.'resources.advices',
                     'limit' => 5,
                     'includeContent' => 0,
                     'sortby' => 'createdon',

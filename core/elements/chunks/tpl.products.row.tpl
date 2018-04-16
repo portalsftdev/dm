@@ -51,9 +51,9 @@
             <a href="{$id | url}" class="card-title">{$pagetitle}</a>
         </div>
         <div class="card-description">
-        {if $_pls['type_of_goods.value'] == 'Межкомнатные двери'}
+        {if $_modx->config.'resources.room_doors' == $parent}
             {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'mscolor,cover'])}
-        {elseif $_pls['type_of_goods.value'] == 'Стальные двери'}
+        {elseif $_modx->config.'resources.steel_doors' == $parent}
 
         {/if}
         </div>

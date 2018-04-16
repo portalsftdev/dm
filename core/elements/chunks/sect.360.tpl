@@ -1,7 +1,7 @@
 <section class="section-360 mt-4">
     <div class="block-360 text-white">
         <div class="text-center">
-            <a class="link-360 hover-effect-control" target="_blank" href="{86 | url}">
+            <a class="link-360 hover-effect-control" target="_blank" href="{$_modx->config.'resources.virtual_tour' | url}">
                 <div class="mask-360 hover-effect hover-effect--apollo2"></div>
                 <div class="front">
                     <div class="label-360 label-360--large mt-4 animate-tremor">3D</div>

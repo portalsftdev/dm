@@ -1,6 +1,6 @@
 <section class="section-promo">
     {$_modx->runSnippet('!pdoResources@PropertySet', [
-    'parents' => 39,
+    'parents' => $_modx->config.'resources.promo',
     'limit' => 3,
     'includeContent' => 1,
     'sortby' => 'menuindex',

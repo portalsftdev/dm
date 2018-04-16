@@ -7,7 +7,7 @@
                     <p class="text-primary">{$description}</p>
                 </div>
             </div>
-            {if $content==6}
+            {if $content == $_modx->config.'resources.steel_doors'}
                 <form method="GET" action="{$content | url}" class="doorSelectionForm">
                 {$_modx->RunSnippet('!mFilter2', [
                     'parents' => $content,
@@ -41,7 +41,7 @@
                     'tplFilter.row.msoption|spontaneity' => '@FILE chunks/tpl.filter.row.msoption.width.tpl',
                 ])}
                 {$_modx->getChunk('@FILE chunks/html.promo.form.vhod.tpl')}
-            {elseif $content==7}
+            {elseif $content == $_modx->config.'resources.room_doors'}
                 <form method="GET" action="{$content | url}" class="doorSelectionForm">
                 {$_modx->RunSnippet('!mFilter2', [
                     'parents' => $content,
@@ -75,7 +75,7 @@
                     'tplFilter.row.msoc|glass' => '@FILE chunks/tpl.filter.row.msoption.glass.tpl',
                 ])}
                 {$_modx->getChunk('@FILE chunks/html.promo.form.room.tpl')}
-            {elseif $content==8}
+            {elseif $content == $_modx->config.'resources.furniture'}
                 <form method="GET" action="{$content | url}" class="doorSelectionForm">
                 {$_modx->RunSnippet('!mFilter2', [
                     'parents' => $content,
@@ -133,8 +133,8 @@
                 <p>{$content | pdoField : 'introtext'}</p>
             </div>
             <div>
-                {*<button type="button" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light promo-switch" data-promo=".{$alias}">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</button>*}
-                <a href="{$content | url}" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light">Подобрать {if $content == 8}фурнитуру{else}дверь{/if}</a>
+                {*<button type="button" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light promo-switch" data-promo=".{$alias}">Подобрать {if $content == $_modx->config.'resources.furniture'}фурнитуру{else}дверь{/if}</button>*}
+                <a href="{$content | url}" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light">Подобрать {if $content == $_modx->config.'resources.furniture'}фурнитуру{else}дверь{/if}</a>
             </div>
         </div>
     </div>

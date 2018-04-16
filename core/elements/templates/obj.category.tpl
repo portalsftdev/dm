@@ -11,7 +11,7 @@
                         <div class="d-inline-block float-md-right">
                             <div class="btn-group btn-group-sm" role="group">
                                 {$_modx->runSnippet('!pdoResources', [
-                                'parents' => 39,
+                                'parents' => $_modx->config.'resources.promo',
                                 'limit' => 3,
                                 'includeContent' => 1,
                                 'where' => ['content:!=' => $_modx->resource.id],
@@ -25,9 +25,9 @@
                 </div>
             </div>
         </section>
-        {if $_modx->resource.id == 5}
+        {if $_modx->config.'resources.catalog' == $_modx->resource.id}
         {$_modx->RunSnippet('!mFilter2', [
-            'parents' => '5',
+            'parents' => $_modx->resource.id,
             'element' => 'msProducts',
             'class' => 'msProduct',
             'loadModels' => 'ms2gallery',
@@ -58,7 +58,7 @@
             'tplPageFirstEmpty' => '@INLINE',
             'tplPageLastEmpty' => '@INLINE',
         ])}
-        {elseif $_modx->resource.id == 6}
+        {elseif $_modx->config.'resources.steel_doors' == $_modx->resource.id}
         {$_modx->RunSnippet('!mFilter2', [
             'parents' => $_modx->resource.id,
             'element' => 'msProducts',
@@ -112,7 +112,7 @@
             'tplPageFirstEmpty' => '@INLINE',
             'tplPageLastEmpty' => '@INLINE',
         ])}
-        {elseif $_modx->resource.id == 7}
+        {elseif $_modx->config.'resources.room_doors' == $_modx->resource.id}
         {$_modx->RunSnippet('!mFilter2', [
             'parents' => $_modx->resource.id,
             'element' => 'msProducts',
@@ -162,7 +162,7 @@
             'tplPageFirstEmpty' => '@INLINE',
             'tplPageLastEmpty' => '@INLINE',
         ])}
-        {elseif $_modx->resource.id == 8}
+        {elseif $_modx->config.'resources.furniture' == $_modx->resource.id}
         {$_modx->RunSnippet('!mFilter2', [
             'parents' => $_modx->resource.id,
             'element' => 'msProducts',

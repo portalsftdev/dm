@@ -19,8 +19,8 @@
         </div>
         <div class="float-right">
             {$_modx->runSnippet('!msFavorites.initialize', [])}
-            <div class="toolbox"><a href="{101 | url}" class="btn-icon icon-heart-o" ></a><div class="toolbox-counter msfavorites-total" data-data-list="default">0</div></div>
-            {$_modx->RunSnippet('!msMiniCart', ['tpl' => 'miniCart'])}
+            <div class="toolbox"><a href="{$_modx->config.'resources.wishlist' | url}" class="btn-icon icon-heart-o" ></a><div class="toolbox-counter msfavorites-total" data-data-list="default">0</div></div>
+            {$_modx->RunSnippet('!msMiniCart', ['tpl' => '@FILE chunks/miniCart.tpl'])}
         </div>
         <div class="logo"><h1><a href="" class="no_underline"><img src="/assets/i/logo-w.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>
     </div>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-lg-3 col-12 mt-4">
                 {$_modx->runSnippet('!pdoResources@PropertySet', [
-                'parents' => 43,
+                'parents' => $_modx->config.'resources.servicedesk',
                 'limit' => 3,
                 'includeContent' => 1,
                 'sortby' => 'menuindex',
@@ -68,8 +68,8 @@
             <div class="toolbox w-rem-3 mr-3"></div>
             <div class="toolbox">
                 {$_modx->runSnippet('!msFavorites.initialize', [])}
-                <div class="toolbox"><a href="{101 | url}" class="btn-icon icon-heart-o" ></a><div class="toolbox-counter msfavorites-total" data-data-list="default">0</div></div>
-                {$_modx->RunSnippet('!msMiniCart', ['tpl' => 'miniCart'])}
+                <div class="toolbox"><a href="{$_modx->config.'resources.wishlist' | url}" class="btn-icon icon-heart-o" ></a><div class="toolbox-counter msfavorites-total" data-data-list="default">0</div></div>
+                {$_modx->RunSnippet('!msMiniCart', ['tpl' => '@FILE chunks/miniCart.tpl'])}
             </div>
         </div>
         <div class="logo"><h1><a href="{$_modx->config.site_url}" class="no_underline"><img src="{$_modx->config.assets_url}i/logo.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>

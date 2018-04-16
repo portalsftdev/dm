@@ -8,11 +8,11 @@
             </div>
         </div>
     </div>
-    {if $_modx->resource.id != 5 && $_modx->resource.parent != 31}
+    {if $_modx->resource.id != $_modx->config.'resources.catalog' && $_modx->resource.parent != $_modx->config.'resources.brands'}
     <div class="card container-fluid bg-faded pt-3">
         <form action="{$_modx->makeUrl($_modx->resource.id)}" method="post" id="mse2_filters">
             <div class="container ">
-                {if $_modx->resource.id == 6}
+                {if $_modx->resource.id == $_modx->config.'resources.steel_doors'}
                 <div class="row">
                     <div class="mx-3">
                         <h5>Отделка снаружи</h5>
@@ -55,7 +55,7 @@
                         </h5>
                     </div>
                 </div>
-                {elseif $_modx->resource.id == 7}
+                {elseif $_modx->resource.id == $_modx->config.'resources.room_doors'}
                 <div class="row">
                     <div class="mx-3">
                         <h5>Цвет</h5>
@@ -106,7 +106,7 @@
                         <div><input type="radio" id="price4" name="ms|price" value="25000,1000000"{if $price == '25000,1000000'} checked{/if}><label for="price4">от 25 000&nbsp;<span class="icon-rub"></span></label></div>
                     </div>*}
                 </div>
-                {elseif $_modx->resource.id == 8}
+                {elseif $_modx->resource.id == $_modx->config.'resources.furniture'}
                 <div class="row">
                     <div class="mx-3">
                         <h5>Цвет</h5>

@@ -11,13 +11,13 @@
                 <div class="d-inline-block float-md-right">
                     <div class="btn-group btn-group-sm" role="group">
                         {$_modx->runSnippet('!pdoResources', [
-                            'parents' => 39,
+                            'parents' => $_modx->config.'resources.promo',
                             'limit' => 3,
                             'includeContent' => 1,
                             'where' => ['content:!=' => $_modx->resource.id],
                             'sortby' => 'id',
                             'sortdir' => 'asc',
-                            'tpl' => '@INLINE <a type="button" href="{$_modx->makeUrl($content)}" class="btn btn-{if $content == 6}dvmk{elseif $content == 7}dvmk{elseif $content == 8}dvmk{/if}">{$pagetitle}</a>',
+                            'tpl' => '@INLINE <a type="button" href="{$_modx->makeUrl($content)}" class="btn btn-dvmk">{$pagetitle}</a>',
                         ])}
                     </div>
                 </div>

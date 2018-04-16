@@ -4,7 +4,7 @@
     {/if}
 {/if}
 <div class="col-lg-6 col-md-12 px-0 {if $_modx->resource.id == 1}{if $_modx->getPlaceholder('discounts.padding') == 'right'}pr-lg-3{elseif $_modx->getPlaceholder('discounts.padding') == 'left'}pl-lg-3{/if}{else}pl-lg-3{/if} wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">
-    <div class="card card-overlay-door card-overlay--marketing hover-effect-control mb-4" style="background-image: url('/assets/i/{if $parent == 7}bg-door-of-month.jpg{elseif $parent == 6}bg-door-of-month-vhod.jpg{/if}')">
+    <div class="card card-overlay-door card-overlay--marketing hover-effect-control mb-4" style="background-image: url('/assets/i/{if $parent == $_modx->config.'resources.room_doors'}bg-door-of-month.jpg{elseif $parent == $_modx->config.'resources.steel_doors'}bg-door-of-month-vhod.jpg{/if}')">
         <div class="overlay-door">
             <a href="{$id | url}">
                 {if $thumb?}
@@ -33,14 +33,14 @@
             </div>
             <h3 class="mt-5"><a href="{$id | url}">{$_pls['model.value']}</a></h3>
             <p>
-            {if $parent == 7}
+            {if $_modx->config.'resources.room_doors' == $parent}
                 Покрытие: {$_pls['cover.value']}<br>
-            {elseif $parent == 6}
+            {elseif $_modx->config.'resources.steel_doors' == $parent }
                 Цвет внешнего покрытия: {$_pls['steel_door_color.value']}<br>
             {/if}
-            {if $parent == 7}
+            {if $_modx->config.'resources.room_doors' == $parent}
                 Цвет: {$_pls['mscolor.value']}
-            {elseif $parent == 6}
+            {elseif $_modx->config.'resources.steel_doors' == $parent}
                 Цвет внутренней панели: {$_pls['shield_color.value']}
             {/if}
             </p>
