@@ -19,7 +19,17 @@
             {$_modx->getPlaceholder('mFilter2.msoption|metal_thickness')}
         </div>
     </div>
-    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+    <div class="col-6 col-lg-2 pre-scrollable-container">
+        <h5>Ширина</h5>
+        <div class="gr-white-l h-rem-10 pre-scrollable">
+            {$_modx->getPlaceholder('mFilter2.msoption|width')}
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 pre-scrollable-container">
+        <h5>Сторонность</h5>
+        <div class="gr-white-l h-rem-10 pre-scrollable">
+            {$_modx->getPlaceholder('mFilter2.msoption|spontaneity')}
+        </div>
         <h5>
             <input id="mse2_vhod_ms|favorite_1" name="ms|favorite" value="1" type="checkbox" />
             <label for="mse2_vhod_ms|favorite_1">Акция месяца</label>

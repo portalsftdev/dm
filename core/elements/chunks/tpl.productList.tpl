@@ -39,6 +39,16 @@
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>Ширина</h5>
+                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
+                            {$_modx->getPlaceholder('mFilter2.msoption|width')}
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>Сторонность</h5>
+                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
+                            {$_modx->getPlaceholder('mFilter2.msoption|spontaneity')}
+                        </div>
                         <h5>
                             <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" class="" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
                             <label for="mse2_ms|favorite_1">Акция месяца</label>

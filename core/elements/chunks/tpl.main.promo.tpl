@@ -22,6 +22,8 @@
                         msoc|shield_color~value~pattern,
                         msvendor|name:vendor,
                         msoption|metal_thickness:metal_thickness,
+                        msoption|width:width,
+                        msoption|spontaneity:spontaneity,
                         ms|favorite:favorite,
                     ',
                     'values_delimeter' => ';',
@@ -33,6 +35,10 @@
                     'tplFilter.row.msvendor|name' => '@FILE chunks/tpl.filter.row.vhod_msvendor.name.tpl',
                     'tplFilter.outer.msoption|metal_thickness' => '@FILE chunks/tpl.filter.outer.msoption.cover.tpl',
                     'tplFilter.row.msoption|metal_thickness' => '@FILE chunks/tpl.filter.row.msoption.cover.tpl',
+                    'tplFilter.outer.msoption|width' => '@FILE chunks/tpl.filter.outer.msoption.width.tpl',
+                    'tplFilter.row.msoption|width' => '@FILE chunks/tpl.filter.row.msoption.width.vhod.tpl',
+                    'tplFilter.outer.msoption|spontaneity' => '@FILE chunks/tpl.filter.outer.msoption.width.tpl',
+                    'tplFilter.row.msoption|spontaneity' => '@FILE chunks/tpl.filter.row.msoption.width.tpl',
                 ])}
                 {$_modx->getChunk('@FILE chunks/html.promo.form.vhod.tpl')}
             {elseif $content==7}

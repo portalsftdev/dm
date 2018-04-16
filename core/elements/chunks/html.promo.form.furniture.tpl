@@ -15,7 +15,7 @@
             {$_modx->getPlaceholder('mFilter2.msoption|furniture_type')}
         </div>
     </div>
-    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+    <div class="col-6 col-lg-3 mt-2 pre-scrollable-container">
         <h5>
             <input id="mse2_furniture_ms|favorite_1" name="ms|favorite" value="1" type="checkbox" />
             <label for="mse2_furniture_ms|favorite_1">Акция месяца</label>
