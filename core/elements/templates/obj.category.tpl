@@ -30,7 +30,7 @@
             'parents' => '5',
             'element' => 'msProducts',
             'class' => 'msProduct',
-            'loadModels' => 'gallery',
+            'loadModels' => 'ms2gallery',
             'leftJoin' => '{
                 "card0": {"class":"msProductFile","alias":"card0", "on": "card0.product_id = msProduct.id AND card0.path LIKE \'%/card/%\' AND card0.rank=0"}
                 ,"card1": {"class":"msProductFile","alias":"card1", "on": "card1.product_id = msProduct.id AND card1.path LIKE \'%/card/%\' AND card1.rank=1"}
@@ -65,7 +65,7 @@
             'class' => 'msProduct',
             'toSeparatePlaceholders' => 'mFilter2.',
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
-        	'loadModels' => 'gallery',
+        	'loadModels' => 'ms2gallery',
         	'leftJoin' => '{
         		"card0": {"class":"msProductFile","alias":"card0", "on": "card0.product_id = msProduct.id AND card0.path LIKE \'%/card/%\' AND card0.rank=0"}
         		,"card1": {"class":"msProductFile","alias":"card1", "on": "card1.product_id = msProduct.id AND card1.path LIKE \'%/card/%\' AND card1.rank=1"}
