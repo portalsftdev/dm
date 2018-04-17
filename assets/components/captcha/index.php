@@ -13,10 +13,12 @@ $sign = 5;            // Длина кода
 $img_code = '';
 $fontFilePath = $_SERVER['DOCUMENT_ROOT'] . '/assets/fonts/gtwalsheimpro/gtwalsheimproregular.ttf';
 
-define('MODX_API_MODE', true);
-require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+// Require MODX API
+require_once $_SERVER['DOCUMENT_ROOT'].'/config.core.php';
+require_once MODX_CORE_PATH.'model/modx/modx.class.php';
 $modx = new modX();
 $modx->initialize('web');
+$modx->getService('error','error.modError', '', '');
 
 // Символы, которые будут использованы в защитном коде
 $letters = array('0','1','2','3','4','5','6','7','8','9');
