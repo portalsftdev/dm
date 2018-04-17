@@ -9,12 +9,16 @@
             <table class="table table-striped table-hover mt-4">
                 <tbody>
                 {foreach $products as $product}
+                {set $noShadow = ! (
+                    ($product.parent in [$_modx->config.'resources.steel_doors', $_modx->config.'resources.room_doors'])
+                    && $product.thumb
+                )}
                 <tr id="{$product.key}" class="cart-item">
                     <td>
                         <div class="card-product card-product--small px-3{if $product.'type_of_goods.value' == 'Фурнитура'} furniture{/if}">
                                 <div class="d-inline-block align-top mr-4 {if $product.'type_of_goods.value' == 'Фурнитура'}w-rem-12{else}w-rem-20{/if}">
                                     <div class="overlay-door mb-3{if !$product.thumb} no-photo{/if}">
-                                        <div class="mask mask-door">
+                                        <div class="mask mask-door"{if $noShadow} style="background:none;"{/if}>
                                             <a href="{$product.id | url}">
                                             {if $product.thumb?}
                                                 <img src="{$product.thumb}" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
