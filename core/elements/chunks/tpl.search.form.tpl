@@ -1,4 +1,4 @@
-<form action="{$pageId | url}" method="get" class="well msearch2 w-100 {$faded == 1 ? 'search-faded' : ''} {$absolute == 1 ? 'absolute' : 'relative'}" id="mse2_form">
+<form action="{$pageId | url}" method="get" class="well msearch2 w-100 {$faded == 1 ? 'search-faded' : ''} {$absolute == 1 ? 'absolute' : 'relative'}">
     {*<div class="{$faded == 1 ? 'search-faded' : 'w-100'} {$absolute == 1 ? 'absolute' : ''} toolbox mr-3">*}
         <a class="search-btn btn-icon icon-search absolute"
               data-toggle="tooltip"
