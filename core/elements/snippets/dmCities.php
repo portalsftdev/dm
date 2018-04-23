@@ -53,6 +53,8 @@ if ($mode == 'shortInfo') {
     }
     $output = '';
     foreach ($list as $item) {
+        // Add current city to output
+        $item = array_merge($item, ['city' => $currentCity]);
         $output .= !empty($pdoTools)
             ? $pdoTools->getChunk($tpl, $item)
             : $modx->getChunk($tpl, $item);
