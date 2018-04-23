@@ -1,6 +1,6 @@
 {extends 'template:base'}
 {block 'content'}
-    <section>
+    <section itemscope itemtype="http://schema.org/Product">
         <div class="expo">
             <div class="container-fluid">
                 <div class="row">
@@ -16,6 +16,9 @@
                             <div class="row">
                                 <div class="col">
                                     <h1 class="expo-title">{$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE /chunks/tpl.customProductOptions.tpl', 'onlyOptions' => 'model'])}</h1>
+                                    <meta itemprop="name" content="{$_modx->resource.pagetitle | escape}" />
+                                    <link itemprop="url" href="{$_modx->config.site_url ~ $_modx->resource.uri}" />
+                                    <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
                                     <p>
                                     {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'onlyOptions' => 'pattern,cover'])}
                                     </p>
@@ -24,6 +27,7 @@
                                     <div class="row mx-0">
                                         <div>
                                             <a class="no_underline" title="{$_pls['vendor.name'] | escape}" href="{$_modx->makeUrl($_modx->resource.parent, '', ['msvendor|name' => $_pls['vendor.name'] | escape])}"><img src="{$_pls['vendor.logo']}" class="expo-logo" alt="Бренд «{$_pls['vendor.name'] | escape}»"></a>
+                                            <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
                                         </div>
                                         {if $_pls['vendor.name'] == 'Фрегат'}
                                          <div id="lg-serts">
@@ -44,11 +48,13 @@
                                         <input type="hidden" name="pagetitle" value="{$_modx->resource.pagetitle | escape}" />
                                         {$_modx->getChunk('@FILE chunks/modal.productPriceOrder.tpl')}
                                     {else}
-                                        <div class="">
+                                        <div>
                                             Цена <span class="label-price">за полотно</span>{if $old_price > 0}&nbsp;<span class="expo-price-old"><del><span class="ms2-old_price">{$old_price}</span>&nbsp;<span class="icon-rub"></span></del></span>{/if}
                                         </div>
-                                        <div class="expo-price">
-                                            <span class="btn-icon btn-icon-dvmk icon-label-o hidden-sm-down"></span><span class="ms2-price" id="price">{$price}</span>&nbsp;<span class="icon-rub"></span>
+                                        <div class="expo-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+                                            <span class="btn-icon btn-icon-dvmk icon-label-o hidden-sm-down"></span><span class="ms2-price" id="price" itemprop="price" content="{$price | replace: ' ' : ''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
+                                            <meta itemprop="priceCurrency" content="RUB" />
+                                            <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
                                         </div>
                                     {/if}
                                     <form method="post" id="leaf" class="ms2_form">
@@ -205,6 +211,7 @@
                                     'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
                                 ])}
                             {/if}
+                            <meta itemprop="description" content="{$_modx->resource.description ?: $_modx->resource.longtitle | escape}" />
                         </div>
                     </div>
                 </div>

@@ -4,15 +4,15 @@
     {/if}
 {/if}
 <div class="col-lg-6 col-md-12 px-0 {if $_modx->resource.id == 1}{if $_modx->getPlaceholder('discounts.padding') == 'right'}pr-lg-3{elseif $_modx->getPlaceholder('discounts.padding') == 'left'}pl-lg-3{/if}{else}pl-lg-3{/if} wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">
-    <div class="card card-overlay-door card-overlay--marketing hover-effect-control mb-4" style="background-image: url('/assets/i/{if $parent == $_modx->config.'resources.room_doors'}bg-door-of-month.jpg{elseif $parent == $_modx->config.'resources.steel_doors'}bg-door-of-month-vhod.jpg{/if}')">
+    <div class="card card-overlay-door card-overlay--marketing hover-effect-control mb-4" style="background-image: url('/assets/i/{if $parent == $_modx->config.'resources.room_doors'}bg-door-of-month.jpg{elseif $parent == $_modx->config.'resources.steel_doors'}bg-door-of-month-vhod.jpg{/if}')" itemscope itemtype="http://schema.org/Product">
         <div class="overlay-door">
             <a href="{$id | url}">
                 {if $thumb?}
-                    <img src="{$thumb}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}"/>
+                    <img src="{$thumb}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}" itemprop="image" />
                 {else}
                     <img src="{'assets_url' | option}components/minishop2/img/web/ms2_small.png"
                          srcset="{'assets_url' | option}components/minishop2/img/web/ms2_small@2x.png 2x"
-                         alt="{$pagetitle | escape}" title="{$pagetitle | escape}"/>
+                         alt="{$pagetitle | escape}" title="{$pagetitle | escape}" />
                 {/if}
             </a>
         </div>
@@ -32,7 +32,12 @@
                 </div>*}
             </div>
             <h3 class="mt-5"><a href="{$id | url}">{$_pls['model.value']}</a></h3>
+            <meta itemprop="name" content="{$pagetitle | escape}" />
+            <link itemprop="url" href="{$_modx->config.site_url ~ $id | url}" />
+            <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
+            <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
             <p>
+            <meta itemprop="description" content="{$description ?: $longtitle | escape}" />
             {if $_modx->config.'resources.room_doors' == $parent}
                 Покрытие: {$_pls['cover.value']}<br>
             {elseif $_modx->config.'resources.steel_doors' == $parent }
@@ -44,15 +49,17 @@
                 Цвет внутренней панели: {$_pls['shield_color.value']}
             {/if}
             </p>
-            <div class=" mt-5">
+            <div class="mt-5">
                 <div class="float-right ml-3">
                     {if $old_price > 0}
                     <div class="card-price-old">
                         <del>{$old_price}</del>
                     </div>
                     {/if}
-                    <div class="card-price">
-                        <span class="price">{$price}</span>&nbsp;<span class="icon-rub"></span>
+                    <div class="card-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+                        <span class="price" itemprop="price" content="{$price | replace: ' ' : ''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
+                        <meta itemprop="priceCurrency" content="RUB" />
+                        <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
                     </div>
                 </div>
                 <div class="float-left">

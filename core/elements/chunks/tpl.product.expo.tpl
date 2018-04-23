@@ -4,7 +4,7 @@
             <div id="expo-door" class="card-rotating effect__click">
                 {foreach $files as $file index=$idx}
                     <div class="face {$idx > 0?'back':'front'}">
-                        <img src="{$file.expo}" alt="{$_modx->getPlaceholder('productImageTitle') | escape}" title="{$_modx->getPlaceholder('productImageTitle') | escape}">
+                        <img src="{$file.expo}" alt="{$_modx->getPlaceholder('productImageTitle') | escape}" title="{$_modx->getPlaceholder('productImageTitle') | escape}" itemprop="image" />
                     </div>
                 {/foreach}
             </div>
