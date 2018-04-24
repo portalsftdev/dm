@@ -5,7 +5,7 @@
             <h1 class="h2">{$_modx->resource.longtitle?:$_modx->resource.pagetitle}</h1>
         </div>
         <div class="container" id="pdopage">
-            <div class="rows">
+            <div class="rows" itemscope itemtype="http://schema.org/Blog">
                 {*<div class="row">*}
                 {$_modx->runSnippet('!pdoPage@PropertySet', [
                 'parents' => $_modx->resource.id,
