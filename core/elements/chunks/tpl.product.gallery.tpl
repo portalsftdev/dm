@@ -11,7 +11,7 @@
                  data-autoplay="5000">
                 {foreach $files as $file}
                     <a href="{$file['url']}" target="_blank">
-                        <img src="{$file['small']}" alt="{$_modx->getPlaceholder('productImageTitle') | escape}" title="{$_modx->getPlaceholder('productImageTitle') | escape}" itemprop="image" />
+                        <img src="{$file['url']}" alt="{$_modx->getPlaceholder('productImageTitle') | escape}" title="{$_modx->getPlaceholder('productImageTitle') | escape}" itemprop="image" />
                     </a>
                 {/foreach}
             </div>
