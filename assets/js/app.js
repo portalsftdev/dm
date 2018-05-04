@@ -658,3 +658,24 @@ $('#expo_available, #discount-coupon, #product-price-order').on('hide.bs.modal',
     $(this).find('.error > .error').remove();
     $(this).find('.error').removeClass('error');
 });
+
+/**
+ *
+ * Set stars count in product review form on mouseover
+ * and select a radio input on mouseleave
+ *
+ */
+
+$('.rating-stars input + label').on('mouseenter touchstart', function() {
+    let $stars = $(this).closest('div').find('[class*="icon-"]'); // [class^="icon-"] doesn't work properly
+    let ratingValue = $('#'+$(this).attr('for')).val();
+    $stars.each(function(key, value) {
+        if (ratingValue >= key + 1) {
+            $(this).removeClass('icon-star-o').addClass('icon-star');
+        } else {
+            $(this).removeClass('icon-star').addClass('icon-star-o');
+        }
+    });
+}).on('mouseleave touchend', function() {
+    $('#'+$(this).attr('for')).prop('checked', true);
+});

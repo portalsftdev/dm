@@ -50,6 +50,12 @@
                                             <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
                                         </div>
                                     {/if}
+                                    <div class="expo-rating mb-3">
+                                        {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount')}
+                                        {if 0 != $reviewsCount}
+                                            {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
+                                        {/if}
+                                    </div>
                                     <form method="post" class="ms2_form">
                                         <button type="submit" name="ms2_action" value="cart/add" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light"><span class="icon-cart"></span> В корзину</button>
                                         <input type="hidden" name="id" value="{$_modx->resource.id}">
@@ -132,10 +138,8 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 push-lg-6 mt-3">
-                    <div class="container pt-3">
-                        {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.tpl'])}
-                    </div>
+                <div class="col-lg-6 push-lg-6 mt-4">
+                    {$_modx->getChunk('@FILE chunks/tpl.product.propertiesAndReviews.tpl', ['reviewsCount' => $reviewsCount])}
                 </div>
                 <div class="col-lg-6 pull-lg-6 col-md-12 px-0 pr-lg-3 mt-4 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">
                     {$_modx->getChunk('@FILE chunks/card.koupon.tpl')}

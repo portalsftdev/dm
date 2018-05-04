@@ -64,7 +64,14 @@
 
         {/if}
         </div>
-
+        {if 0 != $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}
+            {$_modx->runSnippet('!ecThreadRating', [
+                'thread' => 'resource-' ~ $id,
+                'tpl' => '@INLINE <div class="card-rating-stars" title="{$rating_simple}">
+                <span style="width: {$rating_simple_percent}%"></span>
+            </div>',
+            ])}
+        {/if}
     </div>
     <div class="card-buttons">
         <form method="post" class="ms2_form">

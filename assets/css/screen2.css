@@ -388,3 +388,165 @@ input[type="number"]::-webkit-outer-spin-button {
 .ms2-price {
     white-space: nowrap;
 }
+
+/**
+ * Card (product) rating in product list
+ */
+
+/* .card-rating-stars {
+    margin-top: .7rem;
+    font-size: 1rem;
+} */
+
+.card-rating-stars {
+    display: inline-block;
+    margin-top: .625rem;
+    width: 98px;
+    height: 16px;
+    background: url('/assets/i/icons/rating-stars-20x32.png') 0 -16px repeat-x;
+}
+
+.card-rating-stars span {
+    display: block;
+    width: 0px;
+    height: 16px;
+    background: url('/assets/i/icons/rating-stars-20x32.png') 0 0 repeat-x;
+}
+
+/**
+ * Expo (product) rating at product page
+ */
+
+/* .expo-rating-stars {
+    display: inline-block;
+    font-size: 1.25rem;
+    margin-right: .75rem;
+    position: relative;
+    top: 3px;
+} */
+
+.expo-rating-stars {
+    display: inline-block;
+    margin-right: .75rem;
+    position: relative;
+    top: 2px;
+    width: 122px;
+    height: 20px;
+    background: url('/assets/i/icons/rating-stars-25x40.png') 0 -20px repeat-x;
+}
+
+.expo-rating-stars span {
+    display: block;
+    width: 0px;
+    height: 20px;
+    background: url('/assets/i/icons/rating-stars-25x40.png') 0 0 repeat-x;
+}
+
+.expo-rating-info {
+    display: inline-block;
+    font-size: .9375rem;
+}
+
+/**
+ * Product tabs
+ */
+
+@media (min-width: 992px) {
+    #product-tabs {
+        overflow-y: auto;
+        /* calc (380px + 1rem) isn't parsed by minifier properly, so use it as px */
+        height: 396px;
+    }
+}
+
+/**
+ * Product reviews
+ */
+
+#product-reviews h5 {
+    font-weight: 400;
+    opacity: .8;
+    border-bottom: 1px solid #ddd;
+}
+
+#product-reviews .alert-success .check-mark {
+    margin-left: 0;
+    margin-right: 1rem;
+    height: 1.25rem;
+}
+
+/* Product review article */
+
+article.product-review {
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 3px 3px 10px -5px;
+}
+
+article.product-review .product-reviewer-name {
+    display: inline-block;
+}
+
+article.product-review time {
+    display: inline-block;
+    font-size: .9375rem;
+    color: #777;
+}
+
+article.product-review .product-review-rating {
+    position: relative;
+    top: 3px;
+}
+
+/* Product review form */
+
+form.product-review input,
+form.product-review textarea {
+    box-shadow: 3px 3px 10px -5px;
+}
+
+form.product-review .form-control::placeholder {
+    text-transform: none;
+    color: #777;
+}
+
+form.product-review .form-control {
+    padding: .375rem 1rem;
+    border: 1px solid #ddd;
+}
+
+form.product-review span {
+    color: #777;
+}
+
+form.product-review .rating-stars {
+    position: relative;
+    top: 4px;
+    cursor: pointer;
+}
+
+.rating-stars input + label [class*="icon-"] {
+    font-size: 1.25rem;
+}
+
+.has-error .ec-error {
+    display: block;
+    margin-top: .5rem;
+    color: #ff4136;
+}
+
+/* Product review radio input and its pseudo-classes override */
+
+.rating-stars input + label {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.rating-stars input + label::before {
+    border: 0 !important;
+}
+
+.rating-stars input + label::after {
+    border: 0 !important;
+    background-color: transparent !important;
+}

@@ -1,5 +1,4 @@
 {if count($options) > 0}
-<h5>Характеристики</h5>
 <table class="table table-striped table-hover ">
     <tbody>
     {foreach $options as $option}
