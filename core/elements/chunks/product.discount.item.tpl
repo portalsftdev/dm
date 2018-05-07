@@ -27,7 +27,15 @@
                     <span class="mr-3">Осталось:</span>
                     <span class="tag tag-lg relative">
                         <span class="tag-outline-orange tag-mask animate-tremor"></span>
-                        {$_modx->RunSnippet('@FILE snippets/discountDaysLeft.php')}
+                        {set $discountDaysLeft = $_modx->RunSnippet('@FILE snippets/discountDaysLeft.php')}
+                        {set $discountDaysLeftPluralForm = $_modx->runSnippet(
+                            '@FILE snippets/pluralForm.php',
+                            [
+                                'count' => $discountDaysLeft,
+                                'wordForms' => ['день', 'дня', 'дней'],
+                            ]
+                        )}
+                        {$discountDaysLeft} {$discountDaysLeftPluralForm}
                     </span>
                 </div>*}
             </div>
