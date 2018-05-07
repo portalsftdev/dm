@@ -550,3 +550,11 @@ form.product-review .rating-stars {
     border: 0 !important;
     background-color: transparent !important;
 }
+
+/**
+ * Product description
+ */
+
+#product-description {
+    white-space: pre-wrap;
+}

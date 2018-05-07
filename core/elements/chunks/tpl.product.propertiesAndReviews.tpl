@@ -3,6 +3,11 @@
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#product-properties" role="tab">Характеристики</a>
         </li>
+        {if '' != $_modx->resource.description}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-description" role="tab">Описание</a>
+            </li>
+        {/if}
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#product-reviews" role="tab">Отзывы ({$reviewsCount})</a>
         </li>
@@ -11,6 +16,9 @@
         <div class="tab-pane active" id="product-properties" role="tabpanel">
             {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.tpl', 'ignoreOptions' => $ignoreOptions])}
         </div>
+        {if '' != $_modx->resource.description}
+            <div class="tab-pane" id="product-description" role="tabpanel">{$_modx->resource.description}</div>
+        {/if}
         <div class="tab-pane" id="product-reviews" role="tabpanel">
             {if 0 == $reviewsCount}
                 <div class="text-center my-5">Ни одного отзыва еще не было оставлено.</div>
