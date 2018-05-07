@@ -8,6 +8,7 @@ switch ($modx->event->name) {
                 'subject' => $modx->getOption('order_notification_email_subject'),
                 'message' => $modx->getOption('order_notification_email_message'),
             ];
+            $emailMessageData['addresses'] = explode(',', $modx->getOption('manager_emails'));
             // Process system settings
             foreach ($emailMessageData as $key => $value) {
                 $chunk = $modx->newObject('modChunk');
@@ -20,7 +21,9 @@ switch ($modx->event->name) {
             $modx->mail->set(modMail::MAIL_FROM_NAME, $modx->getOption('site_name'));
             $modx->mail->set(modMail::MAIL_SUBJECT, $emailMessageData['subject']);
             $modx->mail->set(modMail::MAIL_BODY, $emailMessageData['message']);
-            $modx->mail->address('to', $modx->getOption('manager_emails'));
+            foreach ($emailMessageData['addresses'] as $address) {
+                $modx->mail->address('to', $address);
+            }
             $modx->mail->setHTML(true);
             if (!$modx->mail->send()) {
                 $modx->log(modX::LOG_LEVEL_ERROR, 'An error occurred while trying to send the email: '.$modx->mail->mailer->ErrorInfo);
