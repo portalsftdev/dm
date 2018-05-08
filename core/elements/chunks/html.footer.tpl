@@ -32,10 +32,10 @@
             <div class="col-md-6 text-center text-md-right">
                 <div class="column-content" id="social-networks">
                     <a href="https://vk.com/dveriportal" rel="nofollow" title="Мы в VK" target="_blank">
-                        <img src="assets/images/icons/vk.com.png" alt="VK" />
+                        <img src="assets/i/icons/vk.com.png" alt="VK" />
                     </a>
                     <a href="https://www.instagram.com/dveri_nvkz/" rel="nofollow" title="Мы в Instagram" target="_blank">
-                        <img src="assets/images/icons/instagram.com.png" alt="Instagram" />
+                        <img src="assets/i/icons/instagram.com.png" alt="Instagram" />
                     </a>
                 </div>
             </div>
