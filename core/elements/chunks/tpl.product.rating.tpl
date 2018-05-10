@@ -16,3 +16,5 @@
 <meta itemprop="ratingValue" content="{$_modx->getPlaceholder('productRating')}" />
 <meta itemprop="ratingCount" content="{$reviewsCount}" />
 <meta itemprop="reviewCount" content="{$reviewsCount}" />
+<meta itemprop="bestRating" content="{$_modx->config.ec_rating_max}" />
+<meta itemprop="worstRating" content="1" />

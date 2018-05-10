@@ -74,6 +74,8 @@
                 <meta itemprop="ratingValue" content="{$rating_simple|round:1}" />
                 <meta itemprop="ratingCount" content="{$_modx->getPlaceholder(\'reviewsCount\')}" />
                 <meta itemprop="reviewCount" content="{$_modx->getPlaceholder(\'reviewsCount\')}" />
+                <meta itemprop="bestRating" content="{$_modx->config.ec_rating_max}" />
+                <meta itemprop="worstRating" content="1" />
             </div>',
             ])}
         {/if}
