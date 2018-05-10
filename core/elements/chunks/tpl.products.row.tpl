@@ -64,11 +64,16 @@
 
         {/if}
         </div>
-        {if 0 != $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}
+        {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}
+        {if 0 != $reviewsCount}
+            {$_modx->setPlaceholder('reviewsCount', $reviewsCount)}
             {$_modx->runSnippet('!ecThreadRating', [
                 'thread' => 'resource-' ~ $id,
-                'tpl' => '@INLINE <div class="card-rating-stars" title="{$rating_simple}">
+                'tpl' => '@INLINE <div class="card-rating-stars" title="{$rating_simple}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                 <span style="width: {$rating_simple_percent}%"></span>
+                <meta itemprop="ratingValue" content="{$rating_simple|round:1}" />
+                <meta itemprop="ratingCount" content="{$_modx->getPlaceholder(\'reviewsCount\')}" />
+                <meta itemprop="reviewCount" content="{$_modx->getPlaceholder(\'reviewsCount\')}" />
             </div>',
             ])}
         {/if}

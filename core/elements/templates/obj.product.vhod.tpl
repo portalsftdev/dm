@@ -50,12 +50,12 @@
                                             <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
                                         </div>
                                     {/if}
-                                    <div class="expo-rating mb-3">
-                                        {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount')}
-                                        {if 0 != $reviewsCount}
+                                    {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount')}
+                                    {if 0 != $reviewsCount}
+                                        <div class="expo-rating mb-3" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                                             {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
-                                        {/if}
-                                    </div>
+                                        </div>
+                                    {/if}
                                     <form method="post" class="ms2_form">
                                         <button type="submit" name="ms2_action" value="cart/add" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light"><span class="icon-cart"></span> В корзину</button>
                                         <input type="hidden" name="id" value="{$_modx->resource.id}">
