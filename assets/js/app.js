@@ -662,7 +662,6 @@ $('#expo_available, #discount-coupon, #product-price-order').on('hide.bs.modal',
 /**
  *
  * Set stars count in product review form on mouseover
- * and select a radio input on mouseleave
  *
  */
 
@@ -676,6 +675,4 @@ $('.rating-stars input + label').on('mouseenter touchstart', function() {
             $(this).removeClass('icon-star').addClass('icon-star-o');
         }
     });
-}).on('mouseleave touchend', function() {
-    $('#'+$(this).attr('for')).prop('checked', true);
 });
