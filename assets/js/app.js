@@ -491,6 +491,7 @@ $(function() {
               'name': 'key',
               'value': response.data.key,
             }));
+            $targetForm.find('[type="submit"]').val('cart/change');
         };
     });
 
