@@ -317,7 +317,7 @@ $(function() {
     }
 
     // Change total row cost after a product count change
-    $('input[name="count"]').change(function() {
+    $(document).on('change', 'input[name="count"]', function() {
         recountTotalRowCost($(this));
     });
 
@@ -474,12 +474,12 @@ $(function() {
     });
 
     // Submit form when switching complectation items (options)
-    $('[id^=complectation-item]').click(function() {
+    $(document).on('click', '[id^=complectation-item]', function() {
         var $form = $(this).closest('.ms2_form').submit();
     });
 
     // Change state of leaf in complectation form when adding it to the cart
-    $('form#leaf').submit(function() {
+    $(document).on('submit', 'form#leaf', function() {
         var $targetForm = $('#door-complectation .leaf'),
             $targetFormCountInput = $targetForm.find('input[name="count"]'),
             value = $targetFormCountInput.val();
@@ -652,7 +652,7 @@ $(document).on('hide.bs.modal', '#product-price-order', function (e) {
  *
  */
 
-$('#expo_available, #discount-coupon, #product-price-order').on('hide.bs.modal', function (e) {
+$(document).on('hide.bs.modal', '#expo_available, #discount-coupon, #product-price-order', function (e) {
     $(this).find('.check-mark').remove();
     $(this).find('.success-message').remove();
     $(this).find('.error > .error').remove();
@@ -665,7 +665,7 @@ $('#expo_available, #discount-coupon, #product-price-order').on('hide.bs.modal',
  *
  */
 
-$('.rating-stars input + label').on('mouseenter touchstart', function() {
+$(document).on('mouseenter touchstart', '.rating-stars input + label', function() {
     let $stars = $(this).closest('div').find('[class*="icon-"]'); // [class^="icon-"] doesn't work properly
     let ratingValue = $('#'+$(this).attr('for')).val();
     $stars.each(function(key, value) {
@@ -673,6 +673,43 @@ $('.rating-stars input + label').on('mouseenter touchstart', function() {
             $(this).removeClass('icon-star-o').addClass('icon-star');
         } else {
             $(this).removeClass('icon-star').addClass('icon-star-o');
+        }
+    });
+});
+
+/**
+ * Show product with another property (e.g. color)
+ * History must not be changed
+ */
+
+$(document).on('click', '.model-property', function(e) {
+    e.preventDefault();
+    $('#product, #product-tabs').css('opacity', '.5');
+    $.ajax({
+        url: $(this).data('uri'),
+        type: 'get',
+        dataType: 'html',
+        success: function(response) {
+            let title = $(response).filter('title').text();
+            let productInfoHTML = $(response).find('#product').html();
+            let productTabsHTML = $(response).find('#product-tabs').html();
+            if (undefined === title || undefined === productInfoHTML || undefined === productTabsHTML) {
+                alert('Произошла ошибка. Попробуйте позже.');
+            } else {
+                // Update title & nodes
+                document.title = title;
+                $('#product').html(productInfoHTML);
+                $('#product-tabs').html(productTabsHTML);
+                // Remove tooltip
+                $('[role="tooltip"]').remove();
+                // Reinitialise tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+                // Reinitialise input mask
+                new Inputmask({
+                    'mask': '+7 (999) 999-9999'
+                }).mask(document.querySelectorAll('input[type="tel"]'));
+            }
+            $('#product, #product-tabs').css('opacity', '1');
         }
     });
 });

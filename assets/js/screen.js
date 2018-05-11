@@ -75,30 +75,26 @@ $(function() {
         });
     }
 
+});
 
-    var expo_selectors = document.querySelectorAll(".expo-checkbox");
+/**
+ * Switch interiors on the product page
+ */
 
-    for (var i = expo_selectors.length - 1; i >= 0; i--) {
-        var expo_selector = expo_selectors[i];
-        expoCheckboxHandler(expo_selector);
-    };
+function expoCheckboxHandle(obj)
+{
+    $('.expo-interior').removeClass('expo-interior--dark').removeClass('expo-interior--green').removeClass('expo-interior--white').addClass(obj.val());
+}
 
-    function expoCheckboxHandler(expo_selector) {
-        expo_selector.addEventListener( "click", function(e) {
-            //e.preventDefault();
-            var obj = $(this);
-            $('.expo-interior').removeClass('expo-interior--dark').removeClass('expo-interior--green').removeClass('expo-interior--white').addClass(obj.val());
+$(document).on('click', '.expo-checkbox', function() {
+    expoCheckboxHandle($(this));
+});
 
-        });
-    }
+/**
+ * Rotate the other side of the door
+ */
 
-
-
-    $( document ).ready(function() {
-        $(".rotate-btn").on("click",function(){
-            var t=$(this).attr("data-card");
-            $("#"+t).toggleClass("flipped");
-        });
-    });
-
+$(document).on('click', '.rotate-btn', function() {
+    var t = $(this).attr("data-card");
+    $("#"+t).toggleClass("flipped");
 });
