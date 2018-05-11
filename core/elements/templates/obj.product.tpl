@@ -110,7 +110,7 @@
                                     {*$_modx->runSnippet('!msOptions', ['tpl' => '@FILE chunks/tpl.options.select.tpl', 'options' => 'size'])*}
                                     {set $complectation = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.item.tpl', 'productNameField' => 'pagetitle', 'mandatoryCount' => true])}
                                     {if $complectation}
-                                    <div id="complectation-items" class="pre-scrollable h-rem-15">
+                                    <div id="complectation-items" class="pre-scrollable h-rem-12">
                                         {$complectation}
                                     </div>
                                     {/if}
