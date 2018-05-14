@@ -32,8 +32,8 @@
     'class' => 'msProduct',
     'loadModels' => 'ms2gallery',
     'leftJoin' => '{
-        "card0": {"class":"msProductFile","alias":"card0", "on": "card0.product_id = msProduct.id AND card0.path LIKE \'%/card/%\' AND card0.rank=0"}
-        ,"card1": {"class":"msProductFile","alias":"card1", "on": "card1.product_id = msProduct.id AND card1.path LIKE \'%/card/%\' AND card1.rank=1"}
+        "card0": {"class":"msProductFile","alias":"card0", "on": "card0.product_id = msProduct.id AND card0.path LIKE \'%/card/%\' AND card0.rank=0 AND card0.active = 1"}
+        ,"card1": {"class":"msProductFile","alias":"card1", "on": "card1.product_id = msProduct.id AND card1.path LIKE \'%/card/%\' AND card1.rank=1 AND card1.active = 1"}
     }',
     'select' => '{
         "msProduct":"*"
