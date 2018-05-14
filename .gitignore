@@ -4,6 +4,10 @@
 # But no .gitignore
 !.gitignore
 
+# And no *.png and *.ico files (i.e. favicons)
+!*.png
+!*.ico
+
 # And no core/elements/chunks, core/elements/plugins, core/elements/snippets, core/elements/templates
 !core/
 core/*
