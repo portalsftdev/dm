@@ -1,5 +1,5 @@
 {$_modx->runSnippet('!mSearchForm@ScriptProperties',[
-    'pageId' => $local == 1 ? $_modx->resource.id : 5,
+    'pageId' => $local == 1 ? $_modx->resource.id : $_modx->config.'resources.catalog',
     'element' => 'msProducts',
     'loadModels' => 'ms2gallery',
     'tplForm' => '@FILE chunks/tpl.search.form.tpl',
