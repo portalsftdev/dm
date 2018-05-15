@@ -97,4 +97,5 @@ $(document).on('click', '.expo-checkbox', function() {
 $(document).on('click', '.rotate-btn', function() {
     var t = $(this).attr("data-card");
     $("#"+t).toggleClass("flipped");
+    $(this).toggleClass('rotated');
 });
