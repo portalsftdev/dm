@@ -705,6 +705,11 @@ $(document).on('click', '.model-property', function(e) {
                 $('[role="tooltip"]').remove();
                 // Reinitialise tooltips
                 $('[data-toggle="tooltip"]').tooltip();
+                // Reinitialise Fotorama
+                let $gallery = $('.fotorama');
+                if ($gallery.length) {
+                    $('.fotorama').fotorama();
+                }
                 // Reinitialise input mask
                 new Inputmask({
                     'mask': '+7 (999) 999-9999'
