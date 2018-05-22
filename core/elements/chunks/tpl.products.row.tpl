@@ -12,7 +12,7 @@
     {set $card_tile = 'card-tile-wide'}
     {set $card_mask = 'mask-door'}
 {/if}
-{if ($_modx->resource.id in [101, 5]) or $_modx->resource.parent == 31}
+{if ($_modx->resource.id in [$_modx->config.'resources.wishlist', $_modx->config.'resources.catalog']) or $_modx->config.'resources.brands' == $_modx->resource.parent}
     {set $card_tile = 'card-tile-narrow card-product--vert'}
     {set $card_height = 'h-rem-8'}
 {/if}
@@ -58,10 +58,13 @@
         </div>
         <div class="card-description">
         <meta itemprop="description" content="{$description ?: $longtitle | escape}" />
-        {if $_modx->config.'resources.room_doors' == $parent}
-            {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'mscolor,cover,glass'])}
-        {elseif $_modx->config.'resources.steel_doors' == $parent}
-            {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'steel_door_color,shield_color'])}
+        {set $showProductOptions = $_modx->resource.id in [$_modx->config.'resources.steel_doors', $_modx->config.'resources.room_doors']}
+        {if $showProductOptions}
+            {if $_modx->config.'resources.room_doors' == $parent}
+                {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'mscolor,cover,glass'])}
+            {elseif $_modx->config.'resources.steel_doors' == $parent}
+                {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'steel_door_color,shield_color'])}
+            {/if}
         {/if}
         </div>
         {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}
