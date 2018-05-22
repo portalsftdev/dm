@@ -69,12 +69,27 @@
         	'leftJoin' => '{
         		"card0": {"class":"msProductFile","alias":"card0", "on": "card0.product_id = msProduct.id AND card0.path LIKE \'%/card/%\' AND card0.rank=0 AND card0.active = 1"}
         		,"card1": {"class":"msProductFile","alias":"card1", "on": "card1.product_id = msProduct.id AND card1.path LIKE \'%/card/%\' AND card1.rank=1 AND card1.active = 1"}
+                ,"steelDoorModel": {
+                    "class": "msProductOption",
+                    "on": "steelDoorModel.product_id = msProduct.id AND steelDoorModel.key = \'model\'"
+                },
+                "steelDoorCoatingColor": {
+                    "class": "msProductOption",
+                    "on": "steelDoorCoatingColor.product_id = msProduct.id AND steelDoorCoatingColor.key = \'steel_door_color\'"
+                },
+                "steelDoorInnerPanelColor": {
+                    "class": "msProductOption",
+                    "on": "steelDoorInnerPanelColor.product_id = msProduct.id AND steelDoorInnerPanelColor.key = \'shield_color\'"
+                }
         	}',
         	'select' => '{
         		"msProduct":"*"
         		,"card0":"card0.url as card0"
         		,"card1":"card1.url as card1"
+                ,"productModel":"steelDoorModel.value as productModel"
         	}',
+            'disableGroupByProductId' => true,
+            'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value"]',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'limit' => 20,
             'filters' => '
@@ -135,8 +150,25 @@
                 "mscolor": {
                     "class": "msocColor",
                     "on": "mscolor.key = \'mscolor\' and mscolor.rid = msProduct.id"
+                },
+                "interiorDoorModel": {
+                    "class": "msProductOption",
+                    "on": "interiorDoorModel.product_id = msProduct.id AND interiorDoorModel.key = \'model\'"
+                },
+                "interiorDoorLeafColor": {
+                    "class": "msProductOption",
+                    "on": "interiorDoorLeafColor.product_id = msProduct.id AND interiorDoorLeafColor.key = \'mscolor\'"
+                },
+                "interiorDoorGlassColor": {
+                    "class": "msProductOption",
+                    "on": "interiorDoorGlassColor.product_id = msProduct.id AND interiorDoorGlassColor.key = \'glass\'"
                 }
             }',
+        	'select' => '{
+        		"productModel":"interiorDoorModel.value as productModel"
+        	}'
+            'disableGroupByProductId' => true,
+            'groupby' => '["interiorDoorModel.value", "interiorDoorLeafColor.value", "interiorDoorGlassColor.value"]',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'tplFilter.outer.msoc|mscolor' => '@FILE chunks/tpl.filter.outer.msoption.msColor.tpl',
             'tplFilter.row.msoc|mscolor' => '@FILE chunks/tpl.filter.row.msoption.msColor.tpl',

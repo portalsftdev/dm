@@ -50,7 +50,7 @@
             </div>
         {/if}
         <div>
-            <a href="{$id | url}" class="card-title">{$pagetitle}</a>
+            <a href="{$id | url}" class="card-title">{$productModel ?: $pagetitle}</a>
             <meta itemprop="name" content="{$pagetitle | escape}" />
             <link itemprop="url" href="{$_modx->config.site_url ~ $id | url}" />
             <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
@@ -59,9 +59,9 @@
         <div class="card-description">
         <meta itemprop="description" content="{$description ?: $longtitle | escape}" />
         {if $_modx->config.'resources.room_doors' == $parent}
-            {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'mscolor,cover'])}
+            {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'mscolor,cover,glass'])}
         {elseif $_modx->config.'resources.steel_doors' == $parent}
-
+            {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'steel_door_color,shield_color'])}
         {/if}
         </div>
         {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}

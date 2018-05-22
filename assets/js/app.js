@@ -478,23 +478,6 @@ $(function() {
         var $form = $(this).closest('.ms2_form').submit();
     });
 
-    // Change state of leaf in complectation form when adding it to the cart
-    $(document).on('submit', 'form#leaf', function() {
-        var $targetForm = $('#door-complectation .leaf'),
-            $targetFormCountInput = $targetForm.find('input[name="count"]'),
-            value = $targetFormCountInput.val();
-        miniShop2.Callbacks.Cart.add.response.success = function(response) {
-            $targetFormCountInput.val(++value);
-            recountTotalRowCost($targetFormCountInput);
-            $targetForm.append($('<input>', {
-              'type': 'hidden',
-              'name': 'key',
-              'value': response.data.key,
-            }));
-            $targetForm.find('[type="submit"]').val('cart/change');
-        };
-    });
-
     /**
      *
      * Order: change payer type variable when the payer type is switching
@@ -686,14 +669,24 @@ $(document).on('mouseenter touchstart', '.rating-stars input + label', function(
 $(document).on('click', '.model-property', function(e) {
     e.preventDefault();
     $('#product, #product-tabs').css('opacity', '.5');
+    let productSizesAreExpanded = $('#product-sizes').hasClass('expanded');
     $.ajax({
         url: $(this).data('uri'),
         type: 'get',
         dataType: 'html',
         success: function(response) {
-            let title = $(response).filter('title').text();
-            let productInfoHTML = $(response).find('#product').html();
-            let productTabsHTML = $(response).find('#product-tabs').html();
+            let title = $(response).filter('title').text(),
+                $productInfo = $(response).find('#product'),
+                productInfoHTML = '',
+                productTabsHTML = $(response).find('#product-tabs').html();
+            // Expand product sizes
+            if (productSizesAreExpanded) {
+                let $productSizeToggle = $productInfo.find('.product-size-toggle');
+                $productInfo.find('.product-size-toggle').attr('aria-expanded', 'true');
+                $productInfo.find($productSizeToggle.attr('data-show')).css('display', 'block').addClass('expanded');
+                $productInfo.find($productSizeToggle.attr('data-hide')).css('display', 'none');
+            }
+            productInfoHTML = $productInfo.html();
             if (undefined === title || undefined === productInfoHTML || undefined === productTabsHTML) {
                 alert('Произошла ошибка. Попробуйте позже.');
             } else {
@@ -718,4 +711,103 @@ $(document).on('click', '.model-property', function(e) {
             $('#product, #product-tabs').css('opacity', '1');
         }
     });
+});
+
+/**
+ * Show/hide product sizes
+ */
+
+$(document).on('click', '.product-size-toggle', function() {
+    let $elementsToShow = $($(this).data('show')),
+        $elementsToHide = $($(this).data('hide'));
+    if ('false' == $(this).attr('aria-expanded')) {
+        $('.product-size-toggle').attr('aria-expanded', 'true');
+    } else {
+        $('.product-size-toggle').attr('aria-expanded', 'false');
+    }
+    $elementsToShow.toggleClass('expanded');
+    if ('none' == $elementsToShow.css('display')) {
+        $elementsToShow.slideDown();
+        $elementsToHide.slideUp();
+    } else {
+        $elementsToShow.slideUp();
+        $elementsToHide.slideDown();
+    }
+});
+
+/**
+ * Adding/changing/removing a product with certain size
+ */
+
+function processProductCountChange($form, $input)
+{
+    let $formSubmit = $form.find('[type="submit"]');
+    $form.submit();
+    miniShop2.Callbacks.Cart.add.response.success = function(response) {
+        $form.append($('<input>', {
+          'type': 'hidden',
+          'name': 'key',
+          'value': response.data.key,
+        }));
+        $formSubmit.val('cart/change');
+    };
+    miniShop2.Callbacks.Cart.change.response.success = function(response) {
+        if (0 == $input.val()) {
+            $form.find('input[name="key"]').remove();
+            $formSubmit.val('cart/add');
+        }
+    };
+    miniShop2.Callbacks.Cart.remove.response.success = function(response) {
+        $form.find('input[name="key"]').remove();
+        $formSubmit.val('cart/add');
+    };
+}
+
+// @link https://gist.github.com/ericchen/947727
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+// Input direct change with 750 ms delay
+$(document).on('keyup', '#product-sizes input[name="count"]', function() {
+    let $this = $(this);
+    delay(function() {
+        let $form = $this.closest('.ms2_form'),
+            $input = $form.find('[name="count"]'),
+            currentInputValue = $input.val();
+        if ('' === currentInputValue)  {
+            currentInputValue = 0;
+        } else {
+            currentInputValue = parseInt(currentInputValue);
+        }
+        if (! isNaN(currentInputValue) && 0 <= currentInputValue) {
+            processProductCountChange($form, $input);
+        }
+    }, 750 );
+});
+
+// Input plus/minus
+$(document).on('click', '[data-spin]', function() {
+    let $form = $(this).closest('.ms2_form'),
+        $input = $form.find('[name="count"]'),
+        currentInputValue = $input.val();
+    if ('plus' == $(this).data('spin')) {
+        currentInputValue++;
+    } else if ('minus' == $(this).data('spin')) {
+        currentInputValue--;
+    }
+    if (0 <= currentInputValue) {
+        $input.val(currentInputValue);
+        processProductCountChange($form, $input);
+    }
+});
+
+$('#product-sizes input[name="count"]').keyup(function() {
+    delay(function() {
+      alert('Time elapsed!');
+    }, 1000 );
 });

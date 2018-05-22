@@ -593,3 +593,77 @@ form.product-review .rating-stars {
     right: 3px;
     transform: rotate(-180deg);
 }
+
+/**
+ * Product sizes, missing .input-group-prepend and .input-group-append styles
+ */
+
+.input-group-append,
+.input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#product-sizes .input-group-prepend {
+    margin-right: -1px;
+}
+
+#product-sizes .input-group-append {
+    margin-left: -1px;
+}
+
+#product-sizes .input-group-prepend > button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#product-sizes .input-group-append > button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#product-sizes button {
+    padding: 0 .5rem;
+    line-height: 1;
+    font-weight: 400;
+    font-size: 1.375rem;
+    box-shadow: none;
+}
+
+#product-sizes .form-control {
+    height: 1.5rem;
+    border-color: #ccc;
+    text-align: center;
+    font-size: .9375rem;
+    padding: .3125rem .125rem .125rem .125rem;
+}
+
+/**
+ * Turn off spinners in input[type="number"]
+ */
+
+input[type="number"].no-spinners {
+  -moz-appearance: textfield !important;;
+}
+
+input[type="number"].no-spinners::-webkit-inner-spin-button,
+input[type="number"].no-spinners::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+/**
+ * .dropdown-toggle rotation & animation
+ */
+
+.product-size-toggle.dropdown-toggle::after {
+    transition: -webkit-transform .25s;
+    transition: transform .25s;
+}
+
+.product-size-toggle.dropdown-toggle[aria-expanded="false"]::after {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}

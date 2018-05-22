@@ -1,9 +1,17 @@
 {if count($options) > 0}
     {foreach $options as $option}
         {$option.caption}: {if $option.value is array}
-            {$option.value | join : ', '}
+            {if 'glass' == $option.key && $option.value.0 is empty}
+                нет
+            {else}
+                {$option.value | join : ', '}
+            {/if}
         {else}
-            {$option.value}
+            {if 'glass' == $option.key && $option.value.0 is empty}
+                нет
+            {else}
+                {$option.value}
+            {/if}
         {/if}<br/>
     {/foreach}
 {/if}

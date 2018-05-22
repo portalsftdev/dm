@@ -19,9 +19,6 @@
                                     <meta itemprop="name" content="{$_modx->resource.pagetitle | escape}" />
                                     <link itemprop="url" href="{$_modx->config.site_url ~ $_modx->resource.uri}" />
                                     <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
-                                    <p>
-                                    {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'onlyOptions' => 'pattern,cover'])}
-                                    </p>
                                 </div>
                                 <div class="col">
                                     <div class="row mx-0">
@@ -42,7 +39,7 @@
                         </div>
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-6" style="margin-top:-1.5rem">
                                     {if $price == 0}
                                         <div style="margin-bottom:1rem;" data-toggle="modal" data-target="#product-price-order"><i class="btn-icon btn-icon-dvmk icon-phone text-primary"></i><a style="cursor:pointer;">Запросить цену</a></div>
                                         <input type="hidden" name="pagetitle" value="{$_modx->resource.pagetitle | escape}" />
@@ -63,15 +60,29 @@
                                             {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
                                         </div>
                                     {/if}
-                                    <form method="post" id="leaf" class="ms2_form">
-                                        <button type="submit" name="ms2_action" value="cart/add" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light"><span class="icon-cart"></span> В корзину</button>
-                                        <input type="hidden" name="id" value="{$_modx->resource.id}">
-                                        <input type="hidden" name="count" value="1">
-                                        <input type="hidden" name="options" value="[]">
-                                    </form>
-                                    <div data-toggle="modal" data-target="#expo_available"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
-                                    <div>
-                                        {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
+                                    {$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
+                                        'conditions' => [
+                                            'model' => $_pls['model.value'],
+                                            'doorType' => $_pls['doorType.value'],
+                                            'mscolor' => $_pls['mscolor.value'],
+                                            'glass' => $_pls['glass.value'],
+                                        ],
+                                        'currentOptionValues' => '{
+                                            "width": "'~$_pls['width.value']~'",
+                                            "height": "'~$_pls['height.value']~'"
+                                        }',
+                                        'optionKeys' => 'width|height',
+                                        'optionLabel' => 'Размер полотна',
+                                        'showSingleOption' => true,
+                                        'tpl' => '@FILE chunks/product.option.size.item.tpl',
+                                        'tplWrapper' => '@FILE chunks/product.option.size.wrapper.tpl',
+                                    ])}
+                                    <div class="product-buttons">
+                                        <button type="button" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light product-size-toggle" data-show="#product-sizes" data-hide=".product-buttons" aria-expanded="false"><span class="icon-cart"></span> В корзину</button>
+                                        <div data-toggle="modal" data-target="#expo_available"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
+                                        <div>
+                                            {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
+                                        </div>
                                     </div>
                                     <div id="expo_available" class="modal fade" tabindex="-1" role="dialog" >
                                         <div class="modal-dialog" role="document">
@@ -106,14 +117,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 mt-4">
                                     {*$_modx->runSnippet('!msOptions', ['tpl' => '@FILE chunks/tpl.options.select.tpl', 'options' => 'size'])*}
                                     {set $complectation = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.item.tpl', 'productNameField' => 'pagetitle', 'mandatoryCount' => true])}
                                     {if $complectation}
                                     <div id="complectation-items" class="pre-scrollable h-rem-12">
                                         {$complectation}
                                     </div>
-                                    {/if}
                                     <div id="expo_custom" class="modal fade" tabindex="-1" role="dialog">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
@@ -127,37 +137,7 @@
                                                             <div class="table-responsive" id="door-complectation">
                                                             <table class="table" id="msCart">
                                                                 <tbody>
-                                                                    {$_modx->RunSnippet('@FILE snippets/productInCartInfo.php', [
-                                                                        'complectationCostPlaceholder' => 'complectationCost',
-                                                                    ])}
-                                                                    <tr>
-                                                                        <td><div class="lead">Полотно</div></td>
-                                                                        <td>
-                                                                            <form class="ms2_form leaf" method="post">
-                                                                                <div class="input-group">
-                                                                                    <input name="count" type="number" min="0" step="1" class="form-control form-control-sm form-control--border w-rem-4" value="{$_modx->getPlaceholder('cart.count')}" placeholder="">
-                                                                                    <span class="input-group-addon form-control-sm form-control--border">шт.</span>
-                                                                                </div>
-                                                                                <input type="hidden" name="id" value="{$_modx->resource.id}">
-                                                                                {if $_modx->getPlaceholder('cart.key')}
-                                                                                    <input type="hidden" name="key" value="{$_modx->getPlaceholder('cart.key')}" />
-                                                                                {/if}
-                                                                                <input name="options" value="[]" type="hidden">
-                                                                                <button type="submit" name="ms2_action" value="cart/{$_modx->getPlaceholder('cart.count') == 0 ? 'add' : 'change'}"></button>
-                                                                            </form>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="card-price">
-                                                                                x&nbsp;<span class="price ms2_product_price">{$price}</span>&nbsp;<span class="icon-rub"></span>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="card-price">
-                                                                                =&nbsp;<span class="price ms2_total_row_cost">{$_modx->getPlaceholder('cart.sum')}</span>&nbsp;<span class="icon-rub"></span>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    {$_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl', 'complectationCostPlaceholder' => 'complectationCost'])}
+                                                                    {$_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl'])}
                                                                 </tbody>
                                                             </table>
                                                             </div>
@@ -165,12 +145,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <div class="card-product--small mr-auto" style="padding-left:12px;">
-                                                        <div class="lead">Итого</div>
-                                                        <div class="card-price">
-                                                            <span class="price ms2_total_cost">{$_modx->getPlaceholder('complectationCost')}</span>&nbsp;<span class="icon-rub"></span>
-                                                        </div>
-                                                    </div>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Применить</button>
                                                 </div>
@@ -178,6 +152,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-outline-dvmk waves-effect waves-light mt-2" data-toggle="modal" data-target="#expo_custom">Список комплектующих</button>
+                                    {/if}
                                 </div>
                             </div>
                             <hr>
@@ -185,6 +160,8 @@
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'mscolor' => $_pls['mscolor.value'],
+                                    'width' => $_pls['width.value'],
+                                    'height' => $_pls['height.value'],
                                 ],
                                 'currentOptionValue' => $_pls['doorType.value'],
                                 'optionKey' => 'doorType',
@@ -195,6 +172,9 @@
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'doorType' => $_pls['doorType.value'],
+                                    'glass' => $_pls['glass.value'],
+                                    'width' => $_pls['width.value'],
+                                    'height' => $_pls['height.value'],
                                 ],
                                 'currentOptionValue' => $_pls['mscolor.value'],
                                 'optionKey' => 'mscolor',
@@ -208,6 +188,8 @@
                                     'conditions' => [
                                         'model' => $_pls['model.value'],
                                         'mscolor' => $_pls['mscolor.value'],
+                                        'width' => $_pls['width.value'],
+                                        'height' => $_pls['height.value'],
                                     ],
                                     'currentOptionValue' => $_pls['glass.value'],
                                     'optionKey' => 'glass',

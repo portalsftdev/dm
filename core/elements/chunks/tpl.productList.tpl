@@ -147,9 +147,6 @@
             {set $sortBy = $_modx->getPlaceholder('mse2_sort')}
             <span class="small">Сортировать по:</span>
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms_product|pagetitle') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms_product|pagetitle" data-dir="{if $mse2_sort == 'ms_product|pagetitle:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms_product|pagetitle') !== false} active{/if}">Названию</a>
-            {if $_modx->resource.id == 7}
-            <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'msoc|value') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="msoc|value" data-dir="{if $mse2_sort == 'msoc|value:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'msoc|value') !== false} active{/if}">Цвету</a>
-            {/if}
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms|price') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms|price" data-dir="{if $mse2_sort == 'ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms|price') !== false} active{/if}">Цене</a>
         </div>
     </div>
