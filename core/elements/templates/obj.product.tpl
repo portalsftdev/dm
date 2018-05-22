@@ -160,8 +160,6 @@
                                 'conditions' => [
                                     'model' => $_pls['model.value'],
                                     'mscolor' => $_pls['mscolor.value'],
-                                    'width' => $_pls['width.value'],
-                                    'height' => $_pls['height.value'],
                                 ],
                                 'currentOptionValue' => $_pls['doorType.value'],
                                 'optionKey' => 'doorType',
@@ -173,8 +171,6 @@
                                     'model' => $_pls['model.value'],
                                     'doorType' => $_pls['doorType.value'],
                                     'glass' => $_pls['glass.value'],
-                                    'width' => $_pls['width.value'],
-                                    'height' => $_pls['height.value'],
                                 ],
                                 'currentOptionValue' => $_pls['mscolor.value'],
                                 'optionKey' => 'mscolor',
@@ -188,8 +184,6 @@
                                     'conditions' => [
                                         'model' => $_pls['model.value'],
                                         'mscolor' => $_pls['mscolor.value'],
-                                        'width' => $_pls['width.value'],
-                                        'height' => $_pls['height.value'],
                                     ],
                                     'currentOptionValue' => $_pls['glass.value'],
                                     'optionKey' => 'glass',
