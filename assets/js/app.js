@@ -805,9 +805,3 @@ $(document).on('click', '[data-spin]', function() {
         processProductCountChange($form, $input);
     }
 });
-
-$('#product-sizes input[name="count"]').keyup(function() {
-    delay(function() {
-      alert('Time elapsed!');
-    }, 1000 );
-});
