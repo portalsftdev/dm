@@ -66,6 +66,40 @@
                 {$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE chunks/tpl.productoptions.p.tpl', 'product' => $id, 'onlyOptions' => 'steel_door_color,shield_color'])}
             {/if}
         {/if}
+        <span class="mr-1 product-availability-label">Наличие:</span>
+        {set $productRemain = $productGroupRemainSum ?: $id | resource : $.session.'cityselector.current_product_remain_tv'}
+        {$_modx->runSnippet('@FILE snippets/dmProductAvailability.php', [
+            'tpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
+            'tplWrapper' => '@INLINE <div class="product-availability d-inline-block pt-2'~($showProductOptions ? ' mt-2' : '')~'" data-toggle="tooltip" data-placement="top" title="{$title}" data-trigger="hover">{$items}</div>',
+            'productRemain' => $productRemain,
+            'availabilityLevels' => 3,
+            'availabilityDividers' => 5,
+            'levelOptions' => '{
+                "0": {
+                    "title":"Под заказ"
+                },
+                "1": {
+                    "dividersCount":"1",
+                    "class":"level-1",
+                    "min":"1",
+                    "max":"2",
+                    "title":"Мало"
+                },
+                "2": {
+                    "dividersCount":"3",
+                    "class":"level-2",
+                    "min":"3",
+                    "max":"5",
+                    "title":"Средне"
+                },
+                "3": {
+                    "dividersCount":"5",
+                    "class":"level-3",
+                    "min":"6",
+                    "title":"Много"
+                }
+            }',
+        ])}
         </div>
         {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount', ['thread' => 'resource-' ~ $id])}
         {if 0 != $reviewsCount}

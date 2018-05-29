@@ -7,6 +7,7 @@ $productID = $modx->getOption('productID', $scriptProperties, $modx->resource->i
 $productNameField = $modx->getOption('productNameField', $scriptProperties, 'pagetitle');
 $mandatoryCount = $modx->getOption('mandatoryCount', $scriptProperties, false);
 $complectationCostPlaceholder = $modx->getOption('complectationCostPlaceholder', $scriptProperties, false);
+$complectationAvailabilityToPlaceholder = $modx->getOption('complectationAvailabilityToPlaceholder', $scriptProperties);
 $nfp = $modx->getOption('ms2_price_format', null, '[2, ".", " "]');
 $nfp = json_decode($nfp, true);
 
@@ -57,9 +58,17 @@ $criteria = $modx->newQuery('msProduct')
                 //  ->leftJoin('msProductData', 'msProductData', 'msProduct.id = msProductData.id')
                  ->where(['msProduct.id:IN' => $slaveIDs])
                  ->sortby("FIELD(msProduct.menutitle, 'Короб', 'Наличник', 'Добор')");
-$criteria->select(['msProduct.id']);
+$selectionFields = ['msProduct.id'];
+
+// Join product remains
+$currentProductRemainTVId = $modx->getObject('modTemplateVar', ['name' => $_SESSION['cityselector.current_product_remain_tv']])->get('id');
+$criteria->leftJoin('modTemplateVarResource', 'modTemplateVarResource', "msProduct.id = modTemplateVarResource.contentid AND modTemplateVarResource.tmplvarid = $currentProductRemainTVId");
+$selectionFields[] = 'modTemplateVarResource.value AS remain';
+
 // $criteria->prepare();
 // echo $criteria->toSQL();
+
+$criteria->select($selectionFields);
 
 // Wrap output into the chunks
 $slaveProductCollection = $modx->getCollection('msProduct', $criteria);
@@ -68,6 +77,17 @@ $output = '';
 if ($complectationCostPlaceholder) {
     $complectationCost = $modx->getPlaceholder($complectationCostPlaceholder);
     $complectationCost = $complectationCost ? number_unformat($complectationCost, $nfp[1], $nfp[2]) : 0;
+}
+
+if ($complectationAvailabilityToPlaceholder) {
+    $complectationAvailabilitySnippetParameters = [
+        'tpl' => $scriptProperties['productAvailabilityTpl'],
+        'tplWrapper' => $scriptProperties['productAvailabilityTplWrapper'],
+        'availabilityLevels' => $scriptProperties['availabilityLevels'],
+        'availabilityDividers' => $scriptProperties['availabilityDividers'],
+        'levelOptions' => $scriptProperties['levelOptions'],
+    ];
+    $complectationAvailabilityOutput = '';
 }
 foreach ($slaveProductCollection as $slaveProduct) {
     $id = $slaveProduct->get('id');
@@ -114,12 +134,26 @@ foreach ($slaveProductCollection as $slaveProduct) {
     if ($complectationCostPlaceholder) {
         $complectationCost += $sum;
     }
+
+    if ($complectationAvailabilityToPlaceholder) {
+        $complectationAvailabilitySnippetParameters = array_merge($complectationAvailabilitySnippetParameters, [
+            'productRemain' => $slaveProduct->get('remain'),
+            $productNameField => $slaveProduct->get($productNameField),
+        ]);
+        $complectationAvailabilityOutput .= !empty($pdoTools)
+            ? $pdoTools->runSnippet('@FILE snippets/dmProductAvailability.php', $complectationAvailabilitySnippetParameters)
+            : $modx->runSnippet('@FILE snippets/dmProductAvailability.php', $complectationAvailabilitySnippetParameters);
+    }
 }
 
 // Set total cost of the complectation (it should be formatted at frontend)
 if ($complectationCostPlaceholder) {
     $complectationCost = number_format($complectationCost, fmod($complectationCost, 1) == 0 ? 0 : $nfp[0], $nfp[1], $nfp[2]);
     $modx->setPlaceholder($complectationCostPlaceholder, $complectationCost);
+}
+
+if ($complectationAvailabilityToPlaceholder) {
+    $modx->setPlaceholder($complectationAvailabilityToPlaceholder, $complectationAvailabilityOutput);
 }
 
 return $output;

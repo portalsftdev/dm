@@ -45,6 +45,7 @@
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'limit' => 20,
             'values_delimeter' => ';',
+            'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
@@ -87,9 +88,12 @@
         		,"card0":"card0.url as card0"
         		,"card1":"card1.url as card1"
                 ,"productModel":"steelDoorModel.value as productModel"
+                ,"productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
         	}',
             'disableGroupByProductId' => true,
+            'disableGroupingForPreparedResults' => true,
             'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value"]',
+            'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'limit' => 20,
             'filters' => '
@@ -165,10 +169,13 @@
                 }
             }',
         	'select' => '{
-        		"productModel":"interiorDoorModel.value as productModel"
-        	}'
+        		"productModel":"interiorDoorModel.value as productModel",
+                "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
+        	}',
             'disableGroupByProductId' => true,
+            'disableGroupingForPreparedResults' => true,
             'groupby' => '["interiorDoorModel.value", "interiorDoorLeafColor.value", "interiorDoorGlassColor.value"]',
+            'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'tplFilter.outer.msoc|mscolor' => '@FILE chunks/tpl.filter.outer.msoption.msColor.tpl',
             'tplFilter.row.msoc|mscolor' => '@FILE chunks/tpl.filter.row.msoption.msColor.tpl',
@@ -210,6 +217,7 @@
                 ms|favorite:favorite,
             ',
             'values_delimeter' => ';',
+            'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'tplFilter.outer.msoc|mscolor' => '@FILE chunks/tpl.filter.outer.msoption.msColor.tpl',
             'tplFilter.row.msoc|mscolor' => '@FILE chunks/tpl.filter.row.msoption.msColor.tpl',

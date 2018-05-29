@@ -21,6 +21,7 @@ if (!array_key_exists($selectedCity, $citiesShortInfo)) {
     $_SESSION['cityselector.current_city'] = $selectedCity;
     $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$selectedCity]['phone'];
     $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$selectedCity]['phone_href'];
+    $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$selectedCity]['product_remain_tv'];
     $output = [
         'success' => true,
     ];

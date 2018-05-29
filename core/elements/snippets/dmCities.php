@@ -24,17 +24,22 @@ foreach ($cityResourceIds as $cityResourceId) {
     ];
     // Set city storage list
     $cityStorages[$cityResource->get('pagetitle')] = json_decode($cityResource->getTVValue('city_storages'), true);
+    // Set city product remain template variables
+    $remainTemplateVariableTVArray = json_decode($cityResource->getTVValue('remain_template_variable'), true);
+    if (is_array($remainTemplateVariableTVArray)) {
+        $citiesShortInfo[$cityResource->get('pagetitle')]['product_remain_tv'] = $remainTemplateVariableTVArray[0]['remain_template_variable'];
+    }
 }
 
 // Set the current city and its phones
 if (!empty($_SESSION['cityselector.current_city'])) {
     $currentCity = $_SESSION['cityselector.current_city'];
-    $currentPhone = $_SESSION['cityselector.current_phone'];
-    $currentPhoneHref = $_SESSION['cityselector.current_phone_href'];
 } else {
     $currentCity = $modx->getOption('default_city');
-    $currentPhone = $citiesShortInfo[$currentCity]['phone'];
-    $currentPhoneHref = $citiesShortInfo[$currentCity]['phone_href'];
+    $_SESSION['cityselector.current_city'] = $currentCity;
+    $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$currentCity]['phone'];
+    $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$currentCity]['phone_href'];
+    $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$currentCity]['product_remain_tv'];
 }
 
 $mode = $modx->getOption('mode', $scriptProperties);
@@ -87,12 +92,12 @@ $phoneTpl = $modx->getOption('phoneTpl', $scriptProperties);
 $cityTpl = $modx->getOption('cityTpl', $scriptProperties);
 
 $modx->setPlaceholder('cityselector.current_city', $currentCity);
-$modx->setPlaceholder('cityselector.current_phone', $currentPhone);
-$modx->setPlaceholder('cityselector.current_phone_href', $currentPhoneHref);
+$modx->setPlaceholder('cityselector.current_phone', $_SESSION['cityselector.current_phone']);
+$modx->setPlaceholder('cityselector.current_phone_href', $_SESSION['cityselector.current_phone_href']);
 
 $placeholders = [
-    'cityselector.current_phone' => $currentPhone,
-    'cityselector.current_phone_href' => $currentPhoneHref,
+    'cityselector.current_phone' => $_SESSION['cityselector.current_phone'],
+    'cityselector.current_phone_href' => $_SESSION['cityselector.current_phone_href'],
 ];
 $output['cityselector.phone'] = !empty($pdoTools)
     ? $pdoTools->getChunk($phoneTpl, $placeholders)
@@ -104,7 +109,8 @@ foreach ($citiesShortInfo as $city => $cityShortInfo) {
         'current_city' => $currentCity,
         'city' => $city,
         'city_phone' => $cityShortInfo['phone'],
-        'city_phone_href' =>  $cityShortInfo['phone_href'],
+        'city_phone_href' => $cityShortInfo['phone_href'],
+        'city_remain_tv' => $cityShortInfo['product_remain_tv'],
     ];
     $output['cityselector.cities'] .= !empty($pdoTools)
         ? $pdoTools->getChunk($cityTpl, $placeholders)

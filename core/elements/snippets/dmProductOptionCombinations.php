@@ -13,6 +13,7 @@ $optionLabel = $modx->getOption('optionLabel', $scriptProperties);
 $showSingleOption = $modx->getOption('showSingleOption', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
+$productAvailabilityToPlaceholder = $modx->getOption('productAvailabilityToPlaceholder', $scriptProperties);
 
 // Use pdoTools if it's possible
 if (class_exists('pdoTools')) {
@@ -63,6 +64,13 @@ foreach ($optionKeys as $optionKey) {
     $criteria->leftJoin('msProductOption', $optionKey, "$optionKey.product_id = msProductOption.product_id AND $optionKey.`key` = '$optionKey'");
     $selectionFields[] = "$optionKey.value AS $optionKey";
 }
+
+// Join product remains
+$currentProductRemainTVId = $modx->getObject('modTemplateVar', ['name' => $_SESSION['cityselector.current_product_remain_tv']])->get('id');
+$criteria->leftJoin('modTemplateVarResource', 'modTemplateVarResource', "msProductOption.product_id = modTemplateVarResource.contentid AND modTemplateVarResource.tmplvarid = $currentProductRemainTVId");
+$selectionFields[] = 'modTemplateVarResource.value AS remain';
+
+// Add conditions
 $criteria->where([
              'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
            ]);
@@ -83,6 +91,16 @@ if (! $showSingleOption && sizeof($productOptionCollection) <= 1) {
 
 // Prepare the items
 $items = '';
+if ($productAvailabilityToPlaceholder) {
+    $productAvailabilitySnippetParameters = [
+        'tpl' => $scriptProperties['productAvailabilityTpl'],
+        'tplWrapper' => $scriptProperties['productAvailabilityTplWrapper'],
+        'availabilityLevels' => $scriptProperties['availabilityLevels'],
+        'availabilityDividers' => $scriptProperties['availabilityDividers'],
+        'levelOptions' => $scriptProperties['levelOptions'],
+    ];
+    $productAvailabilityOutput = '';
+}
 foreach ($productOptionCollection as $id => $productOption) {
     $optionValues = [];
     foreach ($optionKeys as $optionKey) {
@@ -106,10 +124,20 @@ foreach ($productOptionCollection as $id => $productOption) {
         'currentOptionValues' => $currentOptionValues, // For recognize active items
         'productCartKey' => $productCartKey,
         'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
+        'productRemain' => $productOption->get('remain'),
     ];
     $items .= !empty($pdoTools)
         ? $pdoTools->getChunk($tpl, $placeholders)
         : $modx->getChunk($tpl, $placeholders);
+    if ($productAvailabilityToPlaceholder) {
+        $productAvailabilitySnippetParameters = array_merge($productAvailabilitySnippetParameters, [
+            'productRemain' => $productOption->get('remain'),
+            'optionValues' => $optionValues,
+        ]);
+        $productAvailabilityOutput .= !empty($pdoTools)
+            ? $pdoTools->runSnippet('@FILE snippets/dmProductAvailability.php', $productAvailabilitySnippetParameters)
+            : $modx->runSnippet('@FILE snippets/dmProductAvailability.php', $productAvailabilitySnippetParameters);
+    }
 }
 
 // Wrap the items
@@ -120,4 +148,9 @@ $placeholders = [
 $output = !empty($pdoTools)
     ? $pdoTools->getChunk($tplWrapper, $placeholders)
     : $modx->getChunk($tplWrapper, $placeholders);
+
+if ($productAvailabilityToPlaceholder) {
+    $modx->setPlaceholder($productAvailabilityToPlaceholder, $productAvailabilityOutput);
+}
+
 return $output;

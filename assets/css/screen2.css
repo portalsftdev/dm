@@ -1,3 +1,15 @@
+/**
+ * Helper classes
+ */
+
+.c-pointer {
+    cursor: pointer !important;
+}
+
+/**
+ * Filters
+ */
+
 .switchable-filter {
     display: none;
 }
@@ -666,4 +678,47 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
+}
+
+/**
+ * Product availability
+ */
+
+.product-availability-label {
+    position: relative;
+    bottom: .25rem;
+}
+
+.product-availability {
+    cursor: pointer;
+}
+
+.product-availability-divider {
+    display: inline-block;
+    width: .25rem;
+    height: 1rem;
+    background-color: #eee;
+    margin-right: 3px;
+}
+
+.product-availability-divider:last-child {
+    margin-right: 0;
+}
+
+.product-availability-divider.level-1 {
+    background-color: red;
+}
+
+.product-availability-divider.level-2 {
+    background-color: #ff9225;
+}
+
+.product-availability-divider.level-3 {
+    background-color: green;
+}
+
+#product-availability h5 {
+    font-weight: 400;
+    opacity: .8;
+    border-bottom: 1px solid #ddd;
 }

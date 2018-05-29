@@ -61,41 +61,9 @@
                                         <input type="hidden" name="count" value="1">
                                         <input type="hidden" name="options" value="[]">
                                     </form>
-                                    <div data-toggle="modal" data-target="#expo_available"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
+                                    <div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
                                     <div>
                                         {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
-                                    </div>
-                                    <div id="expo_available" class="modal fade" tabindex="-1" role="dialog" >
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="expo_availableModalLabel">Cрок поставки</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid bd-example-row">
-                                                        <div class="row">
-                                                            <div class="col-12"><p>Возможный срок поставки в Кемерово <strong>от 3-х дней</strong>. Оставьте ваш контактный номер, мы уточним дату поставки и цену. Менеджер перезвонит вам <strong>в течение часа</strong>.</p></div>
-                                                                {$_modx->RunSnippet('!AjaxForm', [
-                                                                    'snippet' => 'FormIt',
-                                                                    'form' => '@FILE chunks/form.productAvailability.tpl',
-                                                                    'hooks' => 'email',
-                                                                    'emailTpl' => '@INLINE Здравствуйте. На сайте сделан запрос уточнения наличия товара «' ~ $_modx->resource.pagetitle ~ '». Оставленный пользователем номер телефона: {$phone}',
-                                                                    'emailSubject' => $_modx->config.info_company ~ '. Запрос уточнения наличия товара',
-                                                                    'emailTo' => $_modx->config.manager_emails,
-                                                                    'customValidators' => 'validator.phone',
-                                                                    'validate' => 'phone:validator.phone',
-                                                                    'validationErrorMessage' => 'Проверьте введенные данные.',
-                                                                    'successMessage' => 'Сообщение успешно отправлено.',
-                                                                ])}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

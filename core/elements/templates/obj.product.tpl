@@ -60,6 +60,31 @@
                                             {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
                                         </div>
                                     {/if}
+                                    {set $availabilityLevelOptions = '{
+                                        "0": {
+                                            "title":"Под заказ"
+                                        },
+                                        "1": {
+                                            "dividersCount":"1",
+                                            "class":"level-1",
+                                            "min":"1",
+                                            "max":"2",
+                                            "title":"Мало"
+                                        },
+                                        "2": {
+                                            "dividersCount":"3",
+                                            "class":"level-2",
+                                            "min":"3",
+                                            "max":"5",
+                                            "title":"Средне"
+                                        },
+                                        "3": {
+                                            "dividersCount":"5",
+                                            "class":"level-3",
+                                            "min":"6",
+                                            "title":"Много"
+                                        }
+                                    }'}
                                     {$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
                                         'conditions' => [
                                             'model' => $_pls['model.value'],
@@ -76,50 +101,29 @@
                                         'showSingleOption' => true,
                                         'tpl' => '@FILE chunks/product.option.size.item.tpl',
                                         'tplWrapper' => '@FILE chunks/product.option.size.wrapper.tpl',
+                                        'productAvailabilityToPlaceholder' => 'productAvailability',
+                                        'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
+                                        'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$optionValues.width}x{$optionValues.height}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
+                                        'availabilityLevels' => 3,
+                                        'availabilityDividers' => 5,
+                                        'levelOptions' => $availabilityLevelOptions,
                                     ])}
                                     <div class="product-buttons">
                                         <button type="button" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light product-size-toggle" data-show="#product-sizes" data-hide=".product-buttons" aria-expanded="false"><span class="icon-cart"></span> В корзину</button>
-                                        <div data-toggle="modal" data-target="#expo_available"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
+                                        <div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-info-circled text-primary"></a><a>Уточнить наличие</a></div>
                                         <div>
                                             {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
-                                        </div>
-                                    </div>
-                                    <div id="expo_available" class="modal fade" tabindex="-1" role="dialog" >
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="expo_availableModalLabel">Cрок поставки</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid bd-example-row">
-                                                        <div class="row">
-                                                            <div class="col-12"><p>Возможный срок поставки в Кемерово <strong>от 3-х дней</strong>. Оставьте ваш контактный номер, мы уточним дату поставки и цену. Менеджер перезвонит вам <strong>в течение часа</strong>.</p></div>
-                                                                {$_modx->RunSnippet('!AjaxForm', [
-                                                                    'snippet' => 'FormIt',
-                                                                    'form' => '@FILE chunks/form.productAvailability.tpl',
-                                                                    'hooks' => 'email',
-                                                                    'emailTpl' => '@INLINE Здравствуйте. На сайте сделан запрос уточнения наличия товара «' ~ $_modx->resource.pagetitle ~ '». Оставленный пользователем номер телефона: {$phone}',
-                                                                    'emailSubject' => $_modx->config.info_company ~ '. Запрос уточнения наличия товара',
-                                                                    'emailTo' => $_modx->config.manager_emails,
-                                                                    'customValidators' => 'validator.phone',
-                                                                    'validate' => 'phone:validator.phone',
-                                                                    'validationErrorMessage' => 'Проверьте введенные данные.',
-                                                                    'successMessage' => 'Сообщение успешно отправлено.',
-                                                                ])}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 mt-4">
                                     {*$_modx->runSnippet('!msOptions', ['tpl' => '@FILE chunks/tpl.options.select.tpl', 'options' => 'size'])*}
-                                    {set $complectation = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.item.tpl', 'productNameField' => 'pagetitle', 'mandatoryCount' => true])}
+                                    {set $complectation = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
+                                        'linkName' => 'pogonazh',
+                                        'tpl' => '@FILE chunks/product.complectation.item.tpl',
+                                        'productNameField' => 'pagetitle',
+                                        'mandatoryCount' => true,
+                                    ])}
                                     {if $complectation}
                                     <div id="complectation-items" class="pre-scrollable h-rem-12">
                                         {$complectation}
@@ -137,7 +141,16 @@
                                                             <div class="table-responsive" id="door-complectation">
                                                             <table class="table" id="msCart">
                                                                 <tbody>
-                                                                    {$_modx->RunSnippet('@FILE snippets/dmComplectation.php', ['linkName' => 'pogonazh', 'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl'])}
+                                                                    {$_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
+                                                                        'linkName' => 'pogonazh',
+                                                                        'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+                                                                        'complectationAvailabilityToPlaceholder' => 'complectationAvailability',
+                                                                        'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
+                                                                        'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$pagetitle}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
+                                                                        'availabilityLevels' => 3,
+                                                                        'availabilityDividers' => 5,
+                                                                        'levelOptions' => $availabilityLevelOptions,
+                                                                    ])}
                                                                 </tbody>
                                                             </table>
                                                             </div>

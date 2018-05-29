@@ -148,6 +148,12 @@
             <span class="small">Сортировать по:</span>
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms_product|pagetitle') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms_product|pagetitle" data-dir="{if $mse2_sort == 'ms_product|pagetitle:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms_product|pagetitle') !== false} active{/if}">Названию</a>
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms|price') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms|price" data-dir="{if $mse2_sort == 'ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms|price') !== false} active{/if}">Цене</a>
+            {set $availabilitySortField =
+                ($_modx->resource.id in [$_modx->config.'resources.room_doors', $_modx->config.'resources.steel_doors'])
+                ? 'productGroupRemainSum'
+                : 'tv|'~$.session.'cityselector.current_product_remain_tv'
+            }
+            <span class="ml-3 font-weight-bold">{if strpos($sortBy, $availabilitySortField) !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="{$availabilitySortField}" data-dir="{if $mse2_sort == $availabilitySortField~':desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, $availabilitySortField) !== false} active{/if}">Наличию</a>
         </div>
     </div>
 

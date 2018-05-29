@@ -184,12 +184,23 @@ $(function() {
         var data = {
             'selected_city': cityData.name,
         };
+        let currentRemainTV = $(this).data('remain-tv'),
+            previousRemainTV = $(this).closest('.cities').find('.active').data('remain-tv');
         $.post(connectorURL, data, function(r) {
             if (r.success) {
                 onSelectCitySuccess();
-                // Reload if it's contacts page
-                if ($('#contacts').length > 0) {
-                    location.href = window.location.pathname;
+                // Reload if it's a page that should be reloaded
+                if (
+                    $('#contacts').length ||
+                    $('#mse2_results').length ||
+                    $('#product').length
+                ) {
+                    let url = window.location.href;
+                    // Replace city remain template variable
+                    if ($('#mse2_results').length && -1 !== url.indexOf('tv|'+previousRemainTV)) {
+                        url = url.replace('tv|'+previousRemainTV, 'tv|'+currentRemainTV);
+                    }
+                    window.location.href = url;
                 }
             } else {
                 alert(r.message);
@@ -804,4 +815,25 @@ $(document).on('click', '[data-spin]', function() {
         $input.val(currentInputValue);
         processProductCountChange($form, $input);
     }
+});
+
+/**
+ * Open a tab manually
+ */
+
+$(document).on('click', '.tab-open', function() {
+    let selector = $(this).attr('data-target');
+    $('[href="'+selector+'"]').tab('show');
+    $('html, body').animate({
+        scrollTop: $('[href="'+selector+'"]').offset().top - 32
+    }, 250);
+});
+
+/**
+ * Reinitialise tooltips after mSearch2 has finished loading
+ */
+
+$(document).on('mse2_load', function(e, data) {
+    // Reinitialise tooltips
+    $('[data-toggle="tooltip"]').tooltip();
 });

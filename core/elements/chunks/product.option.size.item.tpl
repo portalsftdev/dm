@@ -1,6 +1,6 @@
 <li class="row mb-3 mb-md-2">
     <div class="col-12 col-md-6">
-        {$optionValues.width}x{$optionValues.height}
+        {$optionValues.width}x{$optionValues.height}{if $optionValues.spontaneity} ({$optionValues.spontaneity}){/if}
     </div>
     <form method="post" class="ms2_form col-12 col-md-6">
         <div class="input-group">
