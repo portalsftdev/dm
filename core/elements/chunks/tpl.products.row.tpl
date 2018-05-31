@@ -50,7 +50,7 @@
             </div>
         {/if}
         <div>
-            <a href="{$id | url}" class="card-title">{$productModel ?: $pagetitle}</a>
+            <a href="{$id | url}" class="card-title">{$productModel ?: $pagetitle | truncate:$_modx->config.product_pagetitle_max_string_length:'...':true}</a>
             <meta itemprop="name" content="{$pagetitle | escape}" />
             <link itemprop="url" href="{$_modx->config.site_url ~ $id | url}" />
             <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
