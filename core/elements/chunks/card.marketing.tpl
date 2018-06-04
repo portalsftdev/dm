@@ -27,7 +27,7 @@
         <div class="carousel-item">
             <div class="card card-overlay card-overlay--marketing hover-effect-control mb-4" style="width: 100%; background-image: url('/assets/i/bg-komplekt-1.jpg')">
                 <div class="card-block text-xs-center gr-white-r">
-                    <div class="tag tag-layer-orange mb-5"><h2 class="card-title m-0 py-1"><strong>10%</strong></h2></div>
+                    <div class="tag tag-layer-orange mb-5"><h2 class="card-title m-0 py-1"><strong>7%</strong></h2></div>
                     <h4 class="card-title mb-0">Комплект с дополнительной выгодой</h4>
                     <h2 class="card-title">Купи <strong>межкомнатную</strong> <br>и <strong>входную</strong> дверь<br>со скидкой</h2>
                 </div>
