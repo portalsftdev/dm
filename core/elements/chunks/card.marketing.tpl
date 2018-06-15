@@ -3,7 +3,7 @@
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
+        <!-- <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li> -->
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
+        <!-- <div class="carousel-item">
             <div class="card card-overlay card-overlay--marketing hover-effect-control mb-4" style="width: 100%; background-image: url('/assets/i/happy-birthday.jpg')">
                 <div class="card-block text-xs-center">
                     <div class="tag tag-layer-orange mb-5"><h2 class="card-title m-0 py-1"><strong>10%</strong></h2></div>
@@ -23,7 +23,7 @@
                     <h2 class="card-title"><strong>Скидка в день <br>рождения!</strong></h2>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="carousel-item">
             <div class="card card-overlay card-overlay--marketing hover-effect-control mb-4" style="width: 100%; background-image: url('/assets/i/bg-komplekt-1.jpg')">
                 <div class="card-block text-xs-center gr-white-r">
