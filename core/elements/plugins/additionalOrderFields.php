@@ -11,6 +11,8 @@ switch ($modx->event->name) {
     case 'msOnBeforeCreateOrder':
         // Set additional order fields
         $address = $msOrder->getOne('Address');
+        // Set selected city
+        $address->set('city', $_SESSION['cityselector.current_city']);
         // Fields can be system setting
         $additionalOrderFields = [
             'payer_type',
