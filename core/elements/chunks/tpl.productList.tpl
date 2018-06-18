@@ -142,7 +142,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="mx-auto filter-toggler" data-target="#filters-collapsible" data-user-preference-key="show_filters" data-user-preference-value="{$.session.user_preferences.show_filters ? 'true' : 'false'}" data-shown-text="Скрыть фильтры" data-hidden-text="Показать фильтры">{$.session.user_preferences.show_filters ? 'Скрыть фильтры' : 'Показать фильтры'}</div>
+            <div class="mx-auto filter-toggler user-preference" data-target="#filters-collapsible" data-user-preference-key="show_filters" data-user-preference-value="{$.session.user_preferences.show_filters ? 'true' : 'false'}" data-shown-text="Скрыть фильтры" data-hidden-text="Показать фильтры">{$.session.user_preferences.show_filters ? 'Скрыть фильтры' : 'Показать фильтры'}</div>
         </div>
     </div>
     {/if}

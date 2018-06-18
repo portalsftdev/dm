@@ -860,10 +860,9 @@ function toggleFilters($filters, $toggler)
 }
 
 let userPreferencesConnectorURL = '/assets/components/userpreferences/index.php';
-$(document).on('click', '.filter-toggler', function() {
+$(document).on('click', '.user-preference', function() {
     let $this = $(this),
         $target = $($this.attr('data-target')),
-        duration = $target.attr('data-duration'),
         data = {
             'key': $this.attr('data-user-preference-key'),
             'value': $this.attr('data-user-preference-value') == 'true' ? 'false' : 'true'
