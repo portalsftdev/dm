@@ -837,3 +837,44 @@ $(document).on('mse2_load', function(e, data) {
     // Reinitialise tooltips
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+/**
+ * Show/hide filters at product list page
+ */
+
+function toggleFilters($filters, $toggler)
+{
+    let duration = $filters.attr('data-duration');
+    if ($filters.hasClass('expanded')) {
+        $filters.slideUp(duration);
+        $toggler.text($toggler.attr('data-hidden-text'));
+    } else {
+        $filters.slideDown(duration, function() {
+            $(this).css('display', 'flex');
+        });
+        $toggler.text($toggler.attr('data-shown-text'));
+    }
+    setTimeout(function(){
+        $filters.toggleClass('expanded');
+    }, duration);
+}
+
+let userPreferencesConnectorURL = '/assets/components/userpreferences/index.php';
+$(document).on('click', '.filter-toggler', function() {
+    let $this = $(this),
+        $target = $($this.attr('data-target')),
+        duration = $target.attr('data-duration'),
+        data = {
+            'key': $this.attr('data-user-preference-key'),
+            'value': $this.attr('data-user-preference-value') == 'true' ? 'false' : 'true'
+        }
+    ;
+    $.post(userPreferencesConnectorURL, data, function(response) {
+        if (response.success) {
+            $this.attr('data-user-preference-value', data.value);
+            toggleFilters($target, $this);
+        } else {
+            alert(response.message);
+        }
+    }, 'json');
+});

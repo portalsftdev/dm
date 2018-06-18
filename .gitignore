@@ -35,3 +35,4 @@ assets/components/*
 
 !assets/components/cityselector
 !assets/components/captcha
+!assets/components/userpreferences

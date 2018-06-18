@@ -722,3 +722,28 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
     opacity: .8;
     border-bottom: 1px solid #ddd;
 }
+
+/**
+ * Collapsible filters and filters toggler
+ */
+
+#filters-collapsible {
+    display: none;
+}
+
+#filters-collapsible.expanded {
+    display: flex;
+}
+
+.filter-toggler {
+    padding: .5rem 3rem;
+    position: relative;
+    top: -1px;
+    background-color: #f7f7f7;
+    border: 1px solid #dedede;
+    border-top-color: #f7f7f7;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    cursor: pointer;
+    box-shadow: 0px 10px 5px -5px #dedede;
+}

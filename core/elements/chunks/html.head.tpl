@@ -40,3 +40,11 @@
     </script>
     {/ignore}
 {/if}
+
+{* Initialise user preferences by default *}
+{$_modx->RunSnippet('@FILE snippets/dmUserPreferences.php', [
+    'mode' => 'init',
+    'user_preferences_by_default' => [
+        'show_filters' => true,
+    ],
+])}

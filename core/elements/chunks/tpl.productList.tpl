@@ -9,7 +9,7 @@
         </div>
     </div>
     {if $_modx->resource.id != $_modx->config.'resources.catalog' && $_modx->resource.parent != $_modx->config.'resources.brands'}
-    <div class="card container-fluid bg-faded pt-3">
+    <div class="card container-fluid bg-faded pt-3{$.session.user_preferences.show_filters ? ' expanded' : ''}" id="filters-collapsible" data-duration="400">
         <form action="{$_modx->makeUrl($_modx->resource.id)}" method="post" id="mse2_filters">
             <div class="container ">
                 {if $_modx->resource.id == $_modx->config.'resources.steel_doors'}
@@ -139,6 +139,11 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mx-auto filter-toggler" data-target="#filters-collapsible" data-user-preference-key="show_filters" data-user-preference-value="{$.session.user_preferences.show_filters ? 'true' : 'false'}" data-shown-text="Скрыть фильтры" data-hidden-text="Показать фильтры">{$.session.user_preferences.show_filters ? 'Скрыть фильтры' : 'Показать фильтры'}</div>
+        </div>
     </div>
     {/if}
 
