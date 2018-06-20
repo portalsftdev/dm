@@ -158,7 +158,7 @@
                 ? 'productGroupRemainSum'
                 : 'tv|'~$.session.'cityselector.current_product_remain_tv'
             }
-            <span class="ml-3 font-weight-bold">{if strpos($sortBy, $availabilitySortField) !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="{$availabilitySortField}" data-dir="{if $mse2_sort == $availabilitySortField~':desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, $availabilitySortField) !== false} active{/if}">Наличию</a>
+            <span class="ml-3 font-weight-bold">{if strpos($sortBy, $availabilitySortField) !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="{$availabilitySortField}" data-dir="{if $mse2_sort == $availabilitySortField~':desc'}desc{/if}" data-default="desc" class="sort small{if strpos($sortBy, $availabilitySortField) !== false} active{/if}">Наличию</a>
         </div>
     </div>
 
