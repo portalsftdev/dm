@@ -41,8 +41,7 @@
         ,"card1":"card1.url as card1"
 	}',
 	'where' => '{"Data.vendor":"'~$_modx->resource.alias~'"}',
-    'sortby' => 'msProduct.pagetitle',
-    'sortdir' => 'ASC',
+    'sortby' => '{"msProduct.pagetitle":"ASC"}',
     'limit' => 20,
     'toSeparatePlaceholders' => 'mFilter2.',
     'tpl' => '@FILE chunks/tpl.products.row.tpl',

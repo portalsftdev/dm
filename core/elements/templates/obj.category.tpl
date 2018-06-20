@@ -43,6 +43,7 @@
             'toSeparatePlaceholders' => 'mFilter2.',
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
+            'sortby' => '{"msProduct.pagetitle":"ASC"}',
             'limit' => 20,
             'values_delimeter' => ';',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
@@ -95,6 +96,7 @@
             'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
+            'sortby' => '{"msProduct.pagetitle":"ASC"}',
             'limit' => 20,
             'filters' => '
                 msoc|steel_door_color~value~pattern,
@@ -139,6 +141,7 @@
             'toSeparatePlaceholders' => 'mFilter2.',
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
+            'sortby' => '{"msProduct.pagetitle":"ASC"}',
             'limit' => 20,
             'filters' => '
                 msoc|mscolor~value~pattern,
@@ -209,6 +212,7 @@
             'toSeparatePlaceholders' => 'mFilter2.',
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
+            'sortby' => '{"msProduct.pagetitle":"ASC"}',
             'limit' => 20,
             'filters' => '
                 msoc|mscolor~value~pattern,

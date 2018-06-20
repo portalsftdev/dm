@@ -150,8 +150,9 @@
     <div class="container py-3">
         <div id="mse2_sort" class="sorts text-uppercase">
             {set $sortBy = $_modx->getPlaceholder('mse2_sort')}
+            {set $sortByPagetitle = '' == $sortBy || false !== strpos($sortBy, 'ms_product|pagetitle')}
             <span class="small">Сортировать по:</span>
-            <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms_product|pagetitle') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms_product|pagetitle" data-dir="{if $mse2_sort == 'ms_product|pagetitle:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms_product|pagetitle') !== false} active{/if}">Названию</a>
+            <span class="ml-3 font-weight-bold">{if $sortByPagetitle}{if '' == $sortBy || strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms_product|pagetitle" data-dir="{if $mse2_sort == 'ms_product|pagetitle:desc'}desc{elseif $sortByPagetitle}asc{/if}" data-default="asc" class="sort small{if $sortByPagetitle} active{/if}">Названию</a>
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms|price') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms|price" data-dir="{if $mse2_sort == 'ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms|price') !== false} active{/if}">Цене</a>
             {set $availabilitySortField =
                 ($_modx->resource.id in [$_modx->config.'resources.room_doors', $_modx->config.'resources.steel_doors'])
