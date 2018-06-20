@@ -680,7 +680,8 @@ $(document).on('mouseenter touchstart', '.rating-stars input + label', function(
 $(document).on('click', '.model-property', function(e) {
     e.preventDefault();
     $('#product, #product-tabs').css('opacity', '.5');
-    let productSizesAreExpanded = $('#product-sizes').hasClass('expanded');
+    let productSizesAreExpanded = $('#product-sizes').hasClass('expanded'),
+        activeProductTabSelector = $('#product-tabs').find('[data-toggle="tab"].active').attr('href');
     $.ajax({
         url: $(this).data('uri'),
         type: 'get',
@@ -688,8 +689,8 @@ $(document).on('click', '.model-property', function(e) {
         success: function(response) {
             let title = $(response).filter('title').text(),
                 $productInfo = $(response).find('#product'),
-                productInfoHTML = '',
-                productTabsHTML = $(response).find('#product-tabs').html();
+                $productTabs = $(response).find('#product-tabs')
+            ;
             // Expand product sizes
             if (productSizesAreExpanded) {
                 let $productSizeToggle = $productInfo.find('.product-size-toggle');
@@ -697,7 +698,15 @@ $(document).on('click', '.model-property', function(e) {
                 $productInfo.find($productSizeToggle.attr('data-show')).css('display', 'block').addClass('expanded');
                 $productInfo.find($productSizeToggle.attr('data-hide')).css('display', 'none');
             }
-            productInfoHTML = $productInfo.html();
+            // Set active product tab
+            $productTabs.find('[data-toggle="tab"].active').removeClass('active');
+            $productTabs.find('.tab-pane.active').removeClass('active');
+            $productTabs.find('[data-toggle="tab"][href="'+activeProductTabSelector+'"]').addClass('active');
+            $productTabs.find(activeProductTabSelector).addClass('active');
+            // Set edited HTML
+            let productInfoHTML = $productInfo.html(),
+                productTabsHTML = $productTabs.html()
+            ;
             if (undefined === title || undefined === productInfoHTML || undefined === productTabsHTML) {
                 alert('Произошла ошибка. Попробуйте позже.');
             } else {
