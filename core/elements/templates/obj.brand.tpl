@@ -39,13 +39,16 @@
         "msProduct":"*"
         ,"card0":"card0.url as card0"
         ,"card1":"card1.url as card1"
+        ,"availability":"CASE WHEN TV'~$.session.'cityselector.current_product_remain_tv'~'.value > 0 THEN 1 ELSE 0 END AS availability"
 	}',
 	'where' => '{"Data.vendor":"'~$_modx->resource.alias~'"}',
     'sortby' => '{"msProduct.pagetitle":"ASC"}',
     'limit' => 20,
+    'values_delimeter' => ';',
     'toSeparatePlaceholders' => 'mFilter2.',
     'tpl' => '@FILE chunks/tpl.products.row.tpl',
     'tplOuter' => '@FILE chunks/tpl.productList.tpl',
+    'includeTVs' => $.session.'cityselector.current_product_remain_tv',
     'paginator' => 'pdoPage@pageNavVar=`page.nav`',
     'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
     'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',

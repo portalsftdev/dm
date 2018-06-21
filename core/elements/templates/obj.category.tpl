@@ -39,6 +39,7 @@
                 "msProduct":"*"
                 ,"card0":"card0.url as card0"
                 ,"card1":"card1.url as card1"
+                ,"availability":"CASE WHEN TV'~$.session.'cityselector.current_product_remain_tv'~'.value > 0 THEN 1 ELSE 0 END AS availability"
         	}',
             'toSeparatePlaceholders' => 'mFilter2.',
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
@@ -90,6 +91,7 @@
         		,"card1":"card1.url as card1"
                 ,"productModel":"steelDoorModel.value as productModel"
                 ,"productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
+                ,"availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability"
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
@@ -173,7 +175,8 @@
             }',
         	'select' => '{
         		"productModel":"interiorDoorModel.value as productModel",
-                "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
+                "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum",
+                "availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability"
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
@@ -222,6 +225,9 @@
             ',
             'values_delimeter' => ';',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
+            'select' => '{
+                "availability":"CASE WHEN TV'~$.session.'cityselector.current_product_remain_tv'~'.value > 0 THEN 1 ELSE 0 END AS availability"
+            }',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'tplFilter.outer.msoc|mscolor' => '@FILE chunks/tpl.filter.outer.msoption.msColor.tpl',
             'tplFilter.row.msoc|mscolor' => '@FILE chunks/tpl.filter.row.msoption.msColor.tpl',
