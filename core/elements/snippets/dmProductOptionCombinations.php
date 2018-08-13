@@ -45,6 +45,11 @@ foreach ($conditions as $key => $value) {
     $productIDsSubquery->leftJoin('msProductOption', $key, "msProductOption.product_id = $key.product_id");
     $whereCondition["$key.value"] = $value;
 }
+
+// Add condition for non-deleted product
+$productIDsSubquery->leftJoin('modResource', 'modResource', 'msProductOption.product_id = modResource.id');
+$whereCondition[] = ['modResource.deleted' => 0];
+
 $productIDsSubquery->where($whereCondition)
                    ->groupby('msProductOption.product_id');
 $productIDsSubquery->select('msProductOption.product_id');
