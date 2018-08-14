@@ -644,11 +644,11 @@ form.product-review .rating-stars {
 }
 
 #product-sizes .form-control {
-    height: 1.5rem;
     border-color: #ccc;
     text-align: center;
     font-size: .9375rem;
-    padding: .3125rem .125rem .125rem .125rem;
+    padding: .125rem;
+    line-height: 1.2;
 }
 
 /**
