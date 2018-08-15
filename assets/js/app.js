@@ -798,7 +798,7 @@ var delay = (function(){
 })();
 
 // Input direct change with 750 ms delay
-$(document).on('keyup', '#product-sizes input[name="count"], #door-complectation input[name="count"]', function() {
+$(document).on('keyup', '#product-sizes input[name="count"]', function() {
     let $this = $(this);
     delay(function() {
         let $form = $this.closest('.ms2_form'),
