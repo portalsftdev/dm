@@ -413,7 +413,7 @@ $(function() {
 
     $(document).on('click', '#door-complectation [data-spin]', function() {
         var $el = $(this).closest('form').find('input');
-        $el.trigger('change');
+        recountTotalRowCost($el);
     });
 
     $(document).on('change', '#door-complectation input[type="number"], #complectation-items input[type="checkbox"]', function() {
