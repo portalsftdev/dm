@@ -37,8 +37,10 @@
     <td>
         <form class="ms2_form" data-link-name="[[+linkName]]" data-id="[[+id]]" method="post">
             <div class="input-group">
-                <input name="count" type="number" min="0" step="{$step}" class="form-control form-control-sm form-control--border w-rem-4" value="[[+count]]" placeholder="">
+                <button type="button" class="btn btn-secondary form-control--border" data-spin="minus">–</button>
+                <input name="count" type="number" min="0" max="99" step="{$step}" class="form-control form-control-sm form-control--border no-spinners" value="[[+count]]" placeholder="">
                 <span class="input-group-addon form-control-sm form-control--border">{$unit}</span>
+                <button type="button" class="btn btn-secondary form-control--border" data-spin="plus">+</button>
             </div>
             <input type="hidden" name="id" value="[[+id]]">
             [[+cartKey:notempty=`<input type="hidden" name="key" value="[[+cartKey]]" />`]]
@@ -48,11 +50,11 @@
         </td>
     <td>
         <div class="card-price">
-            x&nbsp;<span class="price ms2_product_price">[[+price]]</span>&nbsp;<span class="icon-rub"></span>
+            &times;&nbsp;<span class="price ms2_product_price">[[+price]]</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>
-    <td>
-        <div class="card-price">
+    <td class="total-cost">
+        <div class="card-price text-center">
             =&nbsp;<span class="price ms2_total_row_cost">[[+sum]]</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>

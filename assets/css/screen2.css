@@ -225,9 +225,8 @@ a.btn[type="button"] {
     border-top: none;
 }
 
-#door-complectation .lead,
-#door-complectation .card-price {
-    margin-top: .4rem;
+#door-complectation .total-cost {
+    width: 17%;
 }
 
 #door-complectation .card-price,
@@ -246,6 +245,33 @@ a.btn[type="button"] {
 #door-complectation .input-group-addon {
     background: transparent;
     width: 2.5rem;
+}
+
+#door-complectation input {
+    max-width: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+}
+
+#door-complectation [data-spin] {
+    padding: .25rem;
+    border-radius: .5rem;
+    font-size: 1.375rem;
+    box-shadow: none;
+    text-shadow: none;
+    line-height: 1;
+    width: 2.5rem;
+}
+
+#door-complectation .input-group > *:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#door-complectation .input-group > *:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 /* Question mark icon */
