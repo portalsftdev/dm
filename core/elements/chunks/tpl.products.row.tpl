@@ -41,7 +41,7 @@
             </div>
         {/if}
         {if $price == 0}
-            <div style="margin-bottom:.5rem;" data-toggle="modal" data-target="#product-price-order"><a class="btn-icon btn-icon-dvmk icon-phone text-primary" style="position:relative;top:2px;padding:0;padding-right:.375rem;font-size:1.25rem;line-height:1;"></a><a style="cursor:pointer;">Запросить цену</a></div>
+            <div class="mb-2 product-price-request" data-toggle="modal" data-target="#product-price-order"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Запросить цену</a></div>
         {else}
             <div class="card-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
                 <span class="price" itemprop="price" content="{$price | replace: ' ' : ''}">{$price}</span>&nbsp;<span class="icon-rub"></span>

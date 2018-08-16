@@ -3,7 +3,7 @@
 <section class="py-4">
 <div class="container" id="contacts">
     <h1 class="h2">{$_modx->resource.longtitle ?: $_modx->resource.pagetitle}</h1>
-    <div id="map" style="height:400px;width:100%;margin-bottom:1rem;">&nbsp;</div>
+    <div id="map" class="mb-3 contacts-map">&nbsp;</div>
     {ignore}
     <script>
         function initMap() {
@@ -49,19 +49,19 @@
 
 </style>
 
-<div class="row" id="location-info-header" style="margin:0;">
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Режим работы отдела продаж</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Телефон</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Эл. почта</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Адрес</div>
+<div class="row m-0">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы отдела продаж</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
 </div>
 {$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'contacts', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
 
-<div class="row" style="margin:0;">
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Режим работы склада</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Телефон</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Эл. почта</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block" style="padding:.75rem 0;font-weight:bold;">Адрес</div>
+<div class="row m-0">
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы склада</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
 </div>
 {$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
 

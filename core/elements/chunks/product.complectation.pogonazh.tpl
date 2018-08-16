@@ -31,7 +31,7 @@
     <td>
         <div class="lead">
             [[+productName]]
-            <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div style='padding:.75rem;text-align:left;text-indent:1rem;'>{$tooltipText}<div>"></span>
+            <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>
         </div>
     </td>
     <td>

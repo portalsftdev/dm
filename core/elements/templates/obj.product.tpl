@@ -39,9 +39,9 @@
                         </div>
                         <div class="container">
                             <div class="row">
-                                <div class="col-6" style="margin-top:-1.5rem">
+                                <div class="col-6 product-buttons-container">
                                     {if $price == 0}
-                                        <div style="margin-bottom:1rem;" data-toggle="modal" data-target="#product-price-order"><i class="btn-icon btn-icon-dvmk icon-phone text-primary"></i><a style="cursor:pointer;">Запросить цену</a></div>
+                                        <div class="mb-3" data-toggle="modal" data-target="#product-price-order"><i class="btn-icon btn-icon-dvmk icon-phone text-primary"></i><a class="c-pointer">Запросить цену</a></div>
                                         <input type="hidden" name="pagetitle" value="{$_modx->resource.pagetitle | escape}" />
                                         {$_modx->getChunk('@FILE chunks/modal.productPriceOrder.tpl')}
                                     {else}

@@ -8,6 +8,6 @@
         <label for="complectation-item-[[+id]]">
             [[+productName]] <strong>+[[+price]]<span class="icon-rub"></span></strong>
         </label>
-        <button type="submit" name="ms2_action" style="display:none;" value="[[+inCart:is=`1`:then=`cart/remove`:else=`cart/add`]]"></button>
+        <button type="submit" name="ms2_action" class="d-none" value="[[+inCart:is=`1`:then=`cart/remove`:else=`cart/add`]]"></button>
     </form>
 </div>

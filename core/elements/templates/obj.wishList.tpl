@@ -29,7 +29,7 @@
                 {if $wishlist?}
                 	{$wishlist}
                 {else}
-                	<div id="nothing-found" style="margin: 6.5rem 0 9rem;text-align: center;font-size: 2rem;">Список избранного пуст.</div>
+                	<div class="wishlist-empty">Список избранного пуст.</div>
                 {/if}
         		</div>
         		[[!+page.nav]]

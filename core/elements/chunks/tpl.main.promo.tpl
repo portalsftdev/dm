@@ -102,7 +102,7 @@
                 {$_modx->getChunk('@FILE chunks/html.promo.form.furniture.tpl')}
             {/if}
                 <div class="row mt-3">
-                    <div class="col-12" style="padding-top:1.5rem;">
+                    <div class="col-12 pt-4">
                         <button type="submit" class="btn btn-dvmk hover-effect hover-effect--apollo waves-effect waves-light">Перейти в каталог</button>
                         <button type="button" class="btn btn-secondary waves-effect waves-light promo-switch" data-promo=".{$alias}">Закрыть</button>
                     </div>

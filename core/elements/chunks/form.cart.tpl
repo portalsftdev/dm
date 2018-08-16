@@ -2,7 +2,7 @@
         <div class="container" id="msCart">
             <h1>Корзина покупок</h1>
             {if count($products) == 0}
-            <div style="margin:7rem 0 10rem;text-align:center;font-size:2rem">Корзина пуста.</div>
+            <div class="cart-empty">Корзина пуста.</div>
         </div>
     </section>
             {else}
@@ -18,12 +18,12 @@
                         <div class="card-product card-product--small px-3{if $product.'type_of_goods.value' == 'Фурнитура'} furniture{/if}">
                                 <div class="d-inline-block align-top mr-4 {if $product.'type_of_goods.value' == 'Фурнитура'}w-rem-12{else}w-rem-20{/if}">
                                     <div class="overlay-door mb-3{if !$product.thumb} no-photo{/if}">
-                                        <div class="mask mask-door"{if $noShadow} style="background:none;"{/if}>
+                                        <div class="mask mask-door{if $noShadow} bg-none{/if}">
                                             <a href="{$product.id | url}">
                                             {if $product.thumb?}
                                                 <img src="{$product.thumb}" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
                                             {else}
-                                                <img style="width:150px;" src="{$_modx->config.assets_url}images/no-photo.png" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
+                                                <img class="no-image" src="{$_modx->config.assets_url}images/no-photo.png" alt="{$product.pagetitle | escape}" title="{$product.pagetitle | escape}"/>
                                             {/if}
                                             </a>
                                         </div>
@@ -47,7 +47,7 @@
                                         <form method="post" class="ms2_form" role="form">
                                             <input type="hidden" name="key" value="{$product.key}"/>
                                             <input type="number" class="form-control form-control-sm form-control--border w-rem-4 mb-3 mr-2 d-inline-block" value="{$product.count}" min="0" step="{if $product.menutitle == 'Короб' || $product.menutitle == 'Наличник'}0.2{else}1{/if}" name="count" placeholder="">
-                                            <button type="submit" name="ms2_action" value="cart/change" style="display:none;"></button>
+                                            <button type="submit" name="ms2_action" value="cart/change" class="d-none"></button>
                                             <div class="card-price d-inline-block">
                                                 x&nbsp;<span class="price ms2_product_price">{$product.price}</span>&nbsp;<span class="icon-rub"></span>
                                             </div>
