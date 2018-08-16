@@ -329,6 +329,15 @@ a.btn[type="button"] {
     font-size: 2rem;
 }
 
+/* Nothing found */
+
+#nothing-found {
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+    margin: 4rem 0;
+}
+
 /* Contacts */
 
 .contacts-map {
