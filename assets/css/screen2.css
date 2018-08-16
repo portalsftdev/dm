@@ -76,6 +76,10 @@
     margin-bottom: 0.5rem;
 }
 
+.servicedesk-p {
+    min-height: 4.5rem;
+}
+
 .servicedesk-p.success-message {
     color :#3c763d;
 }
