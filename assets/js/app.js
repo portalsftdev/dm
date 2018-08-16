@@ -161,6 +161,10 @@ $(function() {
      */
 
     $('.city').click(function() {
+        // Do nothing if it's an active city
+        if ($(this).hasClass('active')) {
+            return false;
+        }
         var onSelectCitySuccess = function () {
             $('.cities').each(function() {
                 $(this).find('.city')
@@ -199,6 +203,9 @@ $(function() {
                     // Replace city remain template variable
                     if ($('#mse2_results').length && -1 !== url.indexOf('tv|'+previousRemainTV)) {
                         url = url.replace('tv|'+previousRemainTV, 'tv|'+currentRemainTV);
+                    } else if ($('#product').length) {
+                        getProduct($('#product').attr('data-url'));
+                        return false;
                     }
                     window.location.href = url;
                 }
@@ -682,13 +689,12 @@ $(document).on('mouseenter touchstart', '.rating-stars input + label', function(
  * History must not be changed
  */
 
-$(document).on('click', '.model-property', function(e) {
-    e.preventDefault();
+function getProduct(url) {
     $('#product, #product-tabs').css('opacity', '.5');
     let productSizesAreExpanded = $('#product-sizes').hasClass('expanded'),
         activeProductTabSelector = $('#product-tabs').find('[data-toggle="tab"].active').attr('href');
     $.ajax({
-        url: $(this).data('uri'),
+        url: url,
         type: 'get',
         dataType: 'html',
         success: function(response) {
@@ -733,9 +739,15 @@ $(document).on('click', '.model-property', function(e) {
                     'mask': '+7 (999) 999-9999'
                 }).mask(document.querySelectorAll('input[type="tel"]'));
             }
+            $('#product').attr('data-url', url);
             $('#product, #product-tabs').css('opacity', '1');
         }
     });
+}
+
+$(document).on('click', '.model-property', function(e) {
+    e.preventDefault();
+    getProduct($(this).attr('data-uri'));
 });
 
 /**

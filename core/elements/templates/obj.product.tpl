@@ -1,6 +1,6 @@
 {extends 'template:base'}
 {block 'content'}
-    <section itemscope itemtype="http://schema.org/Product" id="product">
+    <section itemscope itemtype="http://schema.org/Product" id="product" data-url="{$_modx->resource.uri}">
         <div class="expo">
             <div class="container-fluid">
                 <div class="row">
