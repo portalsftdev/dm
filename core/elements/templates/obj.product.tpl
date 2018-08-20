@@ -15,7 +15,7 @@
                         <div class="container pt-4 pb-1">
                             <div class="row">
                                 <div class="col">
-                                    <h1 class="expo-title">{$_modx->runSnippet('!msProductOptions', ['tpl' => '@FILE /chunks/tpl.customProductOptions.tpl', 'onlyOptions' => 'model'])}</h1>
+                                    <h1 class="expo-title{if $_modx->resource.parent in [$_modx->config.'resources.room_doors', $_modx->config.'resources.steel_doors']} model{/if}">{$_modx->runSnippet('!msProductOptions', ['tpl' => '@INLINE {$options.model.value[0]}', 'onlyOptions' => 'model'])} ({$_pls['vendor.name'] | escape})</h1>
                                     <meta itemprop="name" content="{$_modx->resource.pagetitle | escape}" />
                                     <link itemprop="url" href="{$_modx->config.site_url ~ $_modx->resource.uri}" />
                                     <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
