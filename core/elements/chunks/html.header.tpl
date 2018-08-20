@@ -22,7 +22,7 @@
             <div class="toolbox"><a href="{$_modx->config.'resources.wishlist' | url}" class="btn-icon icon-heart-o" ></a><div class="toolbox-counter msfavorites-total" data-data-list="default">0</div></div>
             {$_modx->RunSnippet('!msMiniCart', ['tpl' => '@FILE chunks/miniCart.tpl'])}
         </div>
-        <div class="logo"><h1><a href="" class="no_underline"><img src="/assets/i/logo-w.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>
+        <div class="logo"><a href="" class="no_underline"><img class="align-baseline" src="/assets/i/logo-w.png" alt="{$_modx->config.site_name | escape}" /></a></div>
     </div>
     <div class="container-fluid no_mobile mt-4">
         <div class="row">
@@ -72,6 +72,6 @@
                 {$_modx->RunSnippet('!msMiniCart', ['tpl' => '@FILE chunks/miniCart.tpl'])}
             </div>
         </div>
-        <div class="logo"><h1><a href="{$_modx->config.site_url}" class="no_underline"><img src="{$_modx->config.assets_url}i/logo.png" alt="{$_modx->config.site_name | escape}" /></a></h1></div>
+        <div class="logo"><a href="{$_modx->config.site_url}" class="no_underline"><img class="align-baseline" src="{$_modx->config.assets_url}i/logo.png" alt="{$_modx->config.site_name | escape}" /></a></div>
     </div>
 </header>
