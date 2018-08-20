@@ -45,7 +45,7 @@ $(function() {
             }
         });
     }
-
+    /*
     var promos = document.querySelectorAll(".promo-switch");
 
     for (var i = promos.length - 1; i >= 0; i--) {
@@ -74,7 +74,7 @@ $(function() {
             }
         });
     }
-
+    */
 });
 
 /**

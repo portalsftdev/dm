@@ -1,5 +1,5 @@
 <div class="promo-container {$alias}">
-    <div class="promo-form hover-effect-control rtl">
+    {*<div class="promo-form hover-effect-control rtl">
         <div class="container-fluid ltr msearch2" id="mse2_mfilter">
             <div class="row">
                 <div class="col-12">
@@ -111,9 +111,15 @@
         </div>
 
 
-    </div>
+    </div>*}
+    {$_modx->RunSnippet('!mFilter2', [
+        'parents' => $content,
+        'element' => 'msProducts',
+        'class' => 'msProduct',
+        'toSeparatePlaceholders' => 'mFilter2.',
+    ])}
     <div class="promo-door">
-        <a href="" style="background-image: url({$content | pdoField : 'promo_door'})" class="promo-switch" data-promo=".{$alias}"></a>
+        <a href="{$content | url}" style="background-image: url({$content | pdoField : 'promo_door'})" class="promo-switch" data-promo=".{$alias}"></a>
     </div>
     <div class="promo-block hover-effect-control">
         <div class="promo-mask promo-mask--bg" style="background-image: url({$content | pdoField : 'promo_bg'})"></div>
