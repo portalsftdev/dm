@@ -418,11 +418,6 @@ $(function() {
      *
      */
 
-    $(document).on('click', '#door-complectation [data-spin]', function() {
-        var $el = $(this).closest('form').find('input');
-        recountTotalRowCost($el);
-    });
-
     $(document).on('change', '#door-complectation input[type="number"], #complectation-items input[type="checkbox"]', function() {
         var $form = $(this).closest('.ms2_form');
         var $formSubmit = $form.find('[type="submit"]');
@@ -494,6 +489,21 @@ $(function() {
                 $targetFormSubmit.val('cart/add');
             }
         };
+    });
+
+    $(document).on('click', '#door-complectation [data-spin]', function() {
+        let $form = $(this).closest('.ms2_form'),
+            $input = $form.find('[name="count"]'),
+            currentInputValue = $input.val();
+        if ('plus' == $(this).data('spin')) {
+            currentInputValue++;
+        } else if ('minus' == $(this).data('spin')) {
+            currentInputValue--;
+        }
+        if (0 <= currentInputValue) {
+            $input.val(currentInputValue);
+            $input.trigger('change');
+        }
     });
 
     // Submit form when switching complectation items (options)
@@ -828,7 +838,7 @@ $(document).on('keyup', '#product-sizes input[name="count"]', function() {
 });
 
 // Input plus/minus
-$(document).on('click', '[data-spin]', function() {
+$(document).on('click', '#product-sizes [data-spin]', function() {
     let $form = $(this).closest('.ms2_form'),
         $input = $form.find('[name="count"]'),
         currentInputValue = $input.val();
