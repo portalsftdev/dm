@@ -335,7 +335,7 @@ $(function() {
     }
 
     // Change total row cost after a product count change
-    $(document).on('change', 'input[name="count"]', function() {
+    $(document).on('change', ' #complectation-items input[name="count"], #door-complectation input[name="count"]', function() {
         recountTotalRowCost($(this));
     });
 
