@@ -29,10 +29,29 @@ assets/*
 !assets/js
 !assets/scss
 
-# And no assets/components/cityselector, assets/components/captcha
+# And no assets/components/cityselector, assets/components/captcha, assets/components/userpreferences
 !assets/components/
 assets/components/*
 
 !assets/components/cityselector
 !assets/components/captcha
 !assets/components/userpreferences
+
+# And no core/components/minishop2/plugins, assets/components/minishop2/plugins
+!core/components/
+core/components/*
+!core/components/minishop2/
+core/components/minishop2/*
+
+!core/components/minishop2/plugins
+
+# But core/components/minishop2/plugins/.placeholder
+core/components/minishop2/plugins/.placeholder
+
+!assets/components/minishop2
+assets/components/minishop2/*
+
+!assets/components/minishop2/plugins
+
+# But assets/components/minishop2/plugins/.placeholder
+assets/components/minishop2/plugins/.placeholder
