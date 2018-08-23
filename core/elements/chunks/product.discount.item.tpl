@@ -40,7 +40,13 @@
                     </span>
                 </div>*}
             </div>
-            <h3 class="mt-5"><a href="{$id | url}">{$_pls['model.value']}</a></h3>
+            {set $productType = ''}
+            {if $parent == $_modx->config.'resources.room_doors'}
+                {set $productType = 'Межкомнатная дверь'}
+            {elseif $parent == $_modx->config.'resources.steel_doors'}
+                {set $productType = 'Стальная дверь'}
+            {/if}
+            <h3 class="mt-5"><a href="{$id | url}">{$productType} {$_pls['model.value']} ({$_pls['vendor.name']})</a></h3>
             {if !$isProductPageTemplate}
                 <meta itemprop="name" content="{$pagetitle | escape}" />
                 <link itemprop="url" href="{$_modx->config.site_url ~ $id | url}" />
