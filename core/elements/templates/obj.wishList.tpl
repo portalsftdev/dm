@@ -24,7 +24,18 @@
                         ,"card1":"card1.url as card1"
                     }',
         		    'tpl' => '@FILE chunks/tpl.products.row.tpl',
-        		    'ajaxMode' => 'default'
+        		    'ajaxMode' => 'default',
+                    'tplPageWrapper' => '@INLINE <ul class="pagination justify-content-center my-5">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
+                    'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
+                    'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
+                    'tplPagePrev' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Previous" href="{$href}"><span aria-hidden="true">←</span><span class="sr-only">Предыдущая</span></a></li>',
+                    'tplPageNext' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" aria-label="Next" href="{$href}"><span aria-hidden="true">→</span><span class="sr-only">Следующая</span></a></li>',
+                    'tplPageFirst' => '@INLINE',
+                    'tplPageLast' => '@INLINE',
+                    'tplPagePrevEmpty' => '@INLINE',
+                    'tplPageNextEmpty' => '@INLINE',
+                    'tplPageFirstEmpty' => '@INLINE',
+                    'tplPageLastEmpty' => '@INLINE',
         		])}
                 {if $wishlist?}
                 	{$wishlist}
