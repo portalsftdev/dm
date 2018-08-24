@@ -307,22 +307,6 @@ a.btn[type="button"] {
     width: 150px;
 }
 
-.cart-item .furniture .overlay-door {
-    float: none;
-    background: none;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cart-item .furniture img {
-    height: auto;
-    width: auto;
-    max-width: 150px;
-    max-height: 200px;
-}
-
 .order-completed {
     margin: 10rem 0 10rem;
     text-align: center;

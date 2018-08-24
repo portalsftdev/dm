@@ -15,8 +15,8 @@
                 )}
                 <tr id="{$product.key}" class="cart-item">
                     <td>
-                        <div class="card-product card-product--small px-3{if $product.'type_of_goods.value' == 'Фурнитура'} furniture{/if}">
-                                <div class="d-inline-block align-top mr-4 {if $product.'type_of_goods.value' == 'Фурнитура'}w-rem-12{else}w-rem-20{/if}">
+                        <div class="card-product card-product--small px-3">
+                                <div class="d-inline-block align-top mr-4 w-rem-20">
                                     <div class="overlay-door mb-3{if !$product.thumb} no-photo{/if}">
                                         <div class="mask mask-door{if $noShadow} bg-none{/if}">
                                             <a href="{$product.id | url}">
@@ -32,7 +32,7 @@
                                         <a href="{$product.id | url}" class="card-title">{$product.pagetitle}</a>
                                         {if $_modx->config.'resources.room_doors' == $product.parent}
                                         <div class="mt-2">
-                                            Размер: {$product.'width.value'}х{$product.'height.value'}
+                                            Размер: {$product.'width.value'}&times;{$product.'height.value'}
                                         </div>
                                         <div class="card-description">
                                             Покрытие: {$product.'cover.value'}<br>
@@ -49,7 +49,7 @@
                                             <input type="number" class="form-control form-control-sm form-control--border w-rem-4 mb-3 mr-2 d-inline-block" value="{$product.count}" min="0" step="{if $product.menutitle == 'Короб' || $product.menutitle == 'Наличник'}0.2{else}1{/if}" name="count" placeholder="">
                                             <button type="submit" name="ms2_action" value="cart/change" class="d-none"></button>
                                             <div class="card-price d-inline-block">
-                                                x&nbsp;<span class="price ms2_product_price">{$product.price}</span>&nbsp;<span class="icon-rub"></span>
+                                                &times;&nbsp;<span class="price ms2_product_price">{$product.price}</span>&nbsp;<span class="icon-rub"></span>
                                             </div>
                                             {$_modx->RunSnippet('!msAddLinked.info', [
                                                 'key' => $product.key,
