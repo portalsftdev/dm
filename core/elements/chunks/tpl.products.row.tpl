@@ -19,7 +19,7 @@
 
 <div class="card-product {$thumb1? 'card-product--2' : ''} {$card_tile} msfavorites-parent" itemscope itemtype="http://schema.org/Product">
     <div class="overlay-door">
-        <div class="mask {$card_mask}">
+        <div class="mask {$card_mask}{if ! $thumb?} bg-none{/if}">
             <a href="{$id | url}">
                 {if $thumb?}
                     <img src="{$thumb}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}" itemprop="image" />
