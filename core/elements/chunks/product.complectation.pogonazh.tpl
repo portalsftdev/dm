@@ -30,32 +30,32 @@
 <tr>
     <td>
         <div class="lead">
-            [[+productName]]
+            {$productName}
             <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>
         </div>
     </td>
     <td>
-        <form class="ms2_form" data-link-name="[[+linkName]]" data-id="[[+id]]" method="post">
+        <form class="ms2_form" data-link-name="{$linkName}" data-id="{$id}" method="post">
             <div class="input-group">
                 <button type="button" class="btn btn-secondary form-control--border" data-spin="minus">–</button>
-                <input name="count" type="number" min="0" max="99" step="{$step}" class="form-control form-control-sm form-control--border no-spinners" value="[[+count]]" placeholder="">
+                <input name="count" type="number" min="0" max="99" step="{$step}" class="form-control form-control-sm form-control--border no-spinners" value="{$count}" placeholder="">
                 <span class="input-group-addon form-control-sm form-control--border">{$unit}</span>
                 <button type="button" class="btn btn-secondary form-control--border" data-spin="plus">+</button>
             </div>
-            <input type="hidden" name="id" value="[[+id]]">
-            [[+cartKey:notempty=`<input type="hidden" name="key" value="[[+cartKey]]" />`]]
+            <input type="hidden" name="id" value="{$id}">
+            {if '' != $cartKey}<input type="hidden" name="key" value="{$cartKey}" />{/if}
             <input name="options" value="[]" type="hidden">
-            <button type="submit" name="ms2_action" value="[[+count:is=`0`:then=`cart/add`:else=`cart/change`]]"></button>
+            <button type="submit" name="ms2_action" value="{if 0 == $count}cart/add{else}cart/change{/if}"></button>
         </form>
         </td>
     <td>
         <div class="card-price">
-            &times;&nbsp;<span class="price ms2_product_price">[[+price]]</span>&nbsp;<span class="icon-rub"></span>
+            &times;&nbsp;<span class="price ms2_product_price">{$price}</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>
     <td class="total-cost">
         <div class="card-price text-center">
-            =&nbsp;<span class="price ms2_total_row_cost">[[+sum]]</span>&nbsp;<span class="icon-rub"></span>
+            =&nbsp;<span class="price ms2_total_row_cost">{$sum}</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>
 </tr>

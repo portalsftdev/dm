@@ -21,7 +21,7 @@
                     'select' => '{
                         "msProduct":"*"
                         ,"card0":"card0.url as card0"
-                        ,"card1":"card1.url as card1"
+                        ,"card1":"card1.url as card1"+
                     }',
         		    'tpl' => '@FILE chunks/tpl.products.row.tpl',
         		    'ajaxMode' => 'default'
@@ -32,7 +32,7 @@
                 	<div class="wishlist-empty">Список избранного пуст.</div>
                 {/if}
         		</div>
-        		[[!+page.nav]]
+                {'page.nav' | placeholder}
             </div>
         </section>
         {$_modx->getChunk('@FILE chunks/sect.360.tpl')}
