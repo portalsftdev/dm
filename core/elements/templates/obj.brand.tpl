@@ -50,6 +50,7 @@
     'tplOuter' => '@FILE chunks/tpl.productList.tpl',
     'includeTVs' => $.session.'cityselector.current_product_remain_tv',
     'paginator' => 'pdoPage@pageNavVar=`page.nav`',
+    'canonicalQueryString' => true,
     'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
     'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
     'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
