@@ -238,7 +238,7 @@
             'tplFilter.outer.msvendor|name' => '@FILE chunks/tpl.filter.outer.msvendor.name.tpl',
             'tplFilter.row.msvendor|name' => '@FILE chunks/tpl.filter.row.furniture_msvendor.name.tpl',
             'tplFilter.outer.msoption|furniture_type' => '@FILE chunks/tpl.filter.outer.msoption.cover.tpl',
-            'tplFilter.row.msoption|furniture_type' => '@FILE chunks/tpl.filter.row.msoption.cover.tpl',
+            'tplFilter.row.msoption|furniture_type' => '@FILE chunks/tpl.filter.row.msoption.furniture_type.tpl',
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',

@@ -118,15 +118,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-4">
                         <h5>Бренд</h5>
                         <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
                             {$_modx->getPlaceholder('mFilter2.msvendor|name')}
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <div class="col-xl-6 col-lg-9 col-md-8 col-8">
                         <h5>Вид фурнитуры</h5>
-                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
+                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable row">
                             {$_modx->getPlaceholder('mFilter2.msoption|furniture_type')}
                         </div>
                     </div>
