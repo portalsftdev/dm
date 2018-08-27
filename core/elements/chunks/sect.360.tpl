@@ -24,7 +24,7 @@
             <div class="container container--narrow">
                 <div class="row pt-5 pb-3 text-center">
                     <div class="col-md-6 text-md-left pt-4 pt-md-0"><h2 class="card-title mb-0"><strong>Двери</strong> Маркет</h2></div>
-                    <div class="col-md-6 text-md-right"><h4 class="card-title mb-0"><strong>Лучший</strong> способ купить<br>двери <strong>в Кемеровской области</strong></h4></div>
+                    <div class="col-md-6 text-md-right"><h4 class="card-title mb-0"><strong>Современный</strong> способ <strong>купить<br>двери в Кемеровской области</strong></h4></div>
                 </div>
             </div>
         </div>
