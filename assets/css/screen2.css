@@ -833,3 +833,21 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
     line-height: 1.1;
     margin-bottom: .5rem;
 }
+
+/**
+ * Increase font size for devices with screen width up to 480px in order to pass Yandex mobile-friendly validation
+ */
+
+@media (min-width: 0px) and (max-width: 480px) {
+    body,
+    .card-product .card-description,
+    .card-product .card-title,
+    #complectation-items label,
+    #mse2_filters label,
+    .footer-menu nav > a {
+        font-size: 1.125rem;
+    }
+    #product-tabs .nav-tabs {
+        overflow-x: auto;
+    }
+}
