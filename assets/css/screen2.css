@@ -414,7 +414,6 @@ a.btn[type="button"] {
     padding: .6625rem 1.125rem .6rem;
     margin-bottom: 1rem;
     line-height: 1;
-    white-space: nowrap;
 }
 
 /* Product buttons container */
