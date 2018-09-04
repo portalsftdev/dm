@@ -62,7 +62,7 @@
                         {$_modx->getPlaceholder('mFilter2.msoc|mscolor')}
                     </div>
                 </div>
-                {set $withGlass = strpos($.get.'msoption|doortype', 'Остекленная') !== false}
+                {set $withGlass = strpos($.get.'type', 'Остекленная') !== false}
                 <div class="row switchable-filter" id="glass-colors"{if $withGlass} style="display:flex;"{/if}>
                     <div class="col-12">
                         <h5>Цвет остекления</h5>
