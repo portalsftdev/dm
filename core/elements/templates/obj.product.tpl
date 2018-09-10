@@ -214,6 +214,17 @@
         </div>
     </section>
 
+    {set $link = $_modx->runSnippet('@FILE snippets/msGetLinkByName.php', ['name' => 'furniture'])}
+    {if false != $link}
+        {$_modx->runSnippet('!msProducts', [
+            'master' => $_modx->resource.id,
+            'link' => $link->get('id'),
+            'parents' => 0,
+            'tplWrapper' => '@FILE chunks/product.jointProductSlider.wrapper.tpl',
+            'tpl' => '@FILE chunks/product.jointProductSlider.item.tpl',
+            'limit' => 100,
+        ])}
+    {/if}
 
     <section class="mt-2">
 

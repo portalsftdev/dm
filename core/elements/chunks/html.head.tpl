@@ -17,6 +17,7 @@
         $_modx->config.assets_url ~ 'css/screen.css' ~ ', ' ~
         $_modx->config.assets_url ~ 'css/kladr.css' ~ ', ' ~
         $_modx->config.assets_url ~ 'css/dropzone.css' ~ ', ' ~
+        $_modx->config.assets_url ~ 'css/slick.css' ~ ', ' ~
         $_modx->config.assets_url ~ 'css/screen2.css' ~  ', '
     ,
     'minifyCss' => true,

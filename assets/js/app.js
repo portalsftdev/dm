@@ -838,7 +838,7 @@ $(document).on('keyup', '#product-sizes input[name="count"]', function() {
 });
 
 // Input plus/minus
-$(document).on('click', '#product-sizes [data-spin]', function() {
+$(document).on('click', '#product-sizes [data-spin], #joint-products [data-spin]', function() {
     let $form = $(this).closest('.ms2_form'),
         $input = $form.find('[name="count"]'),
         currentInputValue = $input.val();
@@ -912,4 +912,36 @@ $(document).on('click', '.user-preference', function() {
             alert(response.message);
         }
     }, 'json');
+});
+
+/**
+  * Joint products at product card slider
+  */
+
+$('#joint-products .slider-items').slick({
+    slidesToShow: 4,
+    prevArrow: '.slider-btn-prev',
+    nextArrow: '.slider-btn-next',
+    // autoplay: true,
+    touchThreshold: 25,
+    responsive: [
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1
+            }
+        },
+        {
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 3
+            }
+        }
+    ]
 });
