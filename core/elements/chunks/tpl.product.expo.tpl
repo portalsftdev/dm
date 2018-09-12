@@ -1,9 +1,9 @@
 <div class="expo-interior expo-interior--dark col-xl-6 px-0">
     {if count($files) > 0}
         <div class="expo-door card-wrapper">
-            <div id="expo-door" class="card-rotating effect__click">
+            <div id="expo-door" class="simple-image-switcher">
                 {foreach $files as $file index=$idx}
-                    <div class="face {$idx > 0?'back':'front'}">
+                    <div class="face {$idx > 0?'backside':'frontside'}">
                         <img src="{$file.expo}" alt="{$_modx->getPlaceholder('productImageTitle') | escape}" title="{$_modx->getPlaceholder('productImageTitle') | escape}" itemprop="image" />
                     </div>
                 {/foreach}

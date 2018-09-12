@@ -944,3 +944,27 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
     font-weight: 500;
     text-align: center;
 }
+
+/**
+ * Simple image switcher
+ *
+ * For image rotation effect:
+ * 1. Replace class="simple-image-switcher" with class="card-rotating effect__click"
+ * 2. Replace class="... frontside" with  class="... front" and class="... backside" with class="... back"
+ */
+
+/* Initial state */
+
+.simple-image-switcher .backside {
+    display: none;
+}
+
+/* Switched state */
+
+.simple-image-switcher.flipped .frontside {
+    display: none;
+}
+
+.simple-image-switcher.flipped .backside {
+    display: block;
+}
