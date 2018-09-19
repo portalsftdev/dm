@@ -43,7 +43,7 @@
 	}',
 	'where' => '{"Data.vendor":"'~$_modx->resource.alias~'"}',
     'sortby' => '{"msProduct.pagetitle":"ASC"}',
-    'limit' => 20,
+    'limit' => $_modx->config.products_per_page,
     'values_delimeter' => ';',
     'toSeparatePlaceholders' => 'mFilter2.',
     'tpl' => '@FILE chunks/tpl.products.row.tpl',

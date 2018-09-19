@@ -45,7 +45,7 @@
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
-            'limit' => 20,
+            'limit' => $_modx->config.products_per_page,
             'values_delimeter' => ';',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
@@ -100,7 +100,7 @@
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
-            'limit' => 20,
+            'limit' => $_modx->config.products_per_page,
             'filters' => '
                 msoc|steel_door_color~value~pattern,
                 msoc|shield_color~value~pattern,
@@ -154,7 +154,7 @@
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
-            'limit' => 20,
+            'limit' => $_modx->config.products_per_page,
             'filters' => '
                 msoc|mscolor~value~pattern,
                 msvendor|name:vendor,
@@ -235,7 +235,7 @@
             'tpl' => '@FILE chunks/tpl.products.row.tpl',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
-            'limit' => 20,
+            'limit' => $_modx->config.products_per_page,
             'filters' => '
                 msoc|mscolor~value~pattern,
                 msvendor|name:vendor,
