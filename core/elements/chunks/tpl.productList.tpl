@@ -187,6 +187,14 @@
                 </nav>
     	    </div>
 
+            {if '' != $_modx->resource.content && null == $.get.'page' || 1 == $.get.'page'}
+                <div class="row mt-3">
+                    <div class="col-12">
+                        {$_modx->resource.content}
+                    </div>
+                </div>
+            {/if}
+
         </div>
     </section>
 </div>
