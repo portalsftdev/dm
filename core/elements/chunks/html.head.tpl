@@ -5,10 +5,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="description" content="{$_modx->resource.description | escape}">
+<meta name="description" content="{($_modx->getPlaceholder('sf.description') ?: $_modx->resource.description) | escape}">
 <meta name="author" content="">
 <base href="{$_modx->config.site_url}" />
-<title>{$_modx->runSnippet('!pdoTitle')} / {$_modx->config.site_name}</title>
+<title>{$_modx->getPlaceholder('sf.title') ?: ($_modx->runSnippet('!pdoTitle') ~ ' / ' ~ $_modx->config.site_name)}</title>
 
 {$_modx->RunSnippet('!MinifyX', [
     'cssSources' =>
