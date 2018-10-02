@@ -104,7 +104,7 @@
             'filters' => '
                 msoc|steel_door_color~value~pattern,
                 msoc|shield_color~value~pattern,
-                msvendor|name:vendor,
+                ms|vendor:vendors,
                 msoption|metal_thickness:metal_thickness,
                 msoption|width:width,
                 msoption|spontaneity:spontaneity,
@@ -113,7 +113,7 @@
             'aliases' => '
                 msoc|steel_door_color==color,
                 msoc|shield_color==shield-color,
-                msvendor|name==trademark,
+                ms|vendor==trademark,
                 msoption|metal_thickness==metal-thickness,
                 msoption|width==width,
                 msoption|spontaneity==side,
@@ -157,7 +157,7 @@
             'limit' => $_modx->config.products_per_page,
             'filters' => '
                 msoc|mscolor~value~pattern,
-                msvendor|name:vendor,
+                ms|vendor:vendors,
                 msoption|cover:cover,
                 msoption|width:width,
                 msoption|doorType:doorType,
@@ -167,7 +167,7 @@
             'aliases' => '
                 msoption|cover==coating,
                 msoption|width==width,
-                msvendor|name==trademark,
+                ms|vendor==trademark,
                 msoc|mscolor==color,
                 msoption|doortype==type,
                 msoc|glass==glass-color,
@@ -238,13 +238,13 @@
             'limit' => $_modx->config.products_per_page,
             'filters' => '
                 msoc|mscolor~value~pattern,
-                msvendor|name:vendor,
+                ms|vendor:vendors,
                 msoption|furniture_type:furniture_type,
                 ms|favorite:favorite,
             ',
             'aliases' => '
                 msoc|mscolor==color,
-                msvendor|name==trademark,
+                ms|vendor==trademark,
                 msoption|furniture_type==type,
             ',
             'values_delimeter' => ';',

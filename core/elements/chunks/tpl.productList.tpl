@@ -29,7 +29,7 @@
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                         <h5>Бренд</h5>
                         <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
-                            {$_modx->getPlaceholder('mFilter2.msvendor|name')}
+                            {$_modx->getPlaceholder('mFilter2.ms|vendor')}
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
@@ -79,7 +79,7 @@
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                         <h5>Бренд</h5>
                         <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
-                            {$_modx->getPlaceholder('mFilter2.msvendor|name')}
+                            {$_modx->getPlaceholder('mFilter2.ms|vendor')}
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
@@ -121,7 +121,7 @@
                     <div class="col-xl-2 col-lg-3 col-md-4 col-4">
                         <h5>Бренд</h5>
                         <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
-                            {$_modx->getPlaceholder('mFilter2.msvendor|name')}
+                            {$_modx->getPlaceholder('mFilter2.ms|vendor')}
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-9 col-md-8 col-8">
