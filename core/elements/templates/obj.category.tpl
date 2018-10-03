@@ -202,6 +202,7 @@
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'canonicalQueryString' => true,
+            'suggestionsMaxResults' => 4000,
             'tplFilter.outer.color' => '@FILE chunks/tpl.filter.outer.tpl',
             'tplFilter.row.color' => '@FILE chunks/tpl.filter.row.checkbox.color.tpl',
             'tplFilter.outer.trademark' => '@FILE chunks/tpl.filter.outer.tpl',
