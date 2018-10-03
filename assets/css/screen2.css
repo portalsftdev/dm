@@ -968,3 +968,11 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
 .simple-image-switcher.flipped .backside {
     display: block;
 }
+
+/**
+ * Disabled input
+ */
+
+input:disabled ~ label {
+    opacity: .5;
+}

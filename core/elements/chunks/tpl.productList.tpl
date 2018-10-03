@@ -126,7 +126,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-9 col-md-8 col-8">
                         <h5>Вид фурнитуры</h5>
-                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable row">
+                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
                             {$_modx->getPlaceholder('mFilter2.msoption|furniture_type')}
                         </div>
                     </div>
