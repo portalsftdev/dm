@@ -558,10 +558,13 @@ $(function() {
      *
      */
 
-    miniShop2.Callbacks.Order.submit.response.error = function (response) {
-        var $input = $('input[name="' + response.data[0] + '"]:visible');
-        $('html,body').scrollTop($input.offset().top - 8);
-    };
+    // Be sure that miniShop2 is defined, otherwise 'miniShop2 is not defined' error can be occurred
+    if (typeof miniShop2 != 'undefined') {
+        miniShop2.Callbacks.Order.submit.response.error = function (response) {
+            var $input = $('input[name="' + response.data[0] + '"]:visible');
+            $('html,body').scrollTop($input.offset().top - 8);
+        };
+    }
 
     /**
      *
