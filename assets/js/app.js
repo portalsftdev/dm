@@ -23,6 +23,7 @@ $(function() {
                 $target.slideDown(); //.show();
             // Uncheck -> close
             } else {
+                $target.find('input:checked').prop('checked', false);
                 $target.slideUp(); //.hide();
             }
         });
