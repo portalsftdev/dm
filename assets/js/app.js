@@ -704,7 +704,7 @@ $(document).on('mouseenter touchstart', '.rating-stars input + label', function(
  */
 
 function getProduct(url) {
-    $('#product, #product-tabs').css('opacity', '.5');
+    $('#product, #product-tabs, #joint-products').css('opacity', '.5');
     let productSizesAreExpanded = $('#product-sizes').hasClass('expanded'),
         activeProductTabSelector = $('#product-tabs').find('[data-toggle="tab"].active').attr('href');
     $.ajax({
@@ -715,6 +715,7 @@ function getProduct(url) {
             let title = $(response).filter('title').text(),
                 $productInfo = $(response).find('#product'),
                 $productTabs = $(response).find('#product-tabs')
+                $jointProducts = $(response).find('#joint-products')
             ;
             // Expand product sizes
             if (productSizesAreExpanded) {
@@ -739,6 +740,17 @@ function getProduct(url) {
                 document.title = title;
                 $('#product').html(productInfoHTML);
                 $('#product-tabs').html(productTabsHTML);
+                // Process joint products
+                if (0 == $jointProducts.length) {
+                    $('#joint-products').remove();
+                } else {
+                    if (0 < $('#joint-products').length) {
+                        $('#joint-products').html($jointProducts.html());
+                    } else {
+                        $('#product').after($jointProducts);
+                    }
+                    initialiseJointProducts();
+                }
                 // Remove tooltip
                 $('[role="tooltip"]').remove();
                 // Reinitialise tooltips
@@ -754,7 +766,7 @@ function getProduct(url) {
                 }).mask(document.querySelectorAll('input[type="tel"]'));
             }
             $('#product').attr('data-url', url);
-            $('#product, #product-tabs').css('opacity', '1');
+            $('#product, #product-tabs, #joint-products').css('opacity', '1');
         }
     });
 }
@@ -921,31 +933,34 @@ $(document).on('click', '.user-preference', function() {
 /**
   * Joint products at product card slider
   */
+function initialiseJointProducts() {
+    $('#joint-products .slider-items').slick({
+        slidesToShow: 4,
+        prevArrow: '.slider-btn-prev',
+        nextArrow: '.slider-btn-next',
+        // autoplay: true,
+        touchThreshold: 25,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3
+                }
+            }
+        ]
+    });
+}
 
-$('#joint-products .slider-items').slick({
-    slidesToShow: 4,
-    prevArrow: '.slider-btn-prev',
-    nextArrow: '.slider-btn-next',
-    // autoplay: true,
-    touchThreshold: 25,
-    responsive: [
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1
-            }
-        },
-        {
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 2
-            }
-        },
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 3
-            }
-        }
-    ]
-});
+initialiseJointProducts();
