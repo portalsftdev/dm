@@ -46,10 +46,6 @@ foreach ($conditions as $key => $value) {
     $whereCondition["$key.value"] = $value;
 }
 
-// Add condition for non-deleted product
-$productIDsSubquery->leftJoin('modResource', 'modResource', 'msProductOption.product_id = modResource.id');
-$whereCondition[] = ['modResource.deleted' => 0];
-
 $productIDsSubquery->where($whereCondition)
                    ->groupby('msProductOption.product_id');
 $productIDsSubquery->select('msProductOption.product_id');
@@ -59,9 +55,13 @@ $productIDsSubquery->prepare();
 // Get unique options with specified option keys and product ids having specified option key and value (retrieved by subquery above)
 $criteria = $modx->newQuery('msProductOption');
 
+// Join resources for checking for non-deleted product
+$criteria->leftJoin('modResource', 'modResource', 'msProductOption.product_id = modResource.id');
+
 $optionKeys = explode('|', $optionKeys);
 $selectionFields = [
     'msProductOption.product_id',
+    'modResource.deleted',
 ];
 
 // Join tables with specified keys
@@ -107,6 +107,10 @@ if ($productAvailabilityToPlaceholder) {
     $productAvailabilityOutput = '';
 }
 foreach ($productOptionCollection as $id => $productOption) {
+    // Check for non-deleted product (checking in code works faster than where condition)
+    if ($productOption->get('deleted')) {
+        continue;
+    }
     $optionValues = [];
     foreach ($optionKeys as $optionKey) {
         $optionValues[$optionKey]  = $productOption->get($optionKey);
