@@ -93,6 +93,8 @@
                 ,"productModel":"steelDoorModel.value as productModel"
                 ,"productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
                 ,"availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability"
+                ,"productGroupMaxPrice":"MAX(Data.price) AS productGroupMaxPrice"
+                ,"productGroupPrices":"GROUP_CONCAT(msProduct.id, \':\', Data.price, \':\', Data.old_price) AS productGroupPrices"
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
@@ -194,7 +196,9 @@
         	'select' => '{
         		"productModel":"interiorDoorModel.value as productModel",
                 "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum",
-                "availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability"
+                "availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability",
+                "productGroupMaxPrice":"MAX(Data.price) AS productGroupMaxPrice",
+                "productGroupPrices":"GROUP_CONCAT(msProduct.id, \':\', Data.price, \':\', Data.old_price) AS productGroupPrices"
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,

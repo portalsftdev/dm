@@ -17,6 +17,30 @@
     {set $card_height = 'h-rem-8'}
 {/if}
 
+{*
+    Override id, price and old price if products in the product group have
+    different prices
+*}
+{if $productGroupPrices?}
+    {set $productGroupPrices = $productGroupPrices|split:','}
+    {foreach $productGroupPrices as $productGroupPrice}
+        {* Format: id:price:old_price *}
+        {set $productGroupPrice = $productGroupPrice|split:':'}
+        {if $productGroupMaxPrice > $productGroupPrice.1}
+            {set $productWithMinPrice = $productGroupPrice}
+        {/if}
+    {/foreach}
+{/if}
+
+{if $productWithMinPrice?}
+    {set $id = $productWithMinPrice.0}
+
+    {set $nfp = $_modx->config.ms2_price_format|json_decode}
+    {set $price = $productWithMinPrice.1|number:0:$nfp.1:$nfp.2}
+    {set $old_price = $productWithMinPrice.2|number:0:$nfp.1:$nfp.2}
+{/if}
+
+
 <div class="card-product {$thumb1? 'card-product--2' : ''} {$card_tile} msfavorites-parent" itemscope itemtype="http://schema.org/Product">
     <div class="overlay-door">
         <div class="mask {$card_mask}{if ! $thumb?} bg-none{/if}">
