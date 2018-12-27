@@ -976,3 +976,11 @@ input[type="number"].no-spinners::-webkit-outer-spin-button {
 input:disabled ~ label {
     opacity: .5;
 }
+
+/**
+ * Turn off jGrowl globally.
+ */
+
+#jGrowl {
+    display: none;
+}
