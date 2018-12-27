@@ -964,3 +964,20 @@ function initialiseJointProducts() {
 }
 
 initialiseJointProducts();
+
+/**
+ * Cart button animation.
+ */
+
+$(document).on('click',
+    'button[name="ms2_action"][value="cart/add"], ' +
+    'button[name="ms2_action"][value="cart/change"], ' +
+    'button[name="ms2_action"][value="cart/remove"]'
+, function() {
+    $(this)
+        .addClass('animated bounceIn')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass('animated bounceIn');
+        });
+    ;
+});
