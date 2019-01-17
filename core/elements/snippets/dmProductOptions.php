@@ -60,7 +60,7 @@ $criteria->where([
              'msProductOption.value:!=' => '',
              'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
            ])
-         ->groupby('msProductOption.value');
+         ->groupby('msProductOption.value, modResource.deleted');
 
 // Set selection fields
 $selectionFields = [
@@ -85,11 +85,13 @@ if (sizeof($productOptionCollection) <= 1) {
 
 // Prepare the items
 $items = '';
+$nonDeletedProductCount = 0;
 foreach ($productOptionCollection as $id => $productOption) {
     // Check for non-deleted product (checking in code works faster than where condition)
     if ($productOption->get('deleted')) {
         continue;
     }
+    $nonDeletedProductCount++;
     $placeholders = [
         'id' => $id + 1, // For element's id
         'key' => $optionKey, // For element's id
@@ -101,6 +103,11 @@ foreach ($productOptionCollection as $id => $productOption) {
     $items .= !empty($pdoTools)
         ? $pdoTools->getChunk($tpl, $placeholders)
         : $modx->getChunk($tpl, $placeholders);
+}
+
+// Output nothing if non-deleted product count <= 1
+if (1 >= $nonDeletedProductCount) {
+    return false;
 }
 
 // Wrap the items

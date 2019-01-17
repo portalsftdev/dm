@@ -79,8 +79,8 @@ $selectionFields[] = 'modTemplateVarResource.value AS remain';
 $criteria->where([
              'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
            ]);
-// Group by specified key values
-$criteria->groupby(implode(',', $optionKeys));
+// Group by specified key values and `deleted` field
+$criteria->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])));
 
 $criteria->select($selectionFields);
 // $criteria->prepare();
@@ -106,11 +106,13 @@ if ($productAvailabilityToPlaceholder) {
     ];
     $productAvailabilityOutput = '';
 }
+$nonDeletedProductCount = 0;
 foreach ($productOptionCollection as $id => $productOption) {
     // Check for non-deleted product (checking in code works faster than where condition)
     if ($productOption->get('deleted')) {
         continue;
     }
+    $nonDeletedProductCount++;
     $optionValues = [];
     foreach ($optionKeys as $optionKey) {
         $optionValues[$optionKey]  = $productOption->get($optionKey);
@@ -147,6 +149,11 @@ foreach ($productOptionCollection as $id => $productOption) {
             ? $pdoTools->runSnippet('@FILE snippets/dmProductAvailability.php', $productAvailabilitySnippetParameters)
             : $modx->runSnippet('@FILE snippets/dmProductAvailability.php', $productAvailabilitySnippetParameters);
     }
+}
+
+// Output nothing if non-deleted product count <= 1
+if (1 >= $nonDeletedProductCount) {
+    return false;
 }
 
 // Wrap the items
