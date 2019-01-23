@@ -42,8 +42,16 @@ $currentOptionValues = json_decode($currentOptionValues, true);
 $productIDsSubquery = $modx->newQuery('msProductOption');
 $whereCondition = [];
 foreach ($conditions as $key => $value) {
-    $productIDsSubquery->leftJoin('msProductOption', $key, "msProductOption.product_id = $key.product_id");
-    $whereCondition["$key.value"] = $value;
+    if ('parent' == $key) {
+        $productIDsSubquery->leftJoin('msProduct', 'msProduct', 'msProductOption.product_id = msProduct.id');
+        $whereCondition["msProduct.$key"] = $value;
+    } elseif ('vendor' == $key) {
+        $productIDsSubquery->leftJoin('msProductData', 'msProductData', 'msProductOption.product_id = msProductData.id');
+        $whereCondition["msProductData.$key"] = $value;
+    } else {
+        $productIDsSubquery->leftJoin('msProductOption', $key, "msProductOption.product_id = $key.product_id");
+        $whereCondition["$key.value"] = $value;
+    }
 }
 
 $productIDsSubquery->where($whereCondition)

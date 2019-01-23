@@ -68,10 +68,16 @@
                                 </div>
                             </div>
                             <hr>
+                            {set $conditions = [
+                                'parent' => $_modx->resource.parent,
+                                'vendor' => $vendor,
+                                'model' => $_pls['model.value'],
+                            ]}
+                            {if $_modx->config.'resources.furniture' == $_modx->resource.parent}
+                                {set $conditions['furniture_type'] = $_pls['furniture_type.value']}
+                            {/if}
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
-                                'conditions' => [
-                                    'model' => $_pls['model.value'],
-                                ],
+                                'conditions' => $conditions,
                                 'currentOptionValue' => $_pls['mscolor.value'],
                                 'optionKey' => 'mscolor',
                                 'optionLabel' => 'Другие цвета',

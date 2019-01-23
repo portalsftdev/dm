@@ -87,6 +87,8 @@
                                     }'}
                                     {$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
                                         'conditions' => [
+                                            'parent' => $_modx->resource.parent,
+                                            'vendor' => $vendor,
                                             'model' => $_pls['model.value'],
                                             'doorType' => $_pls['doorType.value'],
                                             'mscolor' => $_pls['mscolor.value'],
@@ -171,6 +173,8 @@
                             <hr>
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
+                                    'parent' => $_modx->resource.parent,
+                                    'vendor' => $vendor,
                                     'model' => $_pls['model.value'],
                                     'mscolor' => $_pls['mscolor.value'],
                                 ],
@@ -181,6 +185,8 @@
                             ])}
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
+                                    'parent' => $_modx->resource.parent,
+                                    'vendor' => $vendor,
                                     'model' => $_pls['model.value'],
                                     'doorType' => $_pls['doorType.value'],
                                     'glass' => $_pls['glass.value'],
@@ -195,6 +201,8 @@
                             {if $_pls['doorType.value'] == 'Остекленная'}
                                 {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                     'conditions' => [
+                                        'parent' => $_modx->resource.parent,
+                                        'vendor' => $vendor,
                                         'model' => $_pls['model.value'],
                                         'mscolor' => $_pls['mscolor.value'],
                                     ],

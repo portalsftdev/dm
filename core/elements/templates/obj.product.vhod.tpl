@@ -55,6 +55,8 @@
                                     {/if}
                                     {$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
                                         'conditions' => [
+                                            'parent' => $_modx->resource.parent,
+                                            'vendor' => $vendor,
                                             'model' => $_pls['model.value'],
                                             'shield_color' => $_pls['shield_color.value'],
                                             'steel_door_color' => $_pls['steel_door_color.value'],
@@ -112,6 +114,8 @@
                             <hr>
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
+                                    'parent' => $_modx->resource.parent,
+                                    'vendor' => $vendor,
                                     'model' => $_pls['model.value'],
                                     'shield_color' => $_pls['shield_color.value'],
                                 ],
@@ -124,6 +128,8 @@
                             ])}
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [
+                                    'parent' => $_modx->resource.parent,
+                                    'vendor' => $vendor,
                                     'model' => $_pls['model.value'],
                                     'steel_door_color' => $_pls['steel_door_color.value'],
                                 ],
