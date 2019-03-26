@@ -1038,3 +1038,12 @@ input:disabled ~ label {
   animation-duration: 0.75s;
   animation-name: bounceIn;
 }
+
+/**
+ * Fix infinite flickering of Bootstrap's tooltips with images in Firefox.
+ * Can be non-actual in future versions of Bootstrap (> 4.0.0-beta.2)
+ * and/or Popper.js (> 1.12.6).
+ */
+.tooltip {
+    pointer-events: none;
+}
