@@ -25,7 +25,20 @@
                         {$_modx->getPlaceholder('mFilter2.msoc|shield_color')}
                     </div>
                 </div>
+                {set $withGlass = strpos($.get.'type', 'Остекленная') !== false}
+                <div class="row switchable-filter" id="glass-colors"{if $withGlass} style="display:flex;"{/if}>
+                    <div class="col-12">
+                        <h5>Цвет остекления</h5>
+                        {$_modx->getPlaceholder('mFilter2.msoc|glass')}
+                    </div>
+                </div>
                 <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <h5>Тип исполнения</h5>
+                        <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">
+                            {$_modx->getPlaceholder('mFilter2.msoption|doortype')}
+                        </div>
+                    </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                         <h5>Бренд</h5>
                         <div class="gr-white-l h-rem-10 mb-3 pre-scrollable">

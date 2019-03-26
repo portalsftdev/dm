@@ -84,6 +84,10 @@
                 "steelDoorInnerPanelColor": {
                     "class": "msProductOption",
                     "on": "steelDoorInnerPanelColor.product_id = msProduct.id AND steelDoorInnerPanelColor.key = \'shield_color\'"
+                },
+                "steelDoorGlassColor": {
+                    "class": "msProductOption",
+                    "on": "steelDoorGlassColor.product_id = msProduct.id AND steelDoorGlassColor.key = \'glass\'"
                 }
         	}',
         	'select' => '{
@@ -98,7 +102,7 @@
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
-            'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value"]',
+            'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value", "steelDoorGlassColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
@@ -110,6 +114,8 @@
                 msoption|metal_thickness:metal_thickness,
                 msoption|width:width,
                 msoption|spontaneity:spontaneity,
+                msoption|doorType:doorType,
+                msoc|glass~value~pattern,
                 ms|favorite:favorite,
             ',
             'aliases' => '
@@ -119,6 +125,8 @@
                 msoption|metal_thickness==metal-thickness,
                 msoption|width==width,
                 msoption|spontaneity==side,
+                msoption|doortype==type,
+                msoc|glass==glass-color,
             ',
             'values_delimeter' => ';',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
@@ -135,6 +143,10 @@
             'tplFilter.row.width' => '@FILE chunks/tpl.filter.row.checkbox.tpl',
             'tplFilter.outer.side' => '@FILE chunks/tpl.filter.outer.tpl',
             'tplFilter.row.side' => '@FILE chunks/tpl.filter.row.checkbox.tpl',
+            'tplFilter.outer.type' => '@FILE chunks/tpl.filter.outer.tpl',
+            'tplFilter.row.type' => '@FILE chunks/tpl.filter.row.checkbox.door_type.tpl',
+            'tplFilter.outer.glass-color' => '@FILE chunks/tpl.filter.outer.tpl',
+            'tplFilter.row.glass-color' => '@FILE chunks/tpl.filter.row.checkbox.color.tpl',
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
