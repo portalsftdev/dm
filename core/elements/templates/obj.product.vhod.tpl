@@ -117,17 +117,6 @@
                                     'parent' => $_modx->resource.parent,
                                     'vendor' => $vendor,
                                     'model' => $_pls['model.value'],
-                                ],
-                                'currentOptionValue' => $_pls['doorType.value'],
-                                'optionKey' => 'doorType',
-                                'tpl' => '@FILE chunks/product.otherOptionOfTheModel.item.tpl',
-                                'tplWrapper' => '@FILE chunks/product.otherOptionOfTheModel.wrapper.tpl',
-                            ])}
-                            {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
-                                'conditions' => [
-                                    'parent' => $_modx->resource.parent,
-                                    'vendor' => $vendor,
-                                    'model' => $_pls['model.value'],
                                     'shield_color' => $_pls['shield_color.value'],
                                 ],
                                 'currentOptionValue' => $_pls['steel_door_color.value'],
