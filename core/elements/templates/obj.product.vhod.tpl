@@ -140,6 +140,23 @@
                                 'tpl' => '@FILE chunks/product.otherColorOfTheModel.item.tpl',
                                 'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
                             ])}
+                            {if 'Остекленная' === $_pls['doorType.value']}
+                                {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                    'conditions' => [
+                                        'parent' => $_modx->resource.parent,
+                                        'vendor' => $vendor,
+                                        'model' => $_pls['model.value'],
+                                        'steel_door_color' => $_pls['steel_door_color.value'],
+                                        'shield_color' => $_pls['shield_color.value'],
+                                    ],
+                                    'currentOptionValue' => $_pls['glass.value'],
+                                    'optionKey' => 'glass',
+                                    'optionLabel' => 'Другие остекления',
+                                    'withImage' => true,
+                                    'tpl' => '@FILE chunks/product.otherColorOfTheModel.item.tpl',
+                                    'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
+                                ])}
+                            {/if}
                             <meta itemprop="description" content="{$_modx->resource.description ?: $_modx->resource.longtitle | escape}" />
                         </div>
                     </div>
