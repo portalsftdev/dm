@@ -42,18 +42,24 @@
 
 
 <div class="card-product {$thumb1? 'card-product--2' : ''} {$card_tile} msfavorites-parent" itemscope itemtype="http://schema.org/Product">
+    {if $_modx->config.'resources.steel_doors' == $_modx->resource.id}
+        {set $customProductTitle = 'Входная дверь ' ~ $pagetitle}
+    {else}
+        {set $customProductTitle = $longtitle ?: $pagetitle}
+    {/if}
+    {set $customProductTitle = $customProductTitle|escape}
     <div class="overlay-door">
         <div class="mask {$card_mask}{if ! $thumb?} bg-none{/if}">
             <a href="{$id | url}">
                 {if $thumb?}
-                    <img src="{$thumb}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}" itemprop="image" />
+                    <img src="{$thumb}" alt="{$customProductTitle}" title="{$customProductTitle}" itemprop="image" />
                 {else}
                     <img src="{'assets_url' | option}components/minishop2/img/web/ms2_small.png"
                          srcset="{'assets_url' | option}components/minishop2/img/web/ms2_small@2x.png 2x"
-                         alt="{$pagetitle | escape}" title="{$pagetitle | escape}" />
+                         alt="{$customProductTitle}" title="{$customProductTitle}" />
                 {/if}
                 {if $thumb1?}
-                    <img src="{$thumb1}" alt="{$pagetitle | escape}" title="{$pagetitle | escape}" itemprop="image" />
+                    <img src="{$thumb1}" alt="{$customProductTitle}" title="{$customProductTitle}" itemprop="image" />
                 {/if}
             </a>
         </div>
@@ -75,7 +81,7 @@
         {/if}
         <div>
             <a href="{$id | url}" class="card-title">{$productModel ?: $pagetitle | truncate:$_modx->config.product_pagetitle_max_string_length:'...':true}</a>
-            <meta itemprop="name" content="{$pagetitle | escape}" />
+            <meta itemprop="name" content="{$customProductTitle}" />
             <link itemprop="url" href="{$_modx->config.site_url ~ $id | url}" />
             <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
             <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
