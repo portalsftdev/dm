@@ -8,7 +8,13 @@
 <meta name="description" content="{($_modx->getPlaceholder('sf.description') ?: $_modx->resource.description) | escape}">
 <meta name="author" content="">
 <base href="{$_modx->config.site_url}" />
-<title>{$_modx->getPlaceholder('sf.title') ?: ($_modx->runSnippet('!pdoTitle') ~ ' / ' ~ $_modx->config.site_name)}</title>
+{set $title = $_modx->getPlaceholder('sf.title') ?: (
+    (($_modx->resource.id in [$_modx->config.'resources.steel_doors', $_modx->config.'resources.room_doors'])
+        ? ($_modx->resource.longtitle ?: $_modx->resource.pagetitle)
+        : $_modx->runSnippet('!pdoTitle')
+    ) ~ ' / ' ~ $_modx->config.site_name
+)}
+<title>{$title}</title>
 
 {$_modx->RunSnippet('!MinifyX', [
     'cssSources' =>
