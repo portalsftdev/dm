@@ -176,6 +176,7 @@
                 msoption|width:width,
                 msoption|doorType:doorType,
                 msoc|glass~value~pattern,
+                msoption|collection,
                 ms|favorite:favorite,
             ',
             'aliases' => '
@@ -185,6 +186,7 @@
                 msoc|mscolor==color,
                 msoption|doortype==type,
                 msoc|glass==glass-color,
+                msoption|collection==collection,
             ',
             'values_delimeter' => ';',
             'leftJoin' => '{
@@ -231,6 +233,8 @@
             'tplFilter.row.type' => '@FILE chunks/tpl.filter.row.checkbox.door_type.tpl',
             'tplFilter.outer.glass-color' => '@FILE chunks/tpl.filter.outer.tpl',
             'tplFilter.row.glass-color' => '@FILE chunks/tpl.filter.row.checkbox.color.tpl',
+            'tplFilter.outer.collection' => '@FILE chunks/tpl.filter.outer.tpl',
+            'tplFilter.row.collection' => '@FILE chunks/tpl.filter.row.checkbox.tpl',
             'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',
             'tplPage' => '@INLINE <li class="page-item"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
             'tplPageActive' => '@INLINE <li class="page-item active"><a class="page-link waves-effect waves-effect" href="{$href}">{$pageNo}</a></li>',
