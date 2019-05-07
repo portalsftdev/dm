@@ -1223,3 +1223,14 @@ input:disabled ~ label {
 .product-complectation table tr.total td:last-child {
     font-weight: 500;
 }
+
+/**
+ * Cart table.
+ */
+.cart-item-list .input-spinnerable input {
+    min-width: 5rem;
+    max-width: 7rem;
+    padding-right: 2.5rem;
+    padding-left: 1rem;
+    border-radius: 10rem;
+}
