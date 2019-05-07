@@ -1,3 +1,43 @@
+/**
+ * TODO:
+ * 1. Remove useless code.
+ */
+
+/**
+ *
+ * PHP's number_format() equivalent
+ * @link https://gist.github.com/leodutra/2919561
+ *
+ */
+
+function numberFormat(number, decimals, dec_point, thousands_sep)
+{
+    // http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec)
+        {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3)
+    {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec)
+    {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
 $(function() {
 
     'use strict';
@@ -112,6 +152,7 @@ $(function() {
             coupon: '<strong>Купон отправлен!</strong> Проверьте свою электронную почту.',
             'product-availability': '<strong>Сообщение отправлено!</strong> Мы свяжемся с вами в ближайшее время.',
             'product-price-order': '<strong>Сообщение отправлено!</strong> Мы свяжемся с вами в ближайшее время.',
+            'measurement-order': '<strong>Сообщение отправлено!</strong> Мы свяжемся с вами в ближайшее время.',
         };
         var $form = response.form;
         var $checkMark = $('<div>', {
@@ -152,6 +193,8 @@ $(function() {
             formDefaultHandler($form, notificationMessages['product-availability'], $checkMark);
         } else if ($form.hasClass('product-price-order')) {
             formDefaultHandler($form, notificationMessages['product-price-order'], $checkMark);
+        } else if ($form.hasClass('measurement-order')) {
+            formDefaultHandler($form, notificationMessages['measurement-order'], $checkMark);
         }
     });
 
@@ -339,41 +382,6 @@ $(function() {
     $(document).on('change', ' #complectation-items input[name="count"], #door-complectation input[name="count"]', function() {
         recountTotalRowCost($(this));
     });
-
-    /**
-     *
-     * PHP's number_format() equivalent
-     * @link https://gist.github.com/leodutra/2919561
-     *
-     */
-
-    function numberFormat(number, decimals, dec_point, thousands_sep)
-    {
-        // http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-        var n = !isFinite(+number) ? 0 : +number,
-            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-            s = '',
-            toFixedFix = function (n, prec)
-            {
-                var k = Math.pow(10, prec);
-                return '' + Math.round(n * k) / k;
-            };
-        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-        if (s[0].length > 3)
-        {
-            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-        }
-        if ((s[1] || '').length < prec)
-        {
-            s[1] = s[1] || '';
-            s[1] += new Array(prec - s[1].length + 1).join('0');
-        }
-        return s.join(dec);
-    }
 
     // Smooth scroll
     var smoothScroll = function(elementID, duration) {
@@ -704,7 +712,7 @@ $(document).on('mouseenter touchstart', '.rating-stars input + label', function(
  */
 
 function getProduct(url) {
-    $('#product, #product-tabs, #joint-products').css('opacity', '.5');
+    $('#product, #product-tabs, #joint-products, .product-complectation').css('opacity', '.5');
     let productSizesAreExpanded = $('#product-sizes').hasClass('expanded'),
         activeProductTabSelector = $('#product-tabs').find('[data-toggle="tab"].active').attr('href');
     $.ajax({
@@ -714,8 +722,9 @@ function getProduct(url) {
         success: function(response) {
             let title = $(response).filter('title').text(),
                 $productInfo = $(response).find('#product'),
-                $productTabs = $(response).find('#product-tabs')
-                $jointProducts = $(response).find('#joint-products')
+                $productTabs = $(response).find('#product-tabs'),
+                $jointProducts = $(response).find('#joint-products'),
+                $productComplectation = $(response).find('.product-complectation')
             ;
             // Expand product sizes
             if (productSizesAreExpanded) {
@@ -740,7 +749,17 @@ function getProduct(url) {
                 document.title = title;
                 $('#product').html(productInfoHTML);
                 $('#product-tabs').html(productTabsHTML);
-                // Process joint products
+                // Process product complectation
+                if (0 === $productComplectation.length) {
+                    $('.product-complectation').remove();
+                } else {
+                    if (0 < $('.product-complectation').length) {
+                        $('.product-complectation').html($productComplectation.html());
+                    } else {
+                        $('#product').after($productComplectation);
+                    }
+                }
+                // Process joint products (FIXME: Place joint products after product complectation if last is present.)
                 if (0 == $jointProducts.length) {
                     $('#joint-products').remove();
                 } else {
@@ -766,7 +785,7 @@ function getProduct(url) {
                 }).mask(document.querySelectorAll('input[type="tel"]'));
             }
             $('#product').attr('data-url', url);
-            $('#product, #product-tabs, #joint-products').css('opacity', '1');
+            $('#product, #product-tabs, #joint-products, .product-complectation').css('opacity', '1');
         }
     });
 }
@@ -980,4 +999,169 @@ $(document).on('click',
             $(this).removeClass('animated bounceIn');
         });
     ;
+});
+
+/**
+ * Fake number input.
+ */
+
+function processFakeNumberInput(input, operation) {
+    if ('+' !== operation && '-' !== operation) {
+        return;
+    }
+
+    // TODO: Check if min, step or max is NaN.
+    var min = null !== input.getAttribute('min') ? parseFloat(input.getAttribute('min')) : -Infinity,
+        step = null !== input.getAttribute('step') ? parseFloat(input.getAttribute('step')) : 1,
+        max = null !== input.getAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity,
+        value = parseFloat(input.value),
+        result
+    ;
+
+    if (isNaN(value)) {
+        value = 0;
+    }
+
+    if ('+' === operation) {
+        // Custom requirement
+        if (input.classList.contains('increase-from-0-to-1') && 0 === value) {
+            result = 1;
+        // Normal flow
+        } else {
+            result = value + step;
+        }
+        if (result > max) {
+            return;
+        }
+    } else if ('-' === operation) {
+        result = value - step;
+        if (result < min) {
+            return;
+        }
+    }
+
+    result = Math.round(result * 100) / 100;
+    input.value = result
+}
+
+function processFakeNumberInputSpinner(el) {
+    var input = $(el).closest('.input-spinnerable').find('[data-spinnerable]')[0];
+    if (el.classList.contains('plus')) {
+        processFakeNumberInput(input, '+')
+    } else if (el.classList.contains('minus')) {
+        processFakeNumberInput(input, '-')
+    }
+}
+
+$(document).on('mousedown', '.input-spinnerable .minus, .input-spinnerable .plus', function(event) {
+    var _this = this,
+        intervalId = setInterval(function () { processFakeNumberInputSpinner(_this); }, 100);
+    $(this).on('mouseup mouseout', function() {
+        clearInterval(intervalId);
+    });
+});
+
+$(document).on('click', '.input-spinnerable .minus, .input-spinnerable .plus', function() {
+    processFakeNumberInputSpinner(this);
+    $(this).closest('.input-spinnerable').find('[data-spinnerable]').trigger('change');
+});
+
+/**
+ * Counting of product complectation item sum, complectation sum and total sum.
+ */
+
+function countTableItemCost(input) {
+    var count = parseFloat($(input).val()) || 0,
+        price = parseFloat($(input).closest('tr').find('.ms2_product_price').attr('data-value')),
+        sum = count * price
+    ;
+    return sum;
+}
+
+$(document).on('change', '.product-complectation [data-spinnerable]', function() {
+    // Set item sum
+    var itemSum = countTableItemCost($(this));
+    $(this).closest('tr')
+        .find('.ms2_total_row_cost')
+        .attr('data-value', itemSum)
+        .text(numberFormat(
+            itemSum,
+            0 === itemSum % 1 ? 0 : 2, // No decimals if sum isn't float
+            '.',
+            ' ',
+        ))
+    ;
+
+    // Set complectation sum and total sum
+    var complectationSum = 0,
+        totalSum = parseFloat($('#product-price').attr('data-value'))
+    ;
+    $(this).closest('.product-complectation').find('.ms2_total_row_cost').each(function(index, item) {
+        complectationSum += parseFloat($(item).attr('data-value'));
+    });
+    totalSum += complectationSum;
+
+    $('.complectation-sum')
+        .attr('data-value', complectationSum)
+        .text(
+            numberFormat(
+                complectationSum,
+                0 === complectationSum % 1 ? 0 : 2, // No decimals if sum isn't float
+                '.',
+                ' ',
+            )
+        )
+    ;
+    $('.total-sum')
+        .attr('data-value', totalSum)
+        .text(
+            numberFormat(
+                totalSum,
+                0 === totalSum % 1 ? 0 : 2, // No decimals if sum isn't float
+                '.',
+                ' ',
+            )
+        )
+    ;
+});
+
+/**
+ * Add a product and its complectation (if present) to cart.
+ */
+
+$(document).on('click', '[data-action="add-to-cart"]', function() {
+    var count = 0,
+        totalCount = 0,
+        queryStrings = []
+    ;
+    $('form.custom-ms2-form').each(function(key, form) {
+        count = $(form).find('input[name*=count]').val()
+        if (0 < count) {
+            totalCount += count;
+            queryStrings.push($(form).serialize());
+        }
+    });
+
+    if (queryStrings.length) {
+        $.ajax({
+            url: '/assets/components/minishop2/h.php',
+            type: 'post',
+            data: queryStrings.join('&'),
+            dataType: 'json',
+            success: function(response) {
+                if (response.cartStatus) {
+                    var notificationBody = 1 < totalCount
+                        ? 'Товары добавлены в корзину.'
+                        : 'Товар добавлен в корзину.'
+                    ;
+                    $('#added-to-cart').find('.modal-body').html(notificationBody);
+                    $('#added-to-cart').modal('show');
+                    $('.ms2_total_count').text(response.cartStatus.total_count);
+                    $('.ms2_total_cost').text(response.cartStatus.total_cost);
+                } else if (response.error) {
+                    alert(response.error);
+                }
+            }
+        });
+    }
 });

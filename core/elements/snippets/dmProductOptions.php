@@ -5,6 +5,7 @@ $conditions = $modx->getOption('conditions', $scriptProperties);
 $currentOptionValue = $modx->getOption('currentOptionValue', $scriptProperties);
 $optionKey = $modx->getOption('optionKey', $scriptProperties);
 $optionLabel = $modx->getOption('optionLabel', $scriptProperties);
+$showSingleOption = $modx->getOption('showSingleOption', $scriptProperties);
 $withImage = $modx->getOption('withImage', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
@@ -87,7 +88,7 @@ $criteria->select($selectionFields);
 $productOptionCollection = $modx->getCollection('msProductOption', $criteria);
 
 // Nothing to output
-if (sizeof($productOptionCollection) <= 1) {
+if (!$showSingleOption && sizeof($productOptionCollection) <= 1) {
     return;
 }
 
@@ -114,7 +115,7 @@ foreach ($productOptionCollection as $id => $productOption) {
 }
 
 // Output nothing if non-deleted product count <= 1
-if (1 >= $nonDeletedProductCount) {
+if (!$showSingleOption && 1 >= $nonDeletedProductCount) {
     return false;
 }
 

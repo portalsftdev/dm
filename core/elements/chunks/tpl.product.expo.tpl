@@ -24,4 +24,11 @@
             </div>
         {/if}
     </div>
+
+    {if $_modx->resource.parent in [$_modx->config.'resources.room_doors']}
+        <a class="trademark-logo no_underline" title="{$_modx->getPlaceholder('productVendorName')|escape}" href="{$_modx->makeUrl($_modx->resource.parent, '', ['trademark' => $_modx->getPlaceholder('productVendorId')|escape])}">
+            <img src="{$_modx->getPlaceholder('productVendorLogo')}" class="expo-logo rounded" alt="Бренд «{$_modx->getPlaceholder('productVendorName')|escape}»">
+            <meta itemprop="brand" content="{$_modx->getPlaceholder('productVendorName')|escape}" />
+        </a>
+    {/if}
 </div>

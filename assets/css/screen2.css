@@ -1,4 +1,9 @@
 /**
+ * TODO:
+ * 1. Remove useless code.
+ */
+
+/**
  * Helper classes
  */
 
@@ -128,13 +133,16 @@
 .product-availability span.error,
 .product-availability .success-message,
 .product-price-order span.error,
-.product-price-order .success-message {
+.product-price-order .success-message,
+.measurement-order span.error,
+.measurement-order .success-message {
     margin-top: -0.25rem;
     float: left;
 }
 
 .product-availability .success-message,
-.product-price-order .success-message {
+.product-price-order .success-message,
+.measurement-order .success-message {
     color: #3c763d;
 }
 
@@ -1046,4 +1054,172 @@ input:disabled ~ label {
  */
 .tooltip {
     pointer-events: none;
+}
+
+/* New product page style. */
+
+/**
+ * Trademark logo at interior background.
+ */
+.expo-interior .trademark-logo {
+    position: absolute;
+    right: 30px;
+    bottom: .5rem;
+}
+
+.expo-interior .trademark-logo img {
+    height: 80px;
+    max-width: none;
+    opacity: .5;
+    filter: grayscale(100%);
+}
+
+
+/**
+ * Product properties styles.
+ */
+.product-text-properties fieldset {
+    margin-right: .75rem;
+}
+.product-text-properties .heading {
+    display: block;
+    margin-bottom: .5rem;
+}
+@media (min-width: 420px) {
+    .product-text-properties .heading {
+        display: inline;
+        margin-bottom: 0;
+    }
+}
+.product-text-properties input[type="radio"] + label {
+    padding-left: 1.75rem;
+}
+
+/**
+ * Product page cart container.
+ */
+.cart-container {
+    border: 5px solid #ff9225;
+}
+
+/**
+ * Total cost description (i.e. total and its description)
+ */
+.total-cost-description .total {
+    font-size: 1.75rem;
+}
+.total-cost-description .total-sum {
+    font-weight: 700;
+}
+.total-cost-description .description {
+    font-size: .9rem;
+}
+
+
+/**
+ * Fake number input.
+ */
+.input-spinnerable {
+    position: relative;
+}
+
+.input-spinnerable .minus,
+.input-spinnerable .plus {
+    position: absolute;
+    right: 0;
+    width: 2.5rem;
+    height: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-spinnerable .minus::before,
+.input-spinnerable .plus::before {
+    content: "";
+    width: .625rem;
+    height: .625rem;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    position: absolute;
+    top: 25%;
+    margin-left: -.5rem;
+    border-top-right-radius: .125rem;
+}
+
+.input-spinnerable .minus {
+    bottom: 0;
+}
+
+.input-spinnerable .minus::before {
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    margin-top: -.25rem;
+}
+
+.input-spinnerable .plus {
+    top: 0;
+}
+.input-spinnerable .plus::before {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    margin-top: .25rem;
+}
+
+/**
+ * Product page complectation list.
+ */
+.product-complectation {
+    margin-top: 2rem;
+}
+.product-complectation h4 {
+    font-size: 1.375rem;
+}
+.product-complectation .icon-info-circled {
+    font-size: 1.25rem;
+    color: #343a40;
+    line-height: 1;
+    position: relative;
+    top: 4px;
+}
+
+.product-complectation table td {
+    vertical-align: middle;
+}
+.product-complectation table .card-price,
+.product-complectation table .ms2_total_row_cost {
+    white-space: nowrap;
+}
+.product-complectation table .card-price {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.product-complectation table input {
+    min-width: 5rem;
+    max-width: 7rem;
+    padding-left: 1rem;
+    padding-right: 2.5rem;
+    border-radius: 10rem;
+    border-color: #ff9225;
+}
+
+.product-complectation table .input-spinnerable .minus::before,
+.product-complectation table .input-spinnerable .plus::before {
+    border-top-color: #ff9225;
+    border-right-color: #ff9225;
+}
+
+.product-complectation table td.total-row-cost {
+    min-width: 9rem;
+}
+
+.product-complectation table tr.total {
+    font-size: 1.5rem;
+}
+
+.product-complectation table tr.total td:first-child {
+    font-weight: 300;
+}
+
+.product-complectation table tr.total td:last-child {
+    font-weight: 500;
 }

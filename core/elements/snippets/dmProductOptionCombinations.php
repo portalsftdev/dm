@@ -134,20 +134,24 @@ foreach ($productOptionCollection as $id => $productOption) {
             break;
         }
     }
-    $placeholders = [
-        'id' => $id + 1,
-        'optionKeys' => $optionKeys,
-        'productId' => $productId,
-        'optionValues' => $optionValues,
-        'optionImage' => $productOption->get('pattern'),
-        'currentOptionValues' => $currentOptionValues, // For recognize active items
-        'productCartKey' => $productCartKey,
-        'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
-        'productRemain' => $productOption->get('remain'),
-    ];
-    $items .= !empty($pdoTools)
-        ? $pdoTools->getChunk($tpl, $placeholders)
-        : $modx->getChunk($tpl, $placeholders);
+
+    if ($tplWrapper && $tpl) {
+        $placeholders = [
+            'id' => $id + 1,
+            'optionKeys' => $optionKeys,
+            'productId' => $productId,
+            'optionValues' => $optionValues,
+            'optionImage' => $productOption->get('pattern'),
+            'currentOptionValues' => $currentOptionValues, // For recognize active items
+            'productCartKey' => $productCartKey,
+            'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
+            'productRemain' => $productOption->get('remain'),
+        ];
+        $items .= !empty($pdoTools)
+            ? $pdoTools->getChunk($tpl, $placeholders)
+            : $modx->getChunk($tpl, $placeholders);
+    }
+
     if ($productAvailabilityToPlaceholder) {
         $productAvailabilitySnippetParameters = array_merge($productAvailabilitySnippetParameters, [
             'productRemain' => $productOption->get('remain'),
@@ -160,18 +164,22 @@ foreach ($productOptionCollection as $id => $productOption) {
 }
 
 // Output nothing if non-deleted product count <= 1
-if (1 >= $nonDeletedProductCount) {
+if (!$showSingleOption && 1 >= $nonDeletedProductCount) {
     return false;
 }
 
-// Wrap the items
-$placeholders = [
-    'items' => $items,
-    'optionLabel' => $optionLabel,
-];
-$output = !empty($pdoTools)
-    ? $pdoTools->getChunk($tplWrapper, $placeholders)
-    : $modx->getChunk($tplWrapper, $placeholders);
+$output = '';
+
+if ($tplWrapper && $tpl) {
+    // Wrap the items
+    $placeholders = [
+        'items' => $items,
+        'optionLabel' => $optionLabel,
+    ];
+    $output = !empty($pdoTools)
+        ? $pdoTools->getChunk($tplWrapper, $placeholders)
+        : $modx->getChunk($tplWrapper, $placeholders);
+}
 
 if ($productAvailabilityToPlaceholder) {
     $modx->setPlaceholder($productAvailabilityToPlaceholder, $productAvailabilityOutput);

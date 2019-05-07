@@ -1,6 +1,4 @@
-<div class="row">
-    <div class="mx-4">
-        <p class="mb-2">{$optionLabel}: </p>
-        {$items}
-    </div>
+<div class="col-12 product-image-properties">
+    <p class="mb-2">{$optionLabel}: </p>
+    {$items}
 </div>
