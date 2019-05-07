@@ -54,10 +54,12 @@ foreach ($conditions as $key => $value) {
     }
 }
 
-$productIDsSubquery->where($whereCondition)
-                   ->groupby('msProductOption.product_id');
-$productIDsSubquery->select('msProductOption.product_id');
-$productIDsSubquery->prepare();
+$productIDsSubquery
+    ->where($whereCondition)
+    ->groupby('msProductOption.product_id')
+    ->select('msProductOption.product_id')
+    ->prepare()
+;
 // echo $productIDsSubquery->toSQL();
 
 // Get unique options with specified option keys and product ids having specified option key and value (retrieved by subquery above)
@@ -84,11 +86,13 @@ $criteria->leftJoin('modTemplateVarResource', 'modTemplateVarResource', "msProdu
 $selectionFields[] = 'modTemplateVarResource.value AS remain';
 
 // Add conditions
-$criteria->where([
-             'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
-           ]);
-// Group by specified key values and `deleted` field
-$criteria->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])));
+$criteria
+    ->where([
+        'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
+    ])
+    // Group by specified key values and `deleted` field
+    ->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])))
+;
 
 $criteria->select($selectionFields);
 // $criteria->prepare();

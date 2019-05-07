@@ -46,10 +46,12 @@ foreach ($conditions as $key => $value) {
     }
 }
 
-$productIDsSubquery->where($whereCondition)
-                   ->groupby('msProductOption.product_id');
-$productIDsSubquery->select('msProductOption.product_id');
-$productIDsSubquery->prepare();
+$productIDsSubquery
+    ->where($whereCondition)
+    ->groupby('msProductOption.product_id')
+    ->select('msProductOption.product_id')
+    ->prepare()
+;
 // echo $productIDsSubquery->toSQL();
 
 // Get unique options with specified option key and product ids having specified option key and value (retrieved by subquery above)
@@ -64,12 +66,14 @@ if ($withImage) {
 }
 
 // Add conditions and grouping
-$criteria->where([
-             'msProductOption.key' => $optionKey,
-             'msProductOption.value:!=' => '',
-             'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
-           ])
-         ->groupby('msProductOption.value, modResource.deleted');
+$criteria
+    ->where([
+        'msProductOption.key' => $optionKey,
+        'msProductOption.value:!=' => '',
+        'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
+    ])
+    ->groupby('msProductOption.value, modResource.deleted')
+;
 
 // Set selection fields
 $selectionFields = [

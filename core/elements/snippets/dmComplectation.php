@@ -54,11 +54,14 @@ foreach ($slaveLinks as $slaveLink) {
 }
 
 // Get products with specified ids
-$criteria = $modx->newQuery('msProduct')
-                //  ->leftJoin('msProductData', 'msProductData', 'msProduct.id = msProductData.id')
-                 ->where(['msProduct.id:IN' => $slaveIDs])
-                 // ->sortby("FIELD(msProduct.menutitle, 'Короб', 'Наличник', 'Добор')");
-                 ->sortby("msProduct.pagetitle");
+$criteria = $modx->newQuery('msProduct');
+$criteria
+    // ->leftJoin('msProductData', 'msProductData', 'msProduct.id = msProductData.id')
+    ->where(['msProduct.id:IN' => $slaveIDs])
+    // ->sortby("FIELD(msProduct.menutitle, 'Короб', 'Наличник', 'Добор')");
+    ->sortby("msProduct.pagetitle")
+;
+
 $selectionFields = ['msProduct.id'];
 
 // Join product remains
