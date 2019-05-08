@@ -38,6 +38,7 @@
                 ])}
             </div>
 
+            {* FIXME: Condition in `tplParentRow`. *}
             {$_modx->runSnippet('!pdoMenu@PropertySet', [
             'parents' => 1,
             'level' => 2,
@@ -47,7 +48,7 @@
             'hereClass' => 'active',
             'tplOuter' => '@INLINE {$_pls["wrapper"]}',
             'tplInner' => '@INLINE {$_pls["wrapper"]}',
-            'tplParentRow' => '@INLINE <div class="col-lg-2 col-6 mt-4"><a href="{$_pls["link"]}" class="h5 no_underline--hover">{$_pls["menutitle"]}</a><br>{$_pls["wrapper"]}</div>',
+            'tplParentRow' => '@INLINE <div class="col-lg-2 col-6 mt-4"><{if $_pls["menutitle"] in ["Покупателю"]}span{else}a{/if} href="{$_pls["link"]}" class="h5{if $_pls["menutitle"] not in ["Покупателю"]} no_underline--hover{/if}">{$_pls["menutitle"]}</{if $_pls["menutitle"] in ["Покупателю"]}span{else}a{/if}><br>{$_pls["wrapper"]}</div>',
             'countChildren' => 0,
             ])}
         </div>
