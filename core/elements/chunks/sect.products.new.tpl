@@ -7,8 +7,8 @@
         {$_modx->RunSnippet('msProducts', [
             'tpl' => '@FILE chunks/tpl.products.new.row.tpl',
             'limit' => 5,
-            'sortby' => 'RAND()'
-            'where' => '{"Data.new":1}'
+            'sortby' => 'RAND()',
+            'where' => '{"Data.new":1}',
         ])}
         </div>
     </div>
