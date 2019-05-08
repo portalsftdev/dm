@@ -55,3 +55,6 @@ assets/components/minishop2/*
 
 # But assets/components/minishop2/plugins/.placeholder
 assets/components/minishop2/plugins/.placeholder
+
+# And no assets/components/minishop2/h.php
+!assets/components/minishop2/h.php

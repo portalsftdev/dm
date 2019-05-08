@@ -6,7 +6,7 @@
         </div>
     </section>
             {else}
-            <table class="table table-striped table-hover mt-4">
+            <table class="table table-striped table-hover mt-4 cart-item-list">
                 <tbody>
                 {foreach $products as $product}
                 {set $noShadow = ! (
@@ -46,7 +46,11 @@
                                         <div>Количество</div>
                                         <form method="post" class="ms2_form" role="form">
                                             <input type="hidden" name="key" value="{$product.key}"/>
-                                            <input type="number" class="form-control form-control-sm form-control--border w-rem-4 mb-3 mr-2 d-inline-block" value="{$product.count}" min="0" step="{if $product.menutitle == 'Короб' || $product.menutitle == 'Наличник'}0.2{else}1{/if}" name="count" placeholder="">
+                                            <div class="d-inline-block mb-3 mr-2 input-spinnerable">
+                                                <span class="minus"></span>
+                                                <input name="count" type="text" class="form-control form-control-sm form-control--border" value="{$product.count}" min="0" max="99" step="{if $product.menutitle == 'Короб' || $product.menutitle == 'Наличник'}0.2{else}1{/if}" placeholder="" data-spinnerable>
+                                                <span class="plus"></span>
+                                            </div>
                                             <button type="submit" name="ms2_action" value="cart/change" class="d-none"></button>
                                             <div class="card-price d-inline-block">
                                                 &times;&nbsp;<span class="price ms2_product_price">{$product.price}</span>&nbsp;<span class="icon-rub"></span>

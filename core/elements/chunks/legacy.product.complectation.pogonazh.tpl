@@ -28,31 +28,34 @@
     {set $unit = 'шт.'}
 {/if}
 <tr>
-    <td class="lead">
-        <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>
-        {$productName}
+    <td>
+        <div class="lead">
+            {$productName}
+            <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>
+        </div>
     </td>
+    <td>
+        <form class="ms2_form" data-link-name="{$linkName}" data-id="{$id}" method="post">
+            <div class="input-group">
+                <button type="button" class="btn btn-secondary form-control--border" data-spin="minus">–</button>
+                <input name="count" type="number" min="0" max="99" step="{$step}" class="form-control form-control-sm form-control--border no-spinners" value="{$count}" placeholder="">
+                <span class="input-group-addon form-control-sm form-control--border">{$unit}</span>
+                <button type="button" class="btn btn-secondary form-control--border" data-spin="plus">+</button>
+            </div>
+            <input type="hidden" name="id" value="{$id}">
+            {if '' != $cartKey}<input type="hidden" name="key" value="{$cartKey}" />{/if}
+            <input name="options" value="[]" type="hidden">
+            <button type="submit" name="ms2_action" value="{if 0 == $count}cart/add{else}cart/change{/if}"></button>
+        </form>
+        </td>
     <td>
         <div class="card-price">
-            <span class="price ms2_product_price" data-value="{$price|replace:' ':''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
+            &times;&nbsp;<span class="price ms2_product_price">{$price}</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>
-    <td>
-        <div class="d-flex align-items-center">
-            <div class="input-spinnerable">
-                <span class="minus"></span>
-                <form class="custom-ms2-form">
-                    <input name="products[{$id}][count]" type="text" class="form-control form-control-sm form-control--border{if 'к.' === $unit} increase-from-0-to-1{/if}" value="0" min="0" max="99" step="{$step}" autocomplete="off" data-spinnerable>
-                    <input name="products[{$id}][options]" type="hidden" value="[]">
-                </form>
-                <span class="plus"></span>
-            </div>
-            <span class="ml-2">{$unit}</span>
-        </div>
-    </td>
-    <td class="total-row-cost">
+    <td class="total-cost">
         <div class="card-price text-center">
-            <span class="price ms2_total_row_cost" data-value="{$sum|replace:' ':''}">0</span>&nbsp;<span class="icon-rub"></span>
+            =&nbsp;<span class="price ms2_total_row_cost">{$sum}</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </td>
 </tr>

@@ -15,6 +15,8 @@ $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
 $productAvailabilityToPlaceholder = $modx->getOption('productAvailabilityToPlaceholder', $scriptProperties);
 
+define('NO_SUBQUERY_STRATEGY', true);
+
 // Use pdoTools if it's possible
 if (class_exists('pdoTools')) {
     $pdoTools = $modx->getService('pdoTools');
@@ -54,11 +56,24 @@ foreach ($conditions as $key => $value) {
     }
 }
 
-$productIDsSubquery->where($whereCondition)
-                   ->groupby('msProductOption.product_id');
-$productIDsSubquery->select('msProductOption.product_id');
-$productIDsSubquery->prepare();
+$productIDsSubquery
+    ->where($whereCondition)
+    // ->groupby('msProductOption.product_id')
+    ->select('msProductOption.product_id')
+;
+// $productIDsSubquery->prepare();
 // echo $productIDsSubquery->toSQL();
+
+if (NO_SUBQUERY_STRATEGY) {
+    // Main time consumption goes here
+    $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    $productIds = [];
+    foreach ($productOptionCollection as $productOption) {
+        $productIds[] = $productOption->get('product_id');
+    }
+} else {
+    $productIDsSubquery->prepare();
+}
 
 // Get unique options with specified option keys and product ids having specified option key and value (retrieved by subquery above)
 $criteria = $modx->newQuery('msProductOption');
@@ -84,11 +99,16 @@ $criteria->leftJoin('modTemplateVarResource', 'modTemplateVarResource', "msProdu
 $selectionFields[] = 'modTemplateVarResource.value AS remain';
 
 // Add conditions
-$criteria->where([
-             'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
-           ]);
-// Group by specified key values and `deleted` field
-$criteria->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])));
+$criteria
+    ->where([
+        NO_SUBQUERY_STRATEGY
+            ? ['msProductOption.product_id:IN' => $productIds]
+            : 'msProductOption.product_id IN ('.$productIDsSubquery->toSQL().')'
+        ,
+    ])
+    // Group by specified key values and `deleted` field
+    ->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])))
+;
 
 $criteria->select($selectionFields);
 // $criteria->prepare();
@@ -134,20 +154,24 @@ foreach ($productOptionCollection as $id => $productOption) {
             break;
         }
     }
-    $placeholders = [
-        'id' => $id + 1,
-        'optionKeys' => $optionKeys,
-        'productId' => $productId,
-        'optionValues' => $optionValues,
-        'optionImage' => $productOption->get('pattern'),
-        'currentOptionValues' => $currentOptionValues, // For recognize active items
-        'productCartKey' => $productCartKey,
-        'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
-        'productRemain' => $productOption->get('remain'),
-    ];
-    $items .= !empty($pdoTools)
-        ? $pdoTools->getChunk($tpl, $placeholders)
-        : $modx->getChunk($tpl, $placeholders);
+
+    if ($tplWrapper && $tpl) {
+        $placeholders = [
+            'id' => $id + 1,
+            'optionKeys' => $optionKeys,
+            'productId' => $productId,
+            'optionValues' => $optionValues,
+            'optionImage' => $productOption->get('pattern'),
+            'currentOptionValues' => $currentOptionValues, // For recognize active items
+            'productCartKey' => $productCartKey,
+            'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
+            'productRemain' => $productOption->get('remain'),
+        ];
+        $items .= !empty($pdoTools)
+            ? $pdoTools->getChunk($tpl, $placeholders)
+            : $modx->getChunk($tpl, $placeholders);
+    }
+
     if ($productAvailabilityToPlaceholder) {
         $productAvailabilitySnippetParameters = array_merge($productAvailabilitySnippetParameters, [
             'productRemain' => $productOption->get('remain'),
@@ -160,18 +184,22 @@ foreach ($productOptionCollection as $id => $productOption) {
 }
 
 // Output nothing if non-deleted product count <= 1
-if (1 >= $nonDeletedProductCount) {
+if (!$showSingleOption && 1 >= $nonDeletedProductCount) {
     return false;
 }
 
-// Wrap the items
-$placeholders = [
-    'items' => $items,
-    'optionLabel' => $optionLabel,
-];
-$output = !empty($pdoTools)
-    ? $pdoTools->getChunk($tplWrapper, $placeholders)
-    : $modx->getChunk($tplWrapper, $placeholders);
+$output = '';
+
+if ($tplWrapper && $tpl) {
+    // Wrap the items
+    $placeholders = [
+        'items' => $items,
+        'optionLabel' => $optionLabel,
+    ];
+    $output = !empty($pdoTools)
+        ? $pdoTools->getChunk($tplWrapper, $placeholders)
+        : $modx->getChunk($tplWrapper, $placeholders);
+}
 
 if ($productAvailabilityToPlaceholder) {
     $modx->setPlaceholder($productAvailabilityToPlaceholder, $productAvailabilityOutput);

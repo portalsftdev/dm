@@ -5,9 +5,12 @@ $conditions = $modx->getOption('conditions', $scriptProperties);
 $currentOptionValue = $modx->getOption('currentOptionValue', $scriptProperties);
 $optionKey = $modx->getOption('optionKey', $scriptProperties);
 $optionLabel = $modx->getOption('optionLabel', $scriptProperties);
+$showSingleOption = $modx->getOption('showSingleOption', $scriptProperties);
 $withImage = $modx->getOption('withImage', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
+
+define('NO_SUBQUERY_STRATEGY', true);
 
 // Use pdoTools if it's possible
 if (class_exists('pdoTools')) {
@@ -45,11 +48,24 @@ foreach ($conditions as $key => $value) {
     }
 }
 
-$productIDsSubquery->where($whereCondition)
-                   ->groupby('msProductOption.product_id');
-$productIDsSubquery->select('msProductOption.product_id');
-$productIDsSubquery->prepare();
+$productIDsSubquery
+    ->where($whereCondition)
+    // ->groupby('msProductOption.product_id')
+    ->select('msProductOption.product_id')
+;
+// $productIDsSubquery->prepare();
 // echo $productIDsSubquery->toSQL();
+
+if (NO_SUBQUERY_STRATEGY) {
+    // Main time consumption goes here
+    $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    $productIds = [];
+    foreach ($productOptionCollection as $productOption) {
+        $productIds[] = $productOption->get('product_id');
+    }
+} else {
+    $productIDsSubquery->prepare();
+}
 
 // Get unique options with specified option key and product ids having specified option key and value (retrieved by subquery above)
 $criteria = $modx->newQuery('msProductOption');
@@ -63,12 +79,17 @@ if ($withImage) {
 }
 
 // Add conditions and grouping
-$criteria->where([
-             'msProductOption.key' => $optionKey,
-             'msProductOption.value:!=' => '',
-             'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
-           ])
-         ->groupby('msProductOption.value, modResource.deleted');
+$criteria
+    ->where([
+        'msProductOption.key' => $optionKey,
+        'msProductOption.value:!=' => '',
+        NO_SUBQUERY_STRATEGY
+            ? ['msProductOption.product_id:IN' => $productIds]
+            : 'msProductOption.product_id IN ('.$productIDsSubquery->toSQL().')'
+        ,
+    ])
+    ->groupby('msProductOption.value, modResource.deleted')
+;
 
 // Set selection fields
 $selectionFields = [
@@ -87,7 +108,7 @@ $criteria->select($selectionFields);
 $productOptionCollection = $modx->getCollection('msProductOption', $criteria);
 
 // Nothing to output
-if (sizeof($productOptionCollection) <= 1) {
+if (!$showSingleOption && sizeof($productOptionCollection) <= 1) {
     return;
 }
 
@@ -114,7 +135,7 @@ foreach ($productOptionCollection as $id => $productOption) {
 }
 
 // Output nothing if non-deleted product count <= 1
-if (1 >= $nonDeletedProductCount) {
+if (!$showSingleOption && 1 >= $nonDeletedProductCount) {
     return false;
 }
 
