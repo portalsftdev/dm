@@ -15,6 +15,8 @@ $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
 $productAvailabilityToPlaceholder = $modx->getOption('productAvailabilityToPlaceholder', $scriptProperties);
 
+define('NO_SUBQUERY_STRATEGY', true);
+
 // Use pdoTools if it's possible
 if (class_exists('pdoTools')) {
     $pdoTools = $modx->getService('pdoTools');
@@ -56,11 +58,22 @@ foreach ($conditions as $key => $value) {
 
 $productIDsSubquery
     ->where($whereCondition)
-    ->groupby('msProductOption.product_id')
+    // ->groupby('msProductOption.product_id')
     ->select('msProductOption.product_id')
-    ->prepare()
 ;
+// $productIDsSubquery->prepare();
 // echo $productIDsSubquery->toSQL();
+
+if (NO_SUBQUERY_STRATEGY) {
+    // Main time consumption goes here
+    $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    $productIds = [];
+    foreach ($productOptionCollection as $productOption) {
+        $productIds[] = $productOption->get('product_id');
+    }
+} else {
+    $productIDsSubquery->prepare();
+}
 
 // Get unique options with specified option keys and product ids having specified option key and value (retrieved by subquery above)
 $criteria = $modx->newQuery('msProductOption');
@@ -88,7 +101,10 @@ $selectionFields[] = 'modTemplateVarResource.value AS remain';
 // Add conditions
 $criteria
     ->where([
-        'msProductOption.product_id IN (' . $productIDsSubquery->toSQL() . ')',
+        NO_SUBQUERY_STRATEGY
+            ? ['msProductOption.product_id:IN' => $productIds]
+            : 'msProductOption.product_id IN ('.$productIDsSubquery->toSQL().')'
+        ,
     ])
     // Group by specified key values and `deleted` field
     ->groupby(implode(', ', array_merge($optionKeys, ['modResource.deleted'])))
