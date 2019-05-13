@@ -1165,3 +1165,19 @@ $(document).on('click', '[data-action="add-to-cart"]', function() {
         });
     }
 });
+
+/**
+ * Disable filter capability during filtering (i.e. next filtration should be
+ * **after** previous).
+ */
+
+var mSearchFilterSelectors = '#mse2_filters input[type="checkbox"], #mse2_filters input[type="radio"], #mse2_filters select, #mse2_filters input[type="reset"]';
+$(document).on('change', mSearchFilterSelectors, function() {
+    document.getElementById('mse2_filters').style.opacity = .5;
+    document.getElementById('mse2_filters').style.pointerEvents = 'none';
+});
+
+$(document).on('mse2_load', function(event, response) {
+    document.getElementById('mse2_filters').style.pointerEvents = 'auto';
+    document.getElementById('mse2_filters').style.opacity = 1;
+});
