@@ -5,6 +5,8 @@ $tpl = $modx->getOption('tpl', $scriptProperties);
 $linkName = $modx->getOption('linkName', $scriptProperties);
 $productID = $modx->getOption('productID', $scriptProperties, $modx->resource->id);
 $productNameField = $modx->getOption('productNameField', $scriptProperties, 'pagetitle');
+// List of `modResource.menutitle`
+$types = $modx->getOption('types', $scriptProperties, []);
 $mandatoryCount = $modx->getOption('mandatoryCount', $scriptProperties, false);
 $complectationCostPlaceholder = $modx->getOption('complectationCostPlaceholder', $scriptProperties, false);
 $complectationAvailabilityToPlaceholder = $modx->getOption('complectationAvailabilityToPlaceholder', $scriptProperties);
@@ -57,7 +59,10 @@ foreach ($slaveLinks as $slaveLink) {
 $criteria = $modx->newQuery('msProduct');
 $criteria
     // ->leftJoin('msProductData', 'msProductData', 'msProduct.id = msProductData.id')
-    ->where(['msProduct.id:IN' => $slaveIDs])
+    ->where(array_merge(
+        ['msProduct.id:IN' => $slaveIDs],
+        0 < count($types) ? ['msProduct.menutitle:IN' => $types] : []
+    ))
     // ->sortby("FIELD(msProduct.menutitle, 'Короб', 'Наличник', 'Добор')");
     ->sortby("msProduct.pagetitle")
 ;

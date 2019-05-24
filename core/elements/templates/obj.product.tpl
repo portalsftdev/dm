@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 pb-3">
-                                    <div class="mb-3 p-3 text-center rounded cart-container total-cost-description">
+                                    <div class="mb-3 p-3 text-center rounded bordered-container total-cost-description">
                                         <div class="total">
                                             Итого: <span data-value="{$price|replace:' ':''}" class="mr-1 total-sum">{$price}</span><span class="icon-rub"></span>
                                         </div>
@@ -185,6 +185,16 @@
     }'}
     {set $complectationList = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
         'linkName' => 'pogonazh',
+        'types' => [
+            'Добор',
+            'Капитель',
+            'Короб',
+            'Наличник',
+            'Притворная планка',
+            'Розетка',
+            'Сандрик',
+            'Соединитель для добора',
+        ],
         'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
         'complectationAvailabilityToPlaceholder' => 'complectationAvailability',
         'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
@@ -193,7 +203,21 @@
         'availabilityDividers' => 5,
         'levelOptions' => $availabilityLevelOptions,
     ])}
-    {if $complectationList}
+    {set $plinthList = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
+        'linkName' => 'pogonazh',
+        'types' => [
+            'Плинтус',
+            'Плинтуса',
+        ],
+        'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+        'complectationAvailabilityToPlaceholder' => 'plinthListAvailability',
+        'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
+        'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$pagetitle}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
+        'availabilityLevels' => 3,
+        'availabilityDividers' => 5,
+        'levelOptions' => $availabilityLevelOptions,
+    ])}
+    {if $complectationList || $plinthList}
         <section class="container product-complectation">
             <div class="row">
                 <div class="col-12">
@@ -206,18 +230,51 @@
                         <table class="table">
                             <tbody>
                                 {$complectationList}
-                                <tr class="total">
-                                    <td>Итого по комплектующим</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="text-center">
-                                        <span class="complectation-sum">0</span>
-                                        <span class="icon-rub"></span>
-                                    </td>
-                                </tr>
+                                {if !$plinthList}
+                                    {* FIXME: Prevent duplicate code. *}
+                                    <tr class="total">
+                                        <td>Итого по комплектующим</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <span class="complectation-sum">0</span>
+                                            <span class="icon-rub"></span>
+                                        </td>
+                                    </tr>
+                                {/if}
                             </tbody>
                         </table>
                     </div>
+                    {set $plinthHeader = ($complectationList && $plinthList)
+                        ? 'Также представляем вашему вниманию МДФ-плинтусы'
+                        : 'Представляем вашему вниманию МДФ-плинтусы'
+                    }
+                    {if $plinthList}
+                        <div class="row no-gutters p-3 bordered-container plinth-promo">
+                            <div class="col-12 col-md-6 text-center">
+                                <img src="assets/images/plinth.jpg" alt="Плинтусы">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex align-items-center">
+                                <h5 class="h3 text-center">{$plinthHeader}</h5>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    {$plinthList}
+                                    <tr class="total">
+                                        <td>Итого по комплектующим</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <span class="complectation-sum">0</span>
+                                            <span class="icon-rub"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {/if}
                 </div>
                 <div class="col-6 mt-3 mt-md-0 total-cost-description">
                     <div class="total">

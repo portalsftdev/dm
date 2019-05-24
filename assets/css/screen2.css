@@ -1096,9 +1096,9 @@ input:disabled ~ label {
 }
 
 /**
- * Product page cart container.
+ * Bordered container.
  */
-.cart-container {
+.bordered-container {
     border: 5px solid #ff9225;
 }
 
@@ -1233,4 +1233,16 @@ input:disabled ~ label {
     padding-right: 2.5rem;
     padding-left: 1rem;
     border-radius: 10rem;
+}
+
+/**
+ * Plinth promo.
+ */
+
+.plinth-promo {
+    margin-bottom: 1.75rem;
+}
+
+.plinth-promo img {
+    height: 170px;
 }

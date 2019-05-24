@@ -24,7 +24,7 @@
     {set $unit = 'шт.'}
 {else}
     {set $tooltipText = 'Нет данных'}
-    {set $step = 0}
+    {set $step = 1}
     {set $unit = 'шт.'}
 {/if}
 <tr>
