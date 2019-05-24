@@ -22,9 +22,11 @@
                 <h5 class="mb-3 pb-2">Вариации</h5>
                 {$productAvailability}
                 {set $complectationAvailability = $_modx->getPlaceholder('complectationAvailability')}
-                {if $complectationAvailability}
+                {set $plinthListAvailability = $_modx->getPlaceholder('plinthListAvailability')}
+                {if $complectationAvailability || $plinthListAvailability}
                     <h5 class="mt-4 mb-3 pb-2">Комплектующие</h5>
-                    {$complectationAvailability}
+                    {$complectationAvailability ?: ''}
+                    {$plinthListAvailability ?: ''}
                 {/if}
             {else}
                 {set $currentProductRemainTV = $.session.'cityselector.current_product_remain_tv'}

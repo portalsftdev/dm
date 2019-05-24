@@ -203,7 +203,20 @@
         'availabilityDividers' => 5,
         'levelOptions' => $availabilityLevelOptions,
     ])}
-    {set $plinthList = ''}
+    {set $plinthList = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
+        'linkName' => 'pogonazh',
+        'types' => [
+            'Плинтус',
+            'Плинтуса',
+        ],
+        'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+        'complectationAvailabilityToPlaceholder' => 'plinthListAvailability',
+        'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
+        'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$pagetitle}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
+        'availabilityLevels' => 3,
+        'availabilityDividers' => 5,
+        'levelOptions' => $availabilityLevelOptions,
+    ])}
     {if $complectationList || $plinthList}
         <section class="container product-complectation">
             <div class="row">
