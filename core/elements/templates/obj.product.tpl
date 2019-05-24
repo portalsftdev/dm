@@ -185,6 +185,16 @@
     }'}
     {set $complectationList = $_modx->RunSnippet('@FILE snippets/dmComplectation.php', [
         'linkName' => 'pogonazh',
+        'types' => [
+            'Добор',
+            'Капитель',
+            'Короб',
+            'Наличник',
+            'Притворная планка',
+            'Розетка',
+            'Сандрик',
+            'Соединитель для добора',
+        ],
         'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
         'complectationAvailabilityToPlaceholder' => 'complectationAvailability',
         'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
