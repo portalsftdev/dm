@@ -251,7 +251,7 @@
                     }
                     {if $plinthList}
                         <div class="row no-gutters p-3 bordered-container plinth-promo">
-                            <div class="col-12 col-md-6 text-center">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0 text-center">
                                 <img src="assets/images/plinth.jpg" alt="Плинтусы">
                             </div>
                             <div class="col-12 col-md-6 d-flex align-items-center">
