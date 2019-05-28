@@ -197,6 +197,7 @@
         ],
         'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
         'complectationAvailabilityToPlaceholder' => 'complectationAvailability',
+        'hasTelescopicComplectationPlaceholder' => 'hasTelescopicComplectation',
         'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
         'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$pagetitle}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
         'availabilityLevels' => 3,
@@ -222,11 +223,24 @@
             <div class="row">
                 <div class="col-12">
                     <h4>Список комплектующих</h4>
-                    <p class="mt-3">
-                        <i class="icon-info-circled mr-1"></i>
-                        Рекомендованные комплектующие к полотну: наличник 1 комплект (5 шт.), короб 1 комплект (2.5 шт.).
-                    </p>
-                    <div class="table-responsive">
+                    <div class="row no-gutters mt-3">
+                        <div class="col-12 mb-3">
+                            <i class="icon-info-circled mr-1"></i>
+                            Рекомендованные комплектующие к полотну: наличник 1 комплект (5 шт.), короб 1 комплект (2.5 шт.).
+                        </div>
+                        {if $_modx->getPlaceholder('hasTelescopicComplectation')}
+                            <form class="col-12 mb-2" method="post" id="product-complectation-telescopic-and-non-telescopic">
+                                <fieldset>
+                                    <input type="checkbox" id="product-complectation-telescopic" name="telescopic[]" value="Да" checked>
+                                    <label class="pl-4 mr-2" for="product-complectation-telescopic">Телескопические</label>
+                                    <input type="checkbox" id="product-complectation-non-telescopic" name="telescopic[]" value="Нет" checked>
+                                    <label class="pl-4" for="product-complectation-non-telescopic">Простые</label>
+                                </fieldset>
+                                <input type="hidden" name="product" value="{$_modx->resource.id}">
+                            </form>
+                        {/if}
+                    </div>
+                    <div class="table-responsive" id="product-complectation-non-specific">
                         <table class="table">
                             <tbody>
                                 {$complectationList}

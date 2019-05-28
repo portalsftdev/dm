@@ -1078,6 +1078,24 @@ function countTableItemCost(input) {
     return sum;
 }
 
+function setSum(selector, sum) {
+    $(selector)
+        .attr('data-value', sum)
+        .text(
+            numberFormat(
+                sum,
+                0 === sum % 1 ? 0 : 2, // No decimals if sum isn't float
+                '.',
+                ' ',
+            )
+        )
+    ;
+}
+
+function getProductPrice() {
+    return parseFloat($('#product-price').attr('data-value'));
+}
+
 $(document).on('change', '.product-complectation [data-spinnerable]', function() {
     // Set item sum
     var itemSum = countTableItemCost($(this));
@@ -1094,35 +1112,15 @@ $(document).on('change', '.product-complectation [data-spinnerable]', function()
 
     // Set complectation sum and total sum
     var complectationSum = 0,
-        totalSum = parseFloat($('#product-price').attr('data-value'))
+        totalSum = getProductPrice()
     ;
     $(this).closest('.product-complectation').find('.ms2_total_row_cost').each(function(index, item) {
         complectationSum += parseFloat($(item).attr('data-value'));
     });
     totalSum += complectationSum;
 
-    $('.complectation-sum')
-        .attr('data-value', complectationSum)
-        .text(
-            numberFormat(
-                complectationSum,
-                0 === complectationSum % 1 ? 0 : 2, // No decimals if sum isn't float
-                '.',
-                ' ',
-            )
-        )
-    ;
-    $('.total-sum')
-        .attr('data-value', totalSum)
-        .text(
-            numberFormat(
-                totalSum,
-                0 === totalSum % 1 ? 0 : 2, // No decimals if sum isn't float
-                '.',
-                ' ',
-            )
-        )
-    ;
+    setSum('.complectation-sum', complectationSum);
+    setSum('.total-sum', totalSum);
 });
 
 /**
@@ -1180,4 +1178,44 @@ $(document).on('change', mSearchFilterSelectors, function() {
 $(document).on('mse2_load', function(event, response) {
     document.getElementById('mse2_filters').style.pointerEvents = 'auto';
     document.getElementById('mse2_filters').style.opacity = 1;
+});
+
+/**
+ * ...
+ */
+
+$(document).on('change', 'form#product-complectation-telescopic-and-non-telescopic input[type="checkbox"]', function() {
+    var
+        complectationListSelector = '#product-complectation-non-specific tbody',
+        $form = $(this).closest('form'),
+        $totalRow = $(complectationListSelector + ' tr.total')
+    ;
+    $totalRow = 0 < $totalRow.length ? $totalRow.clone(true) : null;
+    console.log($totalRow);
+    $.ajax({
+        url: '/assets/components/productcomplectation/index.php',
+        type: $form.attr('method'),
+        data: $form.serialize(),
+        dataType: 'html',
+        beforeSend: function() {
+            document.getElementById('product-complectation-non-specific').style.opacity = .5;
+        },
+        complete: function() {
+            document.getElementById('product-complectation-non-specific').style.opacity = 1;
+        },
+        success: function(response) {
+            if (0 < response.length) {
+                $(complectationListSelector).html(response);
+                if ($totalRow) {
+                    $(complectationListSelector).append($totalRow);
+                }
+                // Reset all counts and sums of another complectation lists
+                $('.product-complectation [data-spinnerable]').val(0);
+                setSum('.product-complectation .ms2_total_row_cost', 0);
+                // Reset complectation sum and total sum
+                setSum('.complectation-sum', 0);
+                setSum('.total-sum', getProductPrice());
+            }
+        }
+    });
 });

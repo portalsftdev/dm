@@ -29,13 +29,14 @@ assets/*
 !assets/js
 !assets/scss
 
-# And no assets/components/cityselector, assets/components/captcha, assets/components/userpreferences
+# And no assets/components/cityselector, assets/components/captcha, assets/components/userpreferences, assets/components/productcomplectation
 !assets/components/
 assets/components/*
 
 !assets/components/cityselector
 !assets/components/captcha
 !assets/components/userpreferences
+!assets/components/productcomplectation
 
 # And no core/components/minishop2/plugins, assets/components/minishop2/plugins
 !core/components/
