@@ -2,6 +2,7 @@
 
 // Retrive options
 $tpl = $modx->getOption('tpl', $scriptProperties);
+$conditions = $modx->getOption('conditions', $scriptProperties);
 $linkName = $modx->getOption('linkName', $scriptProperties);
 $productID = $modx->getOption('productID', $scriptProperties, $modx->resource->id);
 $productNameField = $modx->getOption('productNameField', $scriptProperties, 'pagetitle');
@@ -10,6 +11,7 @@ $types = $modx->getOption('types', $scriptProperties, []);
 $mandatoryCount = $modx->getOption('mandatoryCount', $scriptProperties, false);
 $complectationCostPlaceholder = $modx->getOption('complectationCostPlaceholder', $scriptProperties, false);
 $complectationAvailabilityToPlaceholder = $modx->getOption('complectationAvailabilityToPlaceholder', $scriptProperties);
+$hasTelescopicComplectationPlaceholder = $modx->getOption('hasTelescopicComplectationPlaceholder', $scriptProperties, false);
 $nfp = $modx->getOption('ms2_price_format', null, '[2, ".", " "]');
 $nfp = json_decode($nfp, true);
 
@@ -36,6 +38,18 @@ if (!function_exists('number_unformat')) {
 if (!function_exists('getMandatoryCount')) {
     function getMandatoryCount($menutitle) {
         return in_array($menutitle, ['Добор']) ? 3 : 1;
+    }
+}
+
+// Set empty conditions if not an array is passed
+if (!is_array($conditions)) {
+    $conditions = [];
+}
+
+// Remove conditions with empty values
+foreach ($conditions as $key => $values) {
+    if (empty($values)) {
+        unset($conditions[$key]);
     }
 }
 
@@ -67,6 +81,14 @@ $criteria
     ->sortby("msProduct.pagetitle")
 ;
 
+// Add conditions
+foreach ($conditions as $key => $value) {
+    $criteria
+        ->leftJoin('msProductOption', $key, "msProduct.id = $key.product_id AND $key.`key` = '$key'")
+        ->where(["$key.value:IN" => $value])
+    ;
+}
+
 $selectionFields = ['msProduct.id'];
 
 // Join product remains
@@ -74,10 +96,16 @@ $currentProductRemainTVId = $modx->getObject('modTemplateVar', ['name' => $_SESS
 $criteria->leftJoin('modTemplateVarResource', 'modTemplateVarResource', "msProduct.id = modTemplateVarResource.contentid AND modTemplateVarResource.tmplvarid = $currentProductRemainTVId");
 $selectionFields[] = 'modTemplateVarResource.value AS remain';
 
-// $criteria->prepare();
-// echo $criteria->toSQL();
+// Join `isTelescopic` attribute
+if ($hasTelescopicComplectationPlaceholder) {
+    $criteria->leftJoin('msProductOption', 'isTelescopic', "msProduct.id = isTelescopic.product_id AND isTelescopic.`key` = 'telescopic'");
+    $selectionFields[] = "IFNULL(isTelescopic.value, 'Нет') AS isTelescopic";
+}
 
 $criteria->select($selectionFields);
+
+// $criteria->prepare();
+// echo $criteria->toSQL();
 
 // Wrap output into the chunks
 $slaveProductCollection = $modx->getCollection('msProduct', $criteria);
@@ -152,6 +180,12 @@ foreach ($slaveProductCollection as $slaveProduct) {
         $complectationAvailabilityOutput .= !empty($pdoTools)
             ? $pdoTools->runSnippet('@FILE snippets/dmProductAvailability.php', $complectationAvailabilitySnippetParameters)
             : $modx->runSnippet('@FILE snippets/dmProductAvailability.php', $complectationAvailabilitySnippetParameters);
+    }
+
+    if ($hasTelescopicComplectationPlaceholder && !$modx->getPlaceholder($hasTelescopicComplectationPlaceholder)) {
+        if ('Да' === $slaveProduct->get('isTelescopic')) {
+            $modx->setPlaceholder($hasTelescopicComplectationPlaceholder, true);
+        }
     }
 }
 
