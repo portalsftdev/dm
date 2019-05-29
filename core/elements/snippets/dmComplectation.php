@@ -82,10 +82,10 @@ $criteria
 ;
 
 // Add conditions
-foreach ($conditions as $key => $value) {
+foreach ($conditions as $key => $values) {
     $criteria
         ->leftJoin('msProductOption', $key, "msProduct.id = $key.product_id AND $key.`key` = '$key'")
-        ->where(["$key.value:IN" => $value])
+        ->where(["$key.value:IN" => $values])
     ;
 }
 
