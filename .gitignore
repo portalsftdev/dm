@@ -29,7 +29,7 @@ assets/*
 !assets/js
 !assets/scss
 
-# And no assets/components/cityselector, assets/components/captcha, assets/components/userpreferences, assets/components/productcomplectation
+# And no assets/components/cityselector, assets/components/captcha, assets/components/userpreferences, assets/components/productcomplectation, assets/components/1cexchangepostprocessing
 !assets/components/
 assets/components/*
 
@@ -37,6 +37,7 @@ assets/components/*
 !assets/components/captcha
 !assets/components/userpreferences
 !assets/components/productcomplectation
+!assets/components/1cexchangepostprocessing
 
 # And no core/components/minishop2/plugins, assets/components/minishop2/plugins
 !core/components/
