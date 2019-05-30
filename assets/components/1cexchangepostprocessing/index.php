@@ -2,8 +2,9 @@
 
 /**
  * 1. Calculate product remains (by city) into template variables
- * 2. Clear cache
- * 3. mSearch2 reindex
+ * 2. mSearch2 reindex
+ * 3. Update SeoFilter dictionary and URLs
+ * 4. Clear cache
  *
  * To prevent `504 Gateway Timeout` increase either `fastcgi_read_timeout`
  * or something similar.
@@ -11,6 +12,8 @@
  * URL example: https://example.com/assets/components/1cexchangepostprocessing/index.php?token={token}.
  */
 
+// The flag which allows to require another scripts
+define('_', true);
 define('START_TIME', microtime(true));
 
 // Require MODX API
@@ -95,16 +98,6 @@ function findStorageCity($neededStorage, $cityStorages)
 }
 
 /**
- * Clear cache
- */
-if (!$modx->cacheManager->refresh()) {
-    output([
-        'error_code' => '1c_exchange_postprocessing.cache_clear_error',
-        'error_desc' => 'Cache clear error',
-    ]);
-}
-
-/**
  * Resource re-indexing
  */
 
@@ -159,6 +152,21 @@ for ($i = 0, $offset = 0; $i < $passesCount; $i++) {
         ]);
     }
     $offset += INDEXING_LIMIT;
+}
+
+/**
+ * Update SeoFilter dictionary and URLs.
+ */
+require_once __DIR__.'/SeoFilter/DictionaryAndSeoUrlUpdater.php';
+
+/**
+ * Clear cache
+ */
+if (!$modx->cacheManager->refresh()) {
+    output([
+        'error_code' => '1c_exchange_postprocessing.cache_clear_error',
+        'error_desc' => 'Cache clear error',
+    ]);
 }
 
 // Return the result
