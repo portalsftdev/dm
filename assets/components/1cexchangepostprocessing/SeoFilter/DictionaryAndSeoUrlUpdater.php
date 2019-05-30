@@ -50,6 +50,7 @@ function findByConditions(array $items, array $conditions) {
     }
 }
 
+$_SERVER['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'] ?: realpath(__DIR__.'/../../../..');
 if (!isset($modx) || !$modx instanceof modX) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/config.core.php';
     require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
