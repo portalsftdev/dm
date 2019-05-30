@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('_')) {
+if (!defined('_') && 'cli' !== php_sapi_name()) {
     echo 'Access denied.';
     exit;
 }
