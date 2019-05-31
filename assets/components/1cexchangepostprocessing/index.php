@@ -3,8 +3,7 @@
 /**
  * 1. Calculate product remains (by city) into template variables
  * 2. mSearch2 reindex
- * 3. Update SeoFilter dictionary and URLs
- * 4. Clear cache
+ * 3. Clear cache
  *
  * To prevent `504 Gateway Timeout` increase either `fastcgi_read_timeout`
  * or something similar.
@@ -153,11 +152,6 @@ for ($i = 0, $offset = 0; $i < $passesCount; $i++) {
     }
     $offset += INDEXING_LIMIT;
 }
-
-/**
- * Update SeoFilter dictionary and URLs.
- */
-require_once __DIR__.'/SeoFilter/DictionaryAndSeoUrlUpdater.php';
 
 /**
  * Clear cache
