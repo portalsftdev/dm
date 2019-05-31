@@ -4,6 +4,7 @@ define('DOCUMENT_ROOT', realpath(__DIR__.'/../..'));
 $tasks = [
     'assets/components/1cexchangepostprocessing/SeoFilter/DictionaryAndSeoUrlUpdater.php',
     'core/components/seofilter/recount.php',
+    'assets/components/1cexchangepostprocessing/CacheCleaner/index.php',
 ];
 
 if ('cli' !== php_sapi_name()) {
