@@ -39,9 +39,13 @@ assets/components/*
 !assets/components/productcomplectation
 !assets/components/1cexchangepostprocessing
 
-# And no core/components/minishop2/plugins, assets/components/minishop2/plugins
+# And no core/components/cron.php
 !core/components/
 core/components/*
+
+!core/components/cron.php
+
+# And no core/components/minishop2/plugins, assets/components/minishop2/plugins
 !core/components/minishop2/
 core/components/minishop2/*
 
