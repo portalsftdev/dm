@@ -10,6 +10,7 @@ $withImage = $modx->getOption('withImage', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
 
+define('HYDRATE_ARRAY', true);
 define('NO_SUBQUERY_STRATEGY', true);
 
 // Use pdoTools if it's possible
@@ -57,11 +58,19 @@ $productIDsSubquery
 // echo $productIDsSubquery->toSQL();
 
 if (NO_SUBQUERY_STRATEGY) {
-    // Main time consumption goes here
-    $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    if (HYDRATE_ARRAY) {
+        $productOptionCollection = [];
+        $productIDsSubquery->prepare();
+        if ($productIDsSubquery->stmt->execute()) {
+            $productOptionCollection = $productIDsSubquery->stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } else {
+        $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    }
+
     $productIds = [];
     foreach ($productOptionCollection as $productOption) {
-        $productIds[] = $productOption->get('product_id');
+        $productIds[] = HYDRATE_ARRAY ? $productOption['product_id'] : $productOption->get('product_id');
     }
 } else {
     $productIDsSubquery->prepare();
@@ -105,7 +114,15 @@ $criteria->select($selectionFields);
 // echo $criteria->toSQL();
 
 // Retrive the collection
-$productOptionCollection = $modx->getCollection('msProductOption', $criteria);
+if (HYDRATE_ARRAY) {
+    $productOptionCollection = [];
+    $criteria->prepare();
+    if ($criteria->stmt->execute()) {
+        $productOptionCollection = $criteria->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+} else {
+    $productOptionCollection = $modx->getCollection('msProductOption', $criteria);
+}
 
 // Nothing to output
 if (!$showSingleOption && sizeof($productOptionCollection) <= 1) {
@@ -117,16 +134,17 @@ $items = '';
 $nonDeletedProductCount = 0;
 foreach ($productOptionCollection as $id => $productOption) {
     // Check for non-deleted product (checking in code works faster than where condition)
-    if ($productOption->get('deleted')) {
+    $isDeleted = HYDRATE_ARRAY ? $productOption['deleted'] : $productOption->get('deleted');
+    if ($isDeleted) {
         continue;
     }
     $nonDeletedProductCount++;
     $placeholders = [
         'id' => $id + 1, // For element's id
         'key' => $optionKey, // For element's id
-        'productID' => $productOption->get('product_id'),
-        'optionValue' => htmlspecialchars($productOption->get('value')),
-        'optionImage' => $productOption->get('pattern'),
+        'productID' => HYDRATE_ARRAY ? $productOption['product_id'] : $productOption->get('product_id'),
+        'optionValue' => htmlspecialchars(HYDRATE_ARRAY ? $productOption['value'] : $productOption->get('value')),
+        'optionImage' => HYDRATE_ARRAY ? $productOption['pattern'] : $productOption->get('pattern'),
         'currentOptionValue' => $currentOptionValue, // For recognize an active item
     ];
     $items .= !empty($pdoTools)

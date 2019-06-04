@@ -15,6 +15,7 @@ $tpl = $modx->getOption('tpl', $scriptProperties);
 $tplWrapper = $modx->getOption('tplWrapper', $scriptProperties);
 $productAvailabilityToPlaceholder = $modx->getOption('productAvailabilityToPlaceholder', $scriptProperties);
 
+define('HYDRATE_ARRAY', true);
 define('NO_SUBQUERY_STRATEGY', true);
 
 // Use pdoTools if it's possible
@@ -65,11 +66,19 @@ $productIDsSubquery
 // echo $productIDsSubquery->toSQL();
 
 if (NO_SUBQUERY_STRATEGY) {
-    // Main time consumption goes here
-    $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    if (HYDRATE_ARRAY) {
+        $productOptionCollection = [];
+        $productIDsSubquery->prepare();
+        if ($productIDsSubquery->stmt->execute()) {
+            $productOptionCollection = $productIDsSubquery->stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } else {
+        $productOptionCollection = $modx->getIterator('msProductOption', $productIDsSubquery);
+    }
+
     $productIds = [];
     foreach ($productOptionCollection as $productOption) {
-        $productIds[] = $productOption->get('product_id');
+        $productIds[] = HYDRATE_ARRAY ? $productOption['product_id'] : $productOption->get('product_id');
     }
 } else {
     $productIDsSubquery->prepare();
@@ -115,7 +124,15 @@ $criteria->select($selectionFields);
 // echo $criteria->toSQL();
 
 // Retrive the collection
-$productOptionCollection = $modx->getCollection('msProductOption', $criteria);
+if (HYDRATE_ARRAY) {
+    $productOptionCollection = [];
+    $criteria->prepare();
+    if ($criteria->stmt->execute()) {
+        $productOptionCollection = $criteria->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+} else {
+    $productOptionCollection = $modx->getCollection('msProductOption', $criteria);
+}
 
 // Nothing to output
 if (! $showSingleOption && sizeof($productOptionCollection) <= 1) {
@@ -137,15 +154,16 @@ if ($productAvailabilityToPlaceholder) {
 $nonDeletedProductCount = 0;
 foreach ($productOptionCollection as $id => $productOption) {
     // Check for non-deleted product (checking in code works faster than where condition)
-    if ($productOption->get('deleted')) {
+    $isDeleted = HYDRATE_ARRAY ? $productOption['deleted'] : $productOption->get('deleted');
+    if ($isDeleted) {
         continue;
     }
     $nonDeletedProductCount++;
     $optionValues = [];
     foreach ($optionKeys as $optionKey) {
-        $optionValues[$optionKey]  = $productOption->get($optionKey);
+        $optionValues[$optionKey]  = HYDRATE_ARRAY ? $productOption[$optionKey] : $productOption->get($optionKey);
     }
-    $productId = $productOption->get('product_id');
+    $productId = HYDRATE_ARRAY ? $productOption['product_id'] : $productOption->get('product_id');
     // Find product in the cart
     $productCartKey = '';
     foreach ($_SESSION['minishop2']['cart'] as $cartKey => $cartItem) {
@@ -161,11 +179,11 @@ foreach ($productOptionCollection as $id => $productOption) {
             'optionKeys' => $optionKeys,
             'productId' => $productId,
             'optionValues' => $optionValues,
-            'optionImage' => $productOption->get('pattern'),
+            'optionImage' => HYDRATE_ARRAY ? $productOption['pattern'] : $productOption->get('pattern'),
             'currentOptionValues' => $currentOptionValues, // For recognize active items
             'productCartKey' => $productCartKey,
             'productCartCount' => $productCartKey ? $_SESSION['minishop2']['cart'][$productCartKey]['count'] : 0,
-            'productRemain' => $productOption->get('remain'),
+            'productRemain' => HYDRATE_ARRAY ? $productOption['remain'] : $productOption->get('remain'),
         ];
         $items .= !empty($pdoTools)
             ? $pdoTools->getChunk($tpl, $placeholders)
@@ -174,7 +192,7 @@ foreach ($productOptionCollection as $id => $productOption) {
 
     if ($productAvailabilityToPlaceholder) {
         $productAvailabilitySnippetParameters = array_merge($productAvailabilitySnippetParameters, [
-            'productRemain' => $productOption->get('remain'),
+            'productRemain' => HYDRATE_ARRAY ? $productOption['remain'] : $productOption->get('remain'),
             'optionValues' => $optionValues,
         ]);
         $productAvailabilityOutput .= !empty($pdoTools)
