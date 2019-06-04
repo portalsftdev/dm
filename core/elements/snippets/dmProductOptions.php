@@ -43,7 +43,7 @@ foreach ($conditions as $key => $value) {
         $productIDsSubquery->leftJoin('msProductData', 'msProductData', 'msProductOption.product_id = msProductData.id');
         $whereCondition["msProductData.$key"] = $value;
     } else {
-        $productIDsSubquery->leftJoin('msProductOption', $key, "msProductOption.product_id = $key.product_id");
+        $productIDsSubquery->leftJoin('msProductOption', $key, "msProductOption.product_id = $key.product_id AND $key.`key` = '$key'");
         $whereCondition["$key.value"] = $value;
     }
 }
