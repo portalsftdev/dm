@@ -42,7 +42,7 @@ $output = $pdoTools->runSnippet('@FILE snippets/dmComplectation.php', [
         'Соединитель для добора',
     ],
     'conditions' => $conditions,
-    'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+    'tpl' => '@FILE chunks/product.complectation.pogonazh.div.tpl',
 ]);
 
 echo $output;

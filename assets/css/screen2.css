@@ -1182,18 +1182,15 @@ input:disabled ~ label {
     top: 4px;
 }
 
-.product-complectation table td {
-    vertical-align: middle;
-}
-.product-complectation table .card-price,
-.product-complectation table .ms2_total_row_cost {
+.product-complectation .card-price,
+.product-complectation .ms2_total_row_cost {
     white-space: nowrap;
 }
-.product-complectation table .card-price {
+.product-complectation .card-price {
     font-size: 1.25rem;
     font-weight: 500;
 }
-.product-complectation table input {
+.product-complectation input {
     min-width: 5rem;
     max-width: 7rem;
     padding-left: 1rem;
@@ -1202,10 +1199,16 @@ input:disabled ~ label {
     border-color: #ff9225;
 }
 
-.product-complectation table .input-spinnerable .minus::before,
-.product-complectation table .input-spinnerable .plus::before {
+.product-complectation .input-spinnerable .minus::before,
+.product-complectation .input-spinnerable .plus::before {
     border-top-color: #ff9225;
     border-right-color: #ff9225;
+}
+
+/* Table layout */
+
+.product-complectation table td {
+    vertical-align: middle;
 }
 
 .product-complectation table td.total-row-cost {
@@ -1221,6 +1224,30 @@ input:disabled ~ label {
 }
 
 .product-complectation table tr.total td:last-child {
+    font-weight: 500;
+}
+
+/* Bootstrap's grid layout */
+
+.product-complectation .product-complectation-list-item,
+.product-complectation .product-complectation-total-sum {
+    border-top: 1px solid #eceeef;
+}
+
+.product-complectation .product-complectation-list-item > [class*="col-"],
+.product-complectation .product-complectation-total-sum > [class*="col-"] {
+    padding: .75rem;
+}
+
+.product-complectation .product-complectation-total-sum {
+    font-size: 1.5rem;
+}
+
+.product-complectation .product-complectation-total-sum > :first-child {
+    font-weight: 300;
+}
+
+.product-complectation .product-complectation-total-sum > :last-child {
     font-weight: 500;
 }
 
