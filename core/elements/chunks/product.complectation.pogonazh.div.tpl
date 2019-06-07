@@ -28,17 +28,17 @@
     {set $unit = 'шт.'}
 {/if}
 <div class="row no-gutters product-complectation-list-item">
-    <div class="col-6 col-md-5 col-lg-6 d-flex align-items-center lead">
+    <div class="col-12 col-md-5 col-lg-6 d-flex align-items-center lead">
         <span class="question-mark-icon mr-2 align-self-baseline align-self-md-center" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>
         <span>{$productName}</span>
     </div>
-    <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+    <div class="col-4 col-md-2 d-flex align-items-center justify-content-center">
         <div class="card-price">
             <span class="price ms2_product_price" data-value="{$price|replace:' ':''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
         </div>
     </div>
     {* FIXME: Nested `d-flex align-items-center`. *}
-    <div class="col-6 col-md-2 d-flex align-items-center">
+    <div class="col-4 col-md-2 d-flex align-items-center">
         <div class="d-flex align-items-center">
             <div class="input-spinnerable">
                 <span class="minus"></span>
@@ -51,7 +51,7 @@
             <span class="ml-2">{$unit}</span>
         </div>
     </div>
-    <div class="col-6 col-md-3 col-lg-2 d-flex align-items-center justify-content-center total-row-cost">
+    <div class="col-4 col-md-3 col-lg-2 d-flex align-items-center justify-content-center total-row-cost">
         <div class="card-price">
             <span class="price ms2_total_row_cost" data-value="{$sum|replace:' ':''}">0</span>&nbsp;<span class="icon-rub"></span>
         </div>
