@@ -43,7 +43,7 @@
             <div class="input-spinnerable">
                 <span class="minus"></span>
                 <form class="custom-ms2-form">
-                    <input name="products[{$id}][count]" type="text" class="form-control form-control-sm form-control--border{if 'к.' === $unit} increase-from-0-to-1{/if}" value="0" min="0" max="99" step="{$step}" autocomplete="off" data-spinnerable>
+                    <input name="products[{$id}][count]" type="number" class="form-control form-control-sm form-control--border no-spinners{if 'к.' === $unit} increase-from-0-to-1{/if}" value="0" min="0" max="99" step="{$step}" autocomplete="off" data-spinnerable>
                     <input name="products[{$id}][options]" type="hidden" value="[]">
                 </form>
                 <span class="plus"></span>
