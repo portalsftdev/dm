@@ -1141,7 +1141,6 @@ input:disabled ~ label {
     border-top: 1px solid currentColor;
     border-right: 1px solid currentColor;
     position: absolute;
-    top: 25%;
     margin-left: -.5rem;
     border-top-right-radius: .125rem;
 }
@@ -1153,7 +1152,7 @@ input:disabled ~ label {
 .input-spinnerable .minus::before {
     -webkit-transform: rotate(135deg);
     transform: rotate(135deg);
-    margin-top: -.25rem;
+    bottom: 50%;
 }
 
 .input-spinnerable .plus {
@@ -1162,7 +1161,7 @@ input:disabled ~ label {
 .input-spinnerable .plus::before {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    margin-top: .25rem;
+    top: 50%;
 }
 
 .input-spinnerable input {
