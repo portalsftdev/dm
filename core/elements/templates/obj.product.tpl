@@ -195,7 +195,7 @@
             'Сандрик',
             'Соединитель для добора',
         ],
-        'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+        'tpl' => '@FILE chunks/product.complectation.pogonazh.div.tpl',
         'complectationAvailabilityToPlaceholder' => 'complectationAvailability',
         'hasTelescopicComplectationPlaceholder' => 'hasTelescopicComplectation',
         'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
@@ -210,7 +210,7 @@
             'Плинтус',
             'Плинтуса',
         ],
-        'tpl' => '@FILE chunks/product.complectation.pogonazh.tpl',
+        'tpl' => '@FILE chunks/product.complectation.pogonazh.div.tpl',
         'complectationAvailabilityToPlaceholder' => 'plinthListAvailability',
         'productAvailabilityTpl' => '@INLINE <div class="product-availability-divider{if $class} {$class}{/if}"></div>',
         'productAvailabilityTplWrapper' => '@INLINE <div class="row mb-2"><div class="col-6">{$pagetitle}</div><div class="col-6 text-right pr-4"><div class="product-availability d-inline-flex pl-2" data-toggle="tooltip" data-placement="left" title="{$title}" data-trigger="hover">{$items}</div></div></div>',
@@ -240,24 +240,11 @@
                             </form>
                         {/if}
                     </div>
-                    <div class="table-responsive" id="product-complectation-non-specific">
-                        <table class="table">
-                            <tbody>
-                                {$complectationList}
-                                {if !$plinthList}
-                                    {* FIXME: Prevent duplicate code. *}
-                                    <tr class="total">
-                                        <td>Итого по комплектующим</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-center">
-                                            <span class="complectation-sum">0</span>
-                                            <span class="icon-rub"></span>
-                                        </td>
-                                    </tr>
-                                {/if}
-                            </tbody>
-                        </table>
+                    <div class="mb-3" id="product-complectation-non-specific">
+                        {$complectationList}
+                        {if !$plinthList}
+                            {$_modx->getChunk('@FILE chunks/product.complectation.pogonazh.total.div.tpl')}
+                        {/if}
                     </div>
                     {set $plinthHeader = ($complectationList && $plinthList)
                         ? 'Также представляем вашему вниманию МДФ-плинтусы'
@@ -272,25 +259,13 @@
                                 <h5 class="h3 text-center">{$plinthHeader}</h5>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    {$plinthList}
-                                    <tr class="total">
-                                        <td>Итого по комплектующим</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-center">
-                                            <span class="complectation-sum">0</span>
-                                            <span class="icon-rub"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="mb-3">
+                            {$plinthList}
+                            {$_modx->getChunk('@FILE chunks/product.complectation.pogonazh.total.div.tpl')}
                         </div>
                     {/if}
                 </div>
-                <div class="col-6 mt-3 mt-md-0 total-cost-description">
+                <div class="col-6 total-cost-description">
                     <div class="total">
                         Итого: <span data-value="{$price|replace:' ':''}" class="mr-1 total-sum">{$price}</span><span class="icon-rub"></span>
                     </div>
@@ -298,7 +273,7 @@
                         Включает стоимость одного полотна (<span id="product-price" data-value="{$price|replace:' ':''}">{$price}</span> р.) и комплектующих (<span class="complectation-sum">0</span> р.).
                     </div>
                 </div>
-                <div class="col-6 mt-3 mt-md-0 text-right">
+                <div class="col-6 text-right">
                     <button type="button" class="btn btn-dvmk waves-effect waves-light mr-lg-2 mb-3 mb-lg-0" data-action="add-to-cart"><span class="icon-cart"></span> В корзину</button>
                     <button type="button" class="btn btn-outline-dvmk waves-effect waves-light" data-toggle="modal" data-target="#measurement-order">Заказать замер</button>
                 </div>

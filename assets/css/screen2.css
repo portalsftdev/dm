@@ -1141,7 +1141,6 @@ input:disabled ~ label {
     border-top: 1px solid currentColor;
     border-right: 1px solid currentColor;
     position: absolute;
-    top: 25%;
     margin-left: -.5rem;
     border-top-right-radius: .125rem;
 }
@@ -1153,7 +1152,7 @@ input:disabled ~ label {
 .input-spinnerable .minus::before {
     -webkit-transform: rotate(135deg);
     transform: rotate(135deg);
-    margin-top: -.25rem;
+    bottom: 50%;
 }
 
 .input-spinnerable .plus {
@@ -1162,7 +1161,22 @@ input:disabled ~ label {
 .input-spinnerable .plus::before {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    margin-top: .25rem;
+    top: 50%;
+}
+
+.input-spinnerable input {
+    min-width: 6.25rem;
+    max-width: 7rem;
+    padding: .625rem 2.5rem .625rem 1rem;
+    font-size: 1rem;
+    border-radius: 10rem;
+}
+
+@media (min-width: 768px) {
+    .input-spinnerable input {
+        min-width: 5rem;
+        padding: .25rem 2.5rem .25rem 1rem;
+    }
 }
 
 /**
@@ -1182,30 +1196,28 @@ input:disabled ~ label {
     top: 4px;
 }
 
-.product-complectation table td {
-    vertical-align: middle;
-}
-.product-complectation table .card-price,
-.product-complectation table .ms2_total_row_cost {
+.product-complectation .card-price,
+.product-complectation .ms2_total_row_cost {
     white-space: nowrap;
 }
-.product-complectation table .card-price {
+.product-complectation .card-price {
     font-size: 1.25rem;
     font-weight: 500;
 }
-.product-complectation table input {
-    min-width: 5rem;
-    max-width: 7rem;
-    padding-left: 1rem;
-    padding-right: 2.5rem;
-    border-radius: 10rem;
+.product-complectation input {
     border-color: #ff9225;
 }
 
-.product-complectation table .input-spinnerable .minus::before,
-.product-complectation table .input-spinnerable .plus::before {
+.product-complectation .input-spinnerable .minus::before,
+.product-complectation .input-spinnerable .plus::before {
     border-top-color: #ff9225;
     border-right-color: #ff9225;
+}
+
+/* Table layout */
+
+.product-complectation table td {
+    vertical-align: middle;
 }
 
 .product-complectation table td.total-row-cost {
@@ -1224,15 +1236,28 @@ input:disabled ~ label {
     font-weight: 500;
 }
 
-/**
- * Cart table.
- */
-.cart-item-list .input-spinnerable input {
-    min-width: 5rem;
-    max-width: 7rem;
-    padding-right: 2.5rem;
-    padding-left: 1rem;
-    border-radius: 10rem;
+/* Bootstrap's grid layout */
+
+.product-complectation .product-complectation-list-item,
+.product-complectation .product-complectation-total-sum {
+    border-top: 1px solid #eceeef;
+}
+
+.product-complectation .product-complectation-list-item > [class*="col-"],
+.product-complectation .product-complectation-total-sum > [class*="col-"] {
+    padding: .75rem;
+}
+
+.product-complectation .product-complectation-total-sum {
+    font-size: 1.5rem;
+}
+
+.product-complectation .product-complectation-total-sum > :first-child {
+    font-weight: 300;
+}
+
+.product-complectation .product-complectation-total-sum > :last-child {
+    font-weight: 500;
 }
 
 /**

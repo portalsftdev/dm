@@ -1070,9 +1070,9 @@ $(document).on('click', '.input-spinnerable .minus, .input-spinnerable .plus', f
  * Counting of product complectation item sum, complectation sum and total sum.
  */
 
-function countTableItemCost(input) {
+function countTableItemCost(input, rowSelector) {
     var count = parseFloat($(input).val()) || 0,
-        price = parseFloat($(input).closest('tr').find('.ms2_product_price').attr('data-value')),
+        price = parseFloat($(input).closest(rowSelector).find('.ms2_product_price').attr('data-value')),
         sum = count * price
     ;
     return sum;
@@ -1097,9 +1097,14 @@ function getProductPrice() {
 }
 
 $(document).on('change', '.product-complectation [data-spinnerable]', function() {
+    var
+        // rowSelector = 'tr',
+        rowSelector = '.product-complectation-list-item',
+        itemSum = countTableItemCost($(this), rowSelector)
+    ;
+
     // Set item sum
-    var itemSum = countTableItemCost($(this));
-    $(this).closest('tr')
+    $(this).closest(rowSelector)
         .find('.ms2_total_row_cost')
         .attr('data-value', itemSum)
         .text(numberFormat(
@@ -1186,12 +1191,14 @@ $(document).on('mse2_load', function(event, response) {
 
 $(document).on('change', 'form#product-complectation-telescopic-and-non-telescopic input[type="checkbox"]', function() {
     var
-        complectationListSelector = '#product-complectation-non-specific tbody',
+        // complectationListSelector = '#product-complectation-non-specific tbody',
+        // totalRowSelector = complectationListSelector + ' tr.total',
+        complectationListSelector = '#product-complectation-non-specific',
+        totalRowSelector = complectationListSelector + ' .product-complectation-total-sum',
         $form = $(this).closest('form'),
-        $totalRow = $(complectationListSelector + ' tr.total')
+        $totalRow = $(totalRowSelector)
     ;
     $totalRow = 0 < $totalRow.length ? $totalRow.clone(true) : null;
-    console.log($totalRow);
     $.ajax({
         url: '/assets/components/productcomplectation/index.php',
         type: $form.attr('method'),
