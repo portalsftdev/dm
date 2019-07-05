@@ -152,7 +152,9 @@ function removeDirectory(string $directoryPath, bool $keepDirectoryAlive = false
     }
 
     if (!$keepDirectoryAlive) {
-        rmdir($directoryPath);
+        if (!rmdir($directoryPath)) {
+            return false;
+        }
     }
 
     return true;
