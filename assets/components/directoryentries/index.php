@@ -7,6 +7,7 @@ const ALLOWED_DIRECTORIES = [
     'assets/images/colors',
     'assets/images/products',
 ];
+const NUMBER_OF_BYTES_OF_FILE_FOR_HASH = 8192;
 const MODX_SYSTEM_SETTING_ARCHIVE_EXTRACTOR_PASSWORD = '1c_exchange_postprocessing_password';
 
 // Require MODX
@@ -52,26 +53,45 @@ if (!is_dir($directory)) {
 
 $directoryEntryStartPosition = mb_strlen($_SERVER['DOCUMENT_ROOT']);
 $directoryEntries = [];
+$fileHashes = [];
+$index = 0;
 foreach (
     new RecursiveIteratorIterator(
         new RecursiveDirectoryIterator(
             $directory,
-            FilesystemIterator::SKIP_DOTS |
-            FilesystemIterator::CURRENT_AS_PATHNAME
+            FilesystemIterator::SKIP_DOTS
         ),
         RecursiveIteratorIterator::SELF_FIRST
     )
 as $directoryEntry) {
-    $directoryEntries[] = true
-        ? mb_substr($directoryEntry, $directoryEntryStartPosition)
-        : $directoryEntry
+    $directoryEntries[$index] = true
+        ? mb_substr($directoryEntry->getPathname(), $directoryEntryStartPosition)
+        : $directoryEntry->getPathname()
     ;
+
+    /**
+    * Hash only files that are located in `$directory/{directory}`,
+    * where {directory} is a directory.
+    */
+    if (
+        $directoryEntry->isFile() &&
+        $directory === $directoryEntry->getPathInfo()->getPath()
+    ) {
+        // TODO: Add handling of possible errors of `fopen` and `fread`.
+        $fileHandle = fopen($directoryEntry->getPathname(), 'r');
+        $filePartForHash = fread($fileHandle, NUMBER_OF_BYTES_OF_FILE_FOR_HASH);
+        $fileHashes[$index] = sha1($filePartForHash);
+        fclose($fileHandle);
+    }
+
+    $index++;
 }
 
 output([
     'error_code' => 'directoryentries.success',
     'error_desc' => 'Success.',
     'directory_entries' => $directoryEntries,
+    'file_hashes' => $fileHashes,
 ]);
 
 function output($output)
