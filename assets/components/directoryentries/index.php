@@ -53,7 +53,6 @@ if (!is_dir($directory)) {
 
 $directoryEntryStartPosition = mb_strlen($_SERVER['DOCUMENT_ROOT']);
 $directoryEntries = [];
-$fileHashes = [];
 $index = 0;
 foreach (
     new RecursiveIteratorIterator(
@@ -64,7 +63,7 @@ foreach (
         RecursiveIteratorIterator::SELF_FIRST
     )
 as $directoryEntry) {
-    $directoryEntries[$index] = true
+    $directoryEntries[$index]['path'] = true
         ? mb_substr($directoryEntry->getPathname(), $directoryEntryStartPosition)
         : $directoryEntry->getPathname()
     ;
@@ -75,13 +74,22 @@ as $directoryEntry) {
     */
     if (
         $directoryEntry->isFile() &&
-        $directory === $directoryEntry->getPathInfo()->getPath()
+        in_array(
+            $directory,
+            [
+                $directoryEntry->getPath(),
+                $directoryEntry->getPathInfo()->getPath(),
+            ],
+            true
+        )
     ) {
         // TODO: Add handling of possible errors of `fopen` and `fread`.
         $fileHandle = fopen($directoryEntry->getPathname(), 'r');
         $filePartForHash = fread($fileHandle, NUMBER_OF_BYTES_OF_FILE_FOR_HASH);
-        $fileHashes[$index] = sha1($filePartForHash);
+        $directoryEntries[$index]['hash'] = sha1($filePartForHash);
         fclose($fileHandle);
+    } else {
+        $directoryEntries[$index]['hash'] = null;
     }
 
     $index++;
@@ -91,7 +99,6 @@ output([
     'error_code' => 'directoryentries.success',
     'error_desc' => 'Success.',
     'directory_entries' => $directoryEntries,
-    'file_hashes' => $fileHashes,
 ]);
 
 function output($output)
