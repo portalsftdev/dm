@@ -47,6 +47,7 @@
             'sortby' => '{"msProduct.pagetitle":"ASC"}',
             'limit' => $_modx->config.products_per_page,
             'values_delimeter' => ';',
+            'disableOrderingByField' => true,
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'canonicalQueryString' => true,
@@ -102,6 +103,7 @@
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
+            'disableOrderingByField' => true,
             'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value", "steelDoorGlassColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
@@ -216,6 +218,7 @@
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
+            'disableOrderingByField' => true,
             'groupby' => '["interiorDoorModel.value", "interiorDoorLeafColor.value", "interiorDoorGlassColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
@@ -269,6 +272,7 @@
                 msoption|furniture_type==type,
             ',
             'values_delimeter' => ';',
+            'disableOrderingByField' => true,
             'includeTVs' => $.session.'cityselector.current_product_remain_tv',
             'select' => '{
                 "availability":"CASE WHEN TV'~$.session.'cityselector.current_product_remain_tv'~'.value > 0 THEN 1 ELSE 0 END AS availability"
