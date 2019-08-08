@@ -66,3 +66,15 @@ assets/components/minishop2/plugins/.placeholder
 
 # And no assets/components/minishop2/h.php
 !assets/components/minishop2/h.php
+
+# And no core/components/msearch2/custom/filters/msocfilters.class.php
+!core/components/msearch2/
+core/components/msearch2/*
+
+!core/components/msearch2/custom/
+core/components/msearch2/custom/*
+
+!core/components/msearch2/custom/filters/
+
+# But core/components/msearch2/custom/filters/.placeholder
+core/components/msearch2/custom/filters/.placeholder
