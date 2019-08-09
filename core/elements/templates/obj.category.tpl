@@ -207,14 +207,21 @@
                 "interiorDoorGlassColor": {
                     "class": "msProductOption",
                     "on": "interiorDoorGlassColor.product_id = msProduct.id AND interiorDoorGlassColor.key = \'glass\'"
+                },
+                "interiorDoorWidth": {
+                    "class": "msProductOption",
+                    "on": "interiorDoorWidth.product_id = msProduct.id AND interiorDoorWidth.key = \'width\'"
+                },
+                "interiorDoorHeight": {
+                    "class": "msProductOption",
+                    "on": "interiorDoorHeight.product_id = msProduct.id AND interiorDoorHeight.key = \'height\'"
                 }
             }',
         	'select' => '{
         		"productModel":"interiorDoorModel.value as productModel",
                 "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum",
                 "availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability",
-                "productGroupMaxPrice":"MAX(Data.price) AS productGroupMaxPrice",
-                "productGroupPrices":"GROUP_CONCAT(msProduct.id, \':\', Data.price, \':\', Data.old_price) AS productGroupPrices"
+                "productVariations":"CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT(\'id\', msProduct.id, \'pagetitle\', msProduct.pagetitle, \'longtitle\', msProduct.longtitle, \'old_price\', Data.old_price, \'price\', Data.price, \'size\', CONCAT_WS(\'x\', interiorDoorWidth.value, interiorDoorHeight.value))), \']\') AS productVariations"
         	}',
             'disableGroupByProductId' => true,
             'disableGroupingForPreparedResults' => true,
