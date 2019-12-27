@@ -50,7 +50,11 @@ if ($mode == 'shortInfo') {
 } elseif (in_array($mode, ['contacts', 'storages'])) {
     switch ($mode) {
         case 'contacts':
-            $list = $citySaleDepartments[$currentCity];
+            foreach ($citySaleDepartments[$currentCity] as $citySaleDepartment) {
+                if ('да' !== mb_strtolower($citySaleDepartment['hide_at_contacts_page'])) {
+                    $list[] = $citySaleDepartment;
+                }
+            }
             break;
         case 'storages':
             $list = $cityStorages[$currentCity];
@@ -68,10 +72,12 @@ if ($mode == 'shortInfo') {
 } elseif ($mode == 'locations') {
     $list = [];
     foreach ($citySaleDepartments[$currentCity] as $citySaleDepartment) {
-        $list[] = [
-            'lat' => $citySaleDepartment['lat'],
-            'lng' => $citySaleDepartment['lng'],
-        ];
+        if ('да' !== mb_strtolower($citySaleDepartment['hide_at_contacts_page'])) {
+            $list[] = [
+                'lat' => $citySaleDepartment['lat'],
+                'lng' => $citySaleDepartment['lng'],
+            ];
+        }
     }
     foreach ($cityStorages[$currentCity] as $cityStorage) {
         $list[] = [

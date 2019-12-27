@@ -49,21 +49,27 @@
 
 </style>
 
-<div class="row m-0">
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы отдела продаж</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
-</div>
-{$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'contacts', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{set $salesDepartamentHtml = $_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'contacts', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{if $salesDepartamentHtml}
+    <div class="row m-0">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы отдела продаж</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
+    </div>
+    {$salesDepartamentHtml}
+{/if}
 
-<div class="row m-0">
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы склада</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
-    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
-</div>
-{$_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{set $storagesHtml = $_modx->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'storages', 'tpl' => '@FILE chunks/tpl.contacts.branchInfo.tpl'])}
+{if $storagesHtml}
+    <div class="row m-0">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Режим работы склада</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Телефон</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Эл. почта</div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 text-center d-none d-lg-block contacts-branch-heading">Адрес</div>
+    </div>
+    {$storagesHtml}
+{/if}
 
 </div>
 
