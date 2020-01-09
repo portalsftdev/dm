@@ -118,6 +118,7 @@
                 msoption|spontaneity:spontaneity,
                 msoption|doorType:doorType,
                 msoc|glass~value~pattern,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~':boolean,
                 ms|favorite:favorite,
             ',
             'aliases' => '
@@ -129,6 +130,7 @@
                 msoption|spontaneity==side,
                 msoption|doortype==type,
                 msoc|glass==glass-color,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~'==in-stock,
             ',
             'values_delimeter' => ';',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
@@ -178,6 +180,7 @@
                 msoption|doorType:doorType,
                 msoc|glass~value~pattern,
                 msoption|collection,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~':boolean,
                 ms|favorite:favorite,
             ',
             'aliases' => '
@@ -187,6 +190,7 @@
                 msoption|doortype==type,
                 msoc|glass==glass-color,
                 msoption|collection==collection,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~'==in-stock,
             ',
             'values_delimeter' => ';',
             'leftJoin' => '{
@@ -267,12 +271,14 @@
                 msoc|mscolor~value~pattern,
                 ms|vendor:vendors,
                 msoption|furniture_type:furniture_type,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~':boolean,
                 ms|favorite:favorite,
             ',
             'aliases' => '
                 msoc|mscolor==color,
                 ms|vendor==trademark,
                 msoption|furniture_type==type,
+                tv|'~$.session.'cityselector.current_product_remain_tv'~'==in-stock,
             ',
             'values_delimeter' => ';',
             'disableOrderingByField' => true,
