@@ -45,10 +45,14 @@
     *}
     {if $productGroupPrices?}
         {set $productGroupPrices = $productGroupPrices|split:','}
+        {set $productGroupMinPrice = $.const.INF}
+
         {foreach $productGroupPrices as $productGroupPrice}
             {* Format: id:price:old_price *}
             {set $productGroupPrice = $productGroupPrice|split:':'}
-            {if $productGroupMaxPrice > $productGroupPrice.1}
+
+            {if $productGroupMinPrice > $productGroupPrice.1}
+                {set $productGroupMinPrice = $productGroupPrice.1}
                 {set $productWithMinPrice = $productGroupPrice}
             {/if}
         {/foreach}
