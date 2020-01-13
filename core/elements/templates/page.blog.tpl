@@ -23,9 +23,9 @@
                 'where' => ['template' => 11],
                 ])}
                 {*</div>*}
-                <div class="row text-center">
-                    {$_modx->getPlaceholder('page.nav')}
-                </div>
+            </div>
+            <div class="row text-center">
+                {$_modx->getPlaceholder('page.nav')}
             </div>
         </div>
     </section>
