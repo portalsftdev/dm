@@ -77,7 +77,7 @@
                         <span class="price"{if !$isProductPageTemplate} itemprop="price" content="{$price | replace: ' ' : ''}"{/if}>{$price}</span>&nbsp;<span class="icon-rub"></span>
                         {if !$isProductPageTemplate}
                             <meta itemprop="priceCurrency" content="RUB" />
-                            <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
+                            <link itemprop="availability" href="http://schema.org/InStock" />
                         {/if}
                     </div>
                 </div>
