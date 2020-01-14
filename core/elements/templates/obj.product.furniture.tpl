@@ -46,7 +46,7 @@
                                         <div class="expo-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
                                             <span class="btn-icon btn-icon-dvmk icon-label-o hidden-sm-down"></span><span class="ms2-price" id="price" itemprop="price" content="{$price | replace: ' ' : ''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
                                             <meta itemprop="priceCurrency" content="RUB" />
-                                            <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
+                                            <link itemprop="availability" href="http://schema.org/InStock" />
                                         </div>
                                     {/if}
                                     {set $reviewsCount = $_modx->runSnippet('!ecMessagesCount')}

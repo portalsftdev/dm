@@ -102,7 +102,7 @@
                 <div class="card-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
                     <span class="price" itemprop="price" content="{$price | replace: ' ' : ''}">{$price}</span>&nbsp;<span class="icon-rub"></span>
                     <meta itemprop="priceCurrency" content="RUB" />
-                    <meta itemprop="availability" href="http://schema.org/InStock" content="В наличии" />
+                    <link itemprop="availability" href="http://schema.org/InStock" />
                 </div>
             {/if}
             <div>
