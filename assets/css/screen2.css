@@ -1272,3 +1272,14 @@ input:disabled ~ label {
 .plinth-promo img {
     height: 170px;
 }
+
+/**
+ * Prevent undesired behaviour in case of 2 phone numbers; note that in case of
+ * 3 and more phone numbers this fix has no sense.
+ */
+
+@media (max-width: 480px) {
+    .tel {
+        float: right;
+    }
+}
