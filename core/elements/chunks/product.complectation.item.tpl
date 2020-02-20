@@ -1,3 +1,5 @@
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
 <div>
     <form class="ms2_form" method="post" data-link-name="{$linkName}" data-id="{$id}">
         <input type="hidden" name="id" value="{$id}" />

@@ -1,3 +1,5 @@
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
         <div class="slider-item">
             <div class="row no-gutters px-3">
                 <div class="col-6 d-flex flex-column justify-content-center">

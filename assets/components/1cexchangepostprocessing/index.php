@@ -36,16 +36,18 @@ if ($token != $modx->getOption(MODX_SYS_SETTING_1C_EXCHANGE_POSTPROCESSING_PASSW
 }
 
 /**
- * Product remains processing
+ * Product remains and prices processing
  */
 
 $cityContainerResourceId = $modx->getOption('resources.cities');
 $cities = $modx->getIterator('modResource', ['parent' => $cityContainerResourceId]);
 
-// Retrieve city 1C storages and city product remain template variables
 $city1CStorages = [];
 $cityProductRemainTVs = [];
+$city1cPriceTypes = [];
+$cityProductPriceTypeTvs = [];
 foreach ($cities as $city) {
+    // Retrieve city 1C storages and city product remain template variables
     $city1CStoragesTVArray = json_decode($city->getTVValue('city_1c_storages'), true);
     if (! is_array($city1CStoragesTVArray)) {
         continue;
@@ -57,9 +59,24 @@ foreach ($cities as $city) {
     if (is_array($remainTemplateVariableTVArray)) {
         $cityProductRemainTVs[$city->pagetitle] = $remainTemplateVariableTVArray[0]['remain_template_variable'];
     }
+
+    // Retrieve city 1C price types and city product price type template variables
+    $city1cPriceTypeList = json_decode($city->getTVValue('city_1c_price_types'), true);
+    if (!is_array($city1cPriceTypeList)) {
+        continue;
+    }
+
+    foreach ($city1cPriceTypeList as $city1cPriceType) {
+        $city1cPriceTypes[$city->pagetitle][] = $city1cPriceType['name'];
+    }
+
+    $cityProductPriceTv = $city->getTVValue('price_template_variable');
+    if (null !== $cityProductPriceTv) {
+        $cityProductPriceTypeTvs[$city->pagetitle] = $cityProductPriceTv;
+    }
 }
 
-// Retrieve product raw remains and set them to template variables
+// Retrieve product raw remains and prices and set them to template variables
 $products = $modx->getIterator('msProduct', ['class_key' => 'msProduct']); // doesn't work properly w/o explicit class_name
 foreach ($products as $id => $product) {
     // Retrieve product raw remains and cast it to array
@@ -81,6 +98,30 @@ foreach ($products as $id => $product) {
     // Set all necessary template variables
     foreach ($productRemains as $city => $productRemain) {
         $product->setTVValue($cityProductRemainTVs[$city], $productRemain);
+    }
+
+    $productRawPrices = json_decode($product->getTVValue('product_prices'), true);
+    if (!is_array($productRawPrices)) {
+        $productRawPrices = [];
+    }
+
+    $productPrices = [];
+    foreach ($cityProductPriceTypeTvs as $city => $value) {
+        $productPrices[$city] = 0.00;
+    }
+
+    foreach ($city1cPriceTypes as $city => $priceTypes) {
+        if (is_array($priceTypes) && isset($priceTypes[0])) {
+            foreach ($productRawPrices as $key => $productRawPrice) {
+                if ($priceTypes[0] === $productRawPrice['type']) {
+                    $productPrices[$city] = $productRawPrice['price'];
+                }
+            }
+        }
+    }
+
+    foreach ($productPrices as $city => $productPrice) {
+        $product->setTVValue($cityProductPriceTypeTvs[$city], $productPrice);
     }
 }
 

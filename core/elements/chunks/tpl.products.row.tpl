@@ -1,3 +1,5 @@
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
 {set $showThisProduct = true}
 {if
     (
@@ -12,7 +14,7 @@
             {set $id = $productVariation.id}
             {set $pagetitle = $productVariation.pagetitle}
             {set $longtitle = $productVariation.longtitle}
-            {set $price = $productVariation.price}
+            {set $price = $productVariation.id | resource: $.session.'cityselector.current_product_price_tv'}
             {set $old_price = $productVariation.old_price}
             {* QUESTION: Should images be overridden? *}
         {/if}
@@ -50,6 +52,7 @@
         {foreach $productGroupPrices as $productGroupPrice}
             {* Format: id:price:old_price *}
             {set $productGroupPrice = $productGroupPrice|split:':'}
+            {set $productGroupPrice.1 = $productGroupPrice.0 | resource: $.session.'cityselector.current_product_price_tv'}
 
             {if $productGroupMinPrice > $productGroupPrice.1}
                 {set $productGroupMinPrice = $productGroupPrice.1}

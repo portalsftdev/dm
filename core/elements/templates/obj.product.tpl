@@ -1,5 +1,7 @@
 {extends 'template:base'}
 {block 'content'}
+    {set $nfp = $_modx->config.ms2_price_format|json_decode}
+    {set $price = $_modx->resource.id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
     <section itemscope itemtype="http://schema.org/Product" id="product" data-url="{$_modx->resource.uri}">
         <div class="expo">
             <div class="container-fluid">

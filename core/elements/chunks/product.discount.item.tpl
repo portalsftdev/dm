@@ -4,6 +4,8 @@
     {/if}
 {/if}
 {set $isProductPageTemplate = $_modx->resource.template in [6, 13, 15]}
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
 <div class="col-lg-6 col-md-12 px-0 {if $_modx->resource.id == 1}{if $_modx->getPlaceholder('discounts.padding') == 'right'}pr-lg-3{elseif $_modx->getPlaceholder('discounts.padding') == 'left'}pl-lg-3{/if}{else}pl-lg-3{/if} wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">
     <div class="card card-overlay-door card-overlay--marketing hover-effect-control mb-4" style="background-image: url('/assets/i/{if $parent == $_modx->config.'resources.room_doors'}bg-door-of-month.jpg{elseif $parent == $_modx->config.'resources.steel_doors'}bg-door-of-month-vhod.jpg{/if}')"{if !$isProductPageTemplate} itemscope itemtype="http://schema.org/Product"{/if}>
         <div class="overlay-door">
