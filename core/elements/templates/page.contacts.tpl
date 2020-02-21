@@ -25,7 +25,9 @@
             });
             // Auto-zoom if locations count more than 1
             if (locations.length > 1) {
-                map.fitBounds(bounds);
+                // There may be excessive zoom if two or more objects are close
+                // to each other
+                // map.fitBounds(bounds);
             }
             // Auto-center
             // map.panToBounds(bounds);

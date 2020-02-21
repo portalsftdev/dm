@@ -48,7 +48,7 @@
     'toSeparatePlaceholders' => 'mFilter2.',
     'tpl' => '@FILE chunks/tpl.products.row.tpl',
     'tplOuter' => '@FILE chunks/tpl.productList.tpl',
-    'includeTVs' => $.session.'cityselector.current_product_remain_tv',
+    'includeTVs' => $.session.'cityselector.current_product_remain_tv'~','~$.session.'cityselector.current_product_price_tv',
     'paginator' => 'pdoPage@pageNavVar=`page.nav`',
     'canonicalQueryString' => true,
     'tplPageWrapper' => '@INLINE <ul class="pagination text-center">{$first}{$prev}{$pages}{$next}{$last}</ul></nav>',

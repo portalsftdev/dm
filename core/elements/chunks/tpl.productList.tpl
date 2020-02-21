@@ -115,7 +115,7 @@
                         <h5>
                             <input id="mse2_ms|in-stock" name="in-stock" value="1" class="" type="checkbox"{if $.get.'in-stock' == 1} checked{/if} />
                             <label for="mse2_ms|in-stock">В наличии</label>
-                        </h5>                        
+                        </h5>
                         <h5>
                             <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
@@ -184,7 +184,8 @@
 
             <span class="ml-3 font-weight-bold">{if $sortByPagetitle}{if '' == $sortBy || strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms_product|pagetitle" data-dir="{if $mse2_sort == 'ms_product|pagetitle:desc'}desc{elseif $sortByPagetitle}asc{/if}" data-default="asc" class="sort small{if $sortByPagetitle} active{/if}">Названию</a>
 
-            <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'ms|price') === 0}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="ms|price" data-dir="{if $mse2_sort == 'ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'ms|price') === 0} active{/if}">Цене</a>
+            {set $priceSortField = 'tv|'~$.session.'cityselector.current_product_price_tv'}
+            <span class="ml-3 font-weight-bold">{if strpos($sortBy, $priceSortField) === 0}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="{$priceSortField}" data-dir="{if $mse2_sort == $priceSortField~':desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, $priceSortField) === 0} active{/if}">Цене</a>
 
             {set $availabilitySortField =
                 ($_modx->resource.id in [$_modx->config.'resources.room_doors', $_modx->config.'resources.steel_doors'])
@@ -193,7 +194,7 @@
             }
             <span class="ml-3 font-weight-bold">{if strpos($sortBy, $availabilitySortField) !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="{$availabilitySortField}" data-dir="{if $mse2_sort == $availabilitySortField~':desc'}desc{/if}" data-default="desc" class="sort small{if strpos($sortBy, $availabilitySortField) !== false} active{/if}">Наличию</a>
 
-            <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'availability') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="availability:desc,ms|price" data-dir="{if $mse2_sort == 'availability:desc,ms|price:desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'availability') !== false} active{/if}">Цене и наличию</a>
+            <span class="ml-3 font-weight-bold">{if strpos($sortBy, 'availability') !== false}{if strpos($sortBy, 'asc')}↓{else}↑{/if}{/if}</span><a href="#" data-sort="availability:desc,{$priceSortField}" data-dir="{if $mse2_sort == 'availability:desc,'~$priceSortField~':desc'}desc{/if}" data-default="asc" class="sort small{if strpos($sortBy, 'availability') !== false} active{/if}">Цене и наличию</a>
         </div>
     </div>
 
