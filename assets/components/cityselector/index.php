@@ -22,6 +22,8 @@ if (!array_key_exists($selectedCity, $citiesShortInfo)) {
     $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$selectedCity]['phone'];
     $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$selectedCity]['phone_href'];
     $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$selectedCity]['product_remain_tv'];
+    $_SESSION['cityselector.current_product_price_tv'] = $citiesShortInfo[$selectedCity]['product_price_tv'];
+    setcookie('city_was_chosen', true, 0, '/');
     $output = [
         'success' => true,
     ];

@@ -27,6 +27,8 @@
     {set $step = 1}
     {set $unit = 'шт.'}
 {/if}
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
 <tr>
     <td class="lead">
         <span class="question-mark-icon" data-toggle="tooltip" data-html="true" data-placement="right" title="<div class='product-complectation-item-definition'>{$tooltipText}<div>"></span>

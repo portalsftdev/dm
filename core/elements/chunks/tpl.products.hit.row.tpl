@@ -1,3 +1,5 @@
+{set $nfp = $_modx->config.ms2_price_format|json_decode}
+{set $price = $id | resource: $.session.'cityselector.current_product_price_tv' | number:0:$nfp.1:$nfp.2}
             <div class="card-product card-tile-wide card-tile--trim" itemscope itemtype="http://schema.org/Product">
 
                 <div class="overlay-door">

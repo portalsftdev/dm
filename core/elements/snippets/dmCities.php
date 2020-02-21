@@ -29,6 +29,11 @@ foreach ($cityResourceIds as $cityResourceId) {
     if (is_array($remainTemplateVariableTVArray)) {
         $citiesShortInfo[$cityResource->get('pagetitle')]['product_remain_tv'] = $remainTemplateVariableTVArray[0]['remain_template_variable'];
     }
+    // Set city product price template variables
+    $cityPriceTv = $cityResource->getTVValue('price_template_variable');
+    if (null !== $cityPriceTv) {
+        $citiesShortInfo[$cityResource->get('pagetitle')]['product_price_tv'] = $cityPriceTv;
+    }
 }
 
 // Set the current city and its phones
@@ -40,6 +45,7 @@ if (!empty($_SESSION['cityselector.current_city'])) {
     $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$currentCity]['phone'];
     $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$currentCity]['phone_href'];
     $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$currentCity]['product_remain_tv'];
+    $_SESSION['cityselector.current_product_price_tv'] = $citiesShortInfo[$currentCity]['product_price_tv'];
 }
 
 $mode = $modx->getOption('mode', $scriptProperties);
@@ -117,6 +123,7 @@ foreach ($citiesShortInfo as $city => $cityShortInfo) {
         'city_phone' => $cityShortInfo['phone'],
         'city_phone_href' => $cityShortInfo['phone_href'],
         'city_remain_tv' => $cityShortInfo['product_remain_tv'],
+        'city_price_tv' => $cityShortInfo['product_price_tv'],
     ];
     $output['cityselector.cities'] .= !empty($pdoTools)
         ? $pdoTools->getChunk($cityTpl, $placeholders)

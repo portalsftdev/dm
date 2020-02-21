@@ -232,8 +232,12 @@ $(function() {
         var data = {
             'selected_city': cityData.name,
         };
-        let currentRemainTV = $(this).data('remain-tv'),
-            previousRemainTV = $(this).closest('.cities').find('.active').data('remain-tv');
+        let
+            currentRemainTV = $(this).data('remain-tv'),
+            previousRemainTV = $(this).closest('.cities').find('.active').data('remain-tv'),
+            currentPriceTV = $(this).data('price-tv'),
+            previousPriceTV = $(this).closest('.cities').find('.active').data('price-tv')
+        ;
         $.post(connectorURL, data, function(r) {
             if (r.success) {
                 onSelectCitySuccess();
@@ -245,8 +249,13 @@ $(function() {
                 ) {
                     let url = window.location.href;
                     // Replace city remain template variable
-                    if ($('#mse2_results').length && -1 !== url.indexOf('tv|'+previousRemainTV)) {
-                        url = url.replace('tv|'+previousRemainTV, 'tv|'+currentRemainTV);
+                    if ($('#mse2_results').length) {
+                        if (-1 !== url.indexOf('tv|'+previousRemainTV)) {
+                            url = url.replace('tv|'+previousRemainTV, 'tv|'+currentRemainTV);
+                        }
+                        if (-1 !== url.indexOf('tv|'+previousPriceTV)) {
+                            url = url.replace('tv|'+previousPriceTV, 'tv|'+currentPriceTV);
+                        }
                     } else if ($('#product').length) {
                         getProduct($('#product').attr('data-url'));
                         return false;
