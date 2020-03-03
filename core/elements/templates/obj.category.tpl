@@ -77,18 +77,6 @@
                 ,"steelDoorModel": {
                     "class": "msProductOption",
                     "on": "steelDoorModel.product_id = msProduct.id AND steelDoorModel.key = \'model\'"
-                },
-                "steelDoorCoatingColor": {
-                    "class": "msProductOption",
-                    "on": "steelDoorCoatingColor.product_id = msProduct.id AND steelDoorCoatingColor.key = \'steel_door_color\'"
-                },
-                "steelDoorInnerPanelColor": {
-                    "class": "msProductOption",
-                    "on": "steelDoorInnerPanelColor.product_id = msProduct.id AND steelDoorInnerPanelColor.key = \'shield_color\'"
-                },
-                "steelDoorGlassColor": {
-                    "class": "msProductOption",
-                    "on": "steelDoorGlassColor.product_id = msProduct.id AND steelDoorGlassColor.key = \'glass\'"
                 }
         	}',
         	'select' => '{
@@ -96,14 +84,15 @@
         		,"card0":"card0.url as card0"
         		,"card1":"card1.url as card1"
                 ,"productModel":"steelDoorModel.value as productModel"
-                ,"productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum"
-                ,"availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability"
-                ,"productGroupPrices":"GROUP_CONCAT(msProduct.id, \':\', Data.price, \':\', Data.old_price) AS productGroupPrices"
+                ,"availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability",
+                "is_group":"Data.is_group",
+                "group_remain":"Data.group_remain",
+                "group_price":"Data.group_price"
         	}',
-            'disableGroupByProductId' => true,
-            'disableGroupingForPreparedResults' => true,
+            'where' => '{
+                "Data.is_group": true
+            }',
             'disableOrderingByField' => true,
-            'groupby' => '["steelDoorModel.value", "steelDoorCoatingColor.value", "steelDoorInnerPanelColor.value", "steelDoorGlassColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv'~','~$.session.'cityselector.current_product_price_tv',
             'tplOuter' => '@FILE chunks/tpl.productList.tpl',
             'sort' => 'ms_product|pagetitle:asc',
@@ -200,35 +189,19 @@
                 "interiorDoorModel": {
                     "class": "msProductOption",
                     "on": "interiorDoorModel.product_id = msProduct.id AND interiorDoorModel.key = \'model\'"
-                },
-                "interiorDoorLeafColor": {
-                    "class": "msProductOption",
-                    "on": "interiorDoorLeafColor.product_id = msProduct.id AND interiorDoorLeafColor.key = \'mscolor\'"
-                },
-                "interiorDoorGlassColor": {
-                    "class": "msProductOption",
-                    "on": "interiorDoorGlassColor.product_id = msProduct.id AND interiorDoorGlassColor.key = \'glass\'"
-                },
-                "interiorDoorWidth": {
-                    "class": "msProductOption",
-                    "on": "interiorDoorWidth.product_id = msProduct.id AND interiorDoorWidth.key = \'width\'"
-                },
-                "interiorDoorHeight": {
-                    "class": "msProductOption",
-                    "on": "interiorDoorHeight.product_id = msProduct.id AND interiorDoorHeight.key = \'height\'"
                 }
             }',
         	'select' => '{
         		"productModel":"interiorDoorModel.value as productModel",
-                "productGroupRemainSum": "SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) as productGroupRemainSum",
                 "availability":"CASE WHEN SUM(CAST(TV'~$.session.'cityselector.current_product_remain_tv'~'.value AS SIGNED)) > 0 THEN 1 ELSE 0 END AS availability",
-                "productGroupPrices":"GROUP_CONCAT(msProduct.id, \':\', Data.price, \':\', Data.old_price) AS productGroupPrices",
-                "productVariations":"CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT(\'id\', msProduct.id, \'pagetitle\', msProduct.pagetitle, \'longtitle\', msProduct.longtitle, \'old_price\', Data.old_price, \'price\', Data.price, \'size\', CONCAT_WS(\'x\', interiorDoorWidth.value, interiorDoorHeight.value))), \']\') AS productVariations"
+                "is_group":"Data.is_group",
+                "group_remain":"Data.group_remain",
+                "group_price":"Data.group_price"
         	}',
-            'disableGroupByProductId' => true,
-            'disableGroupingForPreparedResults' => true,
+            'where' => '{
+                "Data.is_group": true
+            }',
             'disableOrderingByField' => true,
-            'groupby' => '["interiorDoorModel.value", "interiorDoorLeafColor.value", "interiorDoorGlassColor.value"]',
             'includeTVs' => $.session.'cityselector.current_product_remain_tv'~','~$.session.'cityselector.current_product_price_tv',
             'paginator' => 'pdoPage@pageNavVar=`page.nav`',
             'canonicalQueryString' => true,

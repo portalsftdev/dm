@@ -1,15 +1,18 @@
 <?php
 
 /**
- * 1. Calculate product remains (by city) into template variables
- * 2. mSearch2 reindex
- * 3. Clear cache
+ * 1. Calculate product remains and prices (by city) into template variables
+ * 2. Resolve product groups
+ * 3. mSearch2 reindex
+ * 4. Clear cache
  *
  * To prevent `504 Gateway Timeout` increase either `fastcgi_read_timeout`
  * or something similar.
  *
  * URL example: https://example.com/assets/components/1cexchangepostprocessing/index.php?token={token}.
  */
+
+require_once 'output.php';
 
 // The flag which allows to require another scripts
 define('_', true);
@@ -32,7 +35,7 @@ if ($token != $modx->getOption(MODX_SYS_SETTING_1C_EXCHANGE_POSTPROCESSING_PASSW
     output([
         'error_code' => '1c_exchange_postprocessing.access_denied',
         'error_desc' => 'Access denied',
-    ]);
+    ], START_TIME);
 }
 
 /**
@@ -138,6 +141,12 @@ function findStorageCity($neededStorage, $cityStorages)
 }
 
 /**
+ * Resolve product groups
+ */
+
+require_once 'ProductGroupResolver/index.php';
+
+/**
  * Resource re-indexing
  */
 
@@ -156,7 +165,7 @@ if (
         'error_code' => '1c_exchange_postprocessing.search_engine.statistics_error',
         'error_desc' => 'Error while getting the count of pages',
         'response' => $processorResponse->response,
-    ]);
+    ], START_TIME);
 } else {
     $totalPages = $processorResponse->response['object']['total'];
 }
@@ -173,7 +182,7 @@ if ($processorResponse['success'] != true) {
         'error_code' => '1c_exchange_postprocessing.search_engine.indexes_clear_error',
         'error_desc' => 'Indexes clear error',
         'response' => $processorResponse,
-    ]);
+    ], START_TIME);
 }
 
 // Re-indexing
@@ -189,7 +198,7 @@ for ($i = 0, $offset = 0; $i < $passesCount; $i++) {
             'error_code' => '1c_exchange_postprocessing.search_engine.reindex_error',
             'error_desc' => 'Error while re-indexing, offset: '.$offset.', limit: '.INDEXING_LIMIT,
             'response' => $processorResponse->response,
-        ]);
+        ], START_TIME);
     }
     $offset += INDEXING_LIMIT;
 }
@@ -201,24 +210,11 @@ if (!$modx->cacheManager->refresh()) {
     output([
         'error_code' => '1c_exchange_postprocessing.cache_clear_error',
         'error_desc' => 'Cache clear error',
-    ]);
+    ], START_TIME);
 }
 
 // Return the result
 output([
     'error_code' => '1c_exchange_postprocessing.no_error',
     'error_desc' => 'Success',
-]);
-
-function output($output)
-{
-    header('Content-Type: application/json; charset=UTF-8');
-    $output = array_merge($output,
-        [
-            'total_time' => (string) (microtime(true) - START_TIME . ' sec.'),
-            'memory_usage' => memory_get_usage() / 1024 / 1024 . ' mb',
-        ]
-    );
-    echo json_encode($output);
-    exit;
-}
+], START_TIME);
