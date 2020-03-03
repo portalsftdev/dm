@@ -67,7 +67,7 @@
                             <label for="mse2_ms|in-stock">В наличии</label>
                         </h5>
                         <h5>
-                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" class="" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <input id="mse2_ms|favorite_1" name="favorite" value="1" class="" type="checkbox"{if $.get.'favorite' == 1} checked{/if} />
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
@@ -117,7 +117,7 @@
                             <label for="mse2_ms|in-stock">В наличии</label>
                         </h5>
                         <h5>
-                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <input id="mse2_ms|favorite_1" name="favorite" value="1" type="checkbox"{if $.get.'favorite' == 1} checked{/if} />
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
@@ -157,7 +157,7 @@
                             <label for="mse2_ms|in-stock">В наличии</label>
                         </h5>
                         <h5>
-                            <input id="mse2_ms|favorite_1" name="ms|favorite" value="1" type="checkbox"{if $.get.'ms|favorite' == 1} checked{/if} />
+                            <input id="mse2_ms|favorite_1" name="favorite" value="1" type="checkbox"{if $.get.'favorite' == 1} checked{/if} />
                             <label for="mse2_ms|favorite_1">Акция месяца</label>
                         </h5>
                     </div>
