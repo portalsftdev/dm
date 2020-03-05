@@ -37,6 +37,9 @@
                     <a href="https://www.instagram.com/dveri_nvkz/" rel="nofollow" title="Мы в Instagram" target="_blank">
                         <img src="assets/i/icons/instagram.com.png" alt="Instagram" />
                     </a>
+                    <a href="whatsapp://send/?phone=79235107000" rel="nofollow" title="WhatsApp: 8 923 510-70-00" target="_blank">
+                        <img src="assets/i/icons/WhatsApp.png" alt="WhatsApp: 8 923 510-70-00" />
+                    </a>
                 </div>
             </div>
         </div>
