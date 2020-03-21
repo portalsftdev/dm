@@ -1283,3 +1283,27 @@ input:disabled ~ label {
         float: right;
     }
 }
+.row-x {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 36px
+}
+.cell  {
+  padding: 30px 15px;
+    background: #f8f8f8;
+    position: relative;
+}
+.cell-first {
+
+}
+.h-center {
+    text-align: center;
+    clear: both;
+}
+.sm-4 {
+    flex-basis: 33.33333%;
+}
+.no-padding {
+    padding: 0;
+}
