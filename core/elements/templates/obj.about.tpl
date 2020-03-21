@@ -6,7 +6,7 @@
     <div class="container">
         <h1>{$_modx->resource.longtitle?:$_modx->resource.pagetitle}</h1>
         <p class="red">
-        test 1
+        test 11
         </p>
     </div>
 </article>
