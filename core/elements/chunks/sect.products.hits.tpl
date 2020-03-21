@@ -1,6 +1,6 @@
 <section class="pb-2 px-3">
     <div class="container-fluid container-xxl">
-        <h3 class="doc-title"><span>Хиты продаж</span></h3>
+        <h3 class="doc-title"><span>Распродажа входных дверей</span></h3>
     </div>
     <div class="container-fluid">
         <div class="row">
