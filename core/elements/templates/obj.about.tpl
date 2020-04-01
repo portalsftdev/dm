@@ -22,7 +22,7 @@
         <h2 class="h-center"> Наши сотрудники</h2>
          <div class = "row-x">
           <div class="left-photo">
-            <img class="photo" alt="фото сотрудников портрет" title="Корпоративный портрет" src="/assets/images/zoya.jpeg" width="200">
+            <img class="photo" alt="фото сотрудников портрет" title="Корпоративный портрет" src="/assets/i/employees/zoya.jpeg" width="200">
           </div>
              <div class="right-text">
             <h3 class="h-left"> Зоя Сергеевна.<br>
@@ -66,7 +66,7 @@
                </p>
                </div>
                <div class="right-photo">
-                 <img class="photo img-grey" alt="фото сотрудников портрет" title="Корпоративный портрет" src="/assets/images/katya.jpeg" width="200">
+                 <img class="photo img-grey" alt="фото сотрудников портрет" title="Корпоративный портрет" src="/assets/i/employees/katya.jpeg" width="200">
                </div>
              </div>
 
