@@ -1283,3 +1283,80 @@ input:disabled ~ label {
         float: right;
     }
 }
+/* # my style vvv
+
+} */
+.row-x {
+
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 36px;
+  margin: 16px;
+}
+.row-text {
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 36px;
+  margin: 16px;
+}
+.h-center{
+  text-align: center;
+}
+.h-left{
+  text-align : left;
+}
+.h-right{
+  text-align: right;
+}
+.left-photo{
+  margin: 16px;
+  width: 33.3333333333%;
+  text-align: right;
+  }
+  .right-text{
+    margin: 16px;
+    width: 66.6666666667%;
+      }
+
+      .right-photo{
+        margin: 16px;
+        width: 33.3333333333%;
+        text-align: left;
+        }
+        .left-text{
+          margin: 16px;
+          width: 66.6666666667%;
+        }
+        .right-text-1{
+          margin: 16px;
+          text-align: right;
+        }
+        .right-text-2{
+          margin: 16px;
+          width: 100%;
+          display: block;
+          text-align: right;
+        }
+  .img-grey {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+.font-size{
+  font-size: 13pt;
+}
+
+
+@media (max-width: 767.98px) {
+    .row-x {
+        flex-direction: column;
+    }
+}
+
+.row-x {
+    /* Все базовые стили. */
+}
+
+.row-x.inversed {
+    /* Стили для выравнивания фотографии и контактов по правому краю. */
+}
