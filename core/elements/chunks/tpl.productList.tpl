@@ -63,6 +63,10 @@
                             {$_modx->getPlaceholder('mFilter2.msoption|spontaneity')}
                         </div>
                         <h5>
+                            <input id="mse2_ms|thermal-break" name="thermal-break" value="С терморазрывом" class="" type="checkbox"{if $.get.'thermal-break' == 'С терморазрывом'} checked{/if} />
+                            <label for="mse2_ms|thermal-break">Терморазрыв</label>
+                        </h5>
+                        <h5>
                             <input id="mse2_ms|in-stock" name="in-stock" value="1" class="" type="checkbox"{if $.get.'in-stock' == 1} checked{/if} />
                             <label for="mse2_ms|in-stock">В наличии</label>
                         </h5>
