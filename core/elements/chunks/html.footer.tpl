@@ -24,7 +24,14 @@
                 {$_modx->getPlaceholder('cityselector.phone')}
                 <div class="column-content">
                     <p class="thin-300">
-                        {$_modx->getPlaceholder('cityselector.cities')}
+                        <a
+                            class="no_underline c-pointer"
+                            data-toggle="modal"
+                            data-target="#city-selection"
+                        >
+                            <img class="map-marker" src="assets/i/icons/map-marker-64x64-ffffff.png">
+                            {$_modx->getPlaceholder('cityselector.current_city')}
+                        </a>
                     </p>
                 </div>
                 <hr class="hidden-md-up">
@@ -128,117 +135,10 @@
     {/ignore}
 </script>
 
-{if 1 != $.cookie.city_was_chosen}
-<div id="city-selection" class="modal fade" tabindex="-1" role="dialog" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Выбор города</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть"><span aria-hidden="true">×</span></button>
-            </div>
-            <form id="city-selection-form">
-                <div class="modal-body">
-                    {set $cities = $_modx->runSnippet('@FILE snippets/dmCities.php', [
-                        'mode' => 'shortInfo',
-                    ])}
-                    {set $i = 0}
-                    {foreach $cities as $city => $cityInfo}
-                        {set $cityId = 'city-selection-city'~($i + 1)}
-                        <div>
-                            <input id="{$cityId}" name="selected-city" type="radio" value="{$city}">
-                            <label for="{$cityId}">{$city}</label>
-                        </div>
-                        {set $i = $i + 1}
-                    {/foreach}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">Ок</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script>
-    {ignore}
-        // Really sorry for the bad code, but there is no time for a good one
-        $('#city-selection').modal('show');
-        $('#city-selection-form').on('submit', function (event) {
-            event.preventDefault();
-
-            var
-                selectedCity = $('#city-selection-form input:checked')[0],
-                previousRemainTV = $('.city.active').data('remain-tv'),
-                currentRemainTV,
-                previousPriceTV = $('.city.active').data('price-tv'),
-                currentPriceTV
-            ;
-            if (undefined !== selectedCity) {
-                $.post(
-                    '/assets/components/cityselector/index.php',
-                    { selected_city: selectedCity.value },
-                    function(response) {
-                        response = JSON.parse(response);
-                        if (response.success) {
-                            $('.cities').each(function () {
-                                var cityData;
-                                $(this).find('.city')
-                                    .removeClass('active')
-                                    .filter(function() {
-                                        if ($(this).text() === selectedCity.value) {
-                                            currentRemainTV = $(this).data('remain-tv');
-                                            currentPriceTV = $(this).data('price-tv');
-                                            cityData = {
-                                                phone: $(this).data('phone'),
-                                                phoneHref: 'tel:' + $(this).data('phone-href'),
-                                            };
-                                            return true;
-                                        }
-
-                                        return false;
-                                    })
-                                    .addClass('active')
-                                ;
-                                var $cityPhone = $(this).find('.city-phone');
-                                $cityPhone.text(cityData.phone);
-                                if ($cityPhone.is('a')) {
-                                    $cityPhone.attr('href', cityData.phoneHref);
-                                }
-                            });
-                            // Reload if it's a page that should be reloaded
-                            if (
-                                $('#contacts').length ||
-                                $('#mse2_results').length ||
-                                $('#product').length
-                            ) {
-                                let url = window.location.href;
-                                // Replace city remain template variable
-                                if ($('#mse2_results').length) {
-                                    if (-1 !== url.indexOf('tv|'+previousRemainTV)) {
-                                        url = url.replace('tv|'+previousRemainTV, 'tv|'+currentRemainTV);
-                                    }
-                                    if (-1 !== url.indexOf('tv|'+previousPriceTV)) {
-                                        url = url.replace('tv|'+previousPriceTV, 'tv|'+currentPriceTV);
-                                    }
-                                } else if ($('#product').length) {
-                                    getProduct($('#product').attr('data-url'));
-                                    $('#city-selection').modal('hide');
-                                    return false;
-                                }
-                                window.location.href = url;
-                            }
-                        }
-                        $('#city-selection').modal('hide');
-                    }
-                )
-            } else {
-                $('#city-selection').modal('hide');
-            }
-        });
-    {/ignore}
-</script>
-{/if}
-
+{'!SeoDomainsList' | snippet : [
+    'tpl' => '@FILE chunks/tpl.cityListModal.tpl',
+    'sortby' => 'id',
+]}
 
 {if $_modx->config.site_debug_info}
 <!--
