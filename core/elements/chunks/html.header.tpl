@@ -11,10 +11,9 @@
             <div class="d-inline-block ml-2 cities">
                 {$_modx->RunSnippet('@FILE snippets/dmCities.php', [
                     'phoneTpl' => 'header.phone',
-                    'cityTpl' => 'header.city',
                 ])}
                 {$_modx->getPlaceholder('cityselector.phone')}
-                {$_modx->getPlaceholder('cityselector.cities')}
+                <span>{$_modx->getPlaceholder('cityselector.current_city')}</span>
             </div>
         </div>
         <div class="float-right">
@@ -61,7 +60,14 @@
             <div class="d-inline-block menu-btn-push mr-2"></div>
             <div class="d-inline-block ml-2 cities">
                 {$_modx->getPlaceholder('cityselector.phone')}
-                {$_modx->getPlaceholder('cityselector.cities')}
+                <a
+                    class="no_underline c-pointer"
+                    data-toggle="modal"
+                    data-target="#city-selection"
+                >
+                    <img class="map-marker" src="assets/i/icons/map-marker-64x64-000000.png">
+                    {$_modx->getPlaceholder('cityselector.current_city')}
+                </a>
             </div>
         </div>
         <div class="float-right relative">

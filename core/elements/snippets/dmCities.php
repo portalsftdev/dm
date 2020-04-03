@@ -1,5 +1,4 @@
 <?php
-
 // Use pdoTools if it's possible
 if (class_exists('pdoTools')) {
     $pdoTools = $modx->getService('pdoTools');
@@ -37,23 +36,23 @@ foreach ($cityResourceIds as $cityResourceId) {
 }
 
 // Set the current city and its phones
-if (!empty($_SESSION['cityselector.current_city'])) {
-    $currentCity = $_SESSION['cityselector.current_city'];
-} else {
-    $currentCity = $modx->getOption('default_city');
+if (!in_array($mode, ['contacts', 'storages', 'locations'])) {
+    $currentCity = $modx->getPlaceholder('sd.city') ?: $modx->getOption('default_city');
+
+    $_SESSION['cityselector.current_city'] = $currentCity;
     $_SESSION['cityselector.current_city'] = $currentCity;
     $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$currentCity]['phone'];
     $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$currentCity]['phone_href'];
     $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$currentCity]['product_remain_tv'];
     $_SESSION['cityselector.current_product_price_tv'] = $citiesShortInfo[$currentCity]['product_price_tv'];
+} else {
+    $currentCity = $_SESSION['cityselector.current_city'];
 }
 
 $mode = $modx->getOption('mode', $scriptProperties);
 $tpl = $modx->getOption('tpl', $scriptProperties);
 
-if ($mode == 'shortInfo') {
-    return $citiesShortInfo;
-} elseif (in_array($mode, ['contacts', 'storages'])) {
+if (in_array($mode, ['contacts', 'storages'])) {
     switch ($mode) {
         case 'contacts':
             foreach ($citySaleDepartments[$currentCity] as $citySaleDepartment) {
@@ -101,7 +100,6 @@ if ($mode == 'shortInfo') {
 }
 
 $phoneTpl = $modx->getOption('phoneTpl', $scriptProperties);
-$cityTpl = $modx->getOption('cityTpl', $scriptProperties);
 
 $modx->setPlaceholder('cityselector.current_city', $currentCity);
 $modx->setPlaceholder('cityselector.current_phone', $_SESSION['cityselector.current_phone']);
@@ -115,20 +113,4 @@ $output['cityselector.phone'] = !empty($pdoTools)
     ? $pdoTools->getChunk($phoneTpl, $placeholders)
     : $modx->getChunk($phoneTpl, $placeholders);
 
-$output['cityselector.cities'] = '';
-foreach ($citiesShortInfo as $city => $cityShortInfo) {
-    $placeholders = [
-        'current_city' => $currentCity,
-        'city' => $city,
-        'city_phone' => $cityShortInfo['phone'],
-        'city_phone_href' => $cityShortInfo['phone_href'],
-        'city_remain_tv' => $cityShortInfo['product_remain_tv'],
-        'city_price_tv' => $cityShortInfo['product_price_tv'],
-    ];
-    $output['cityselector.cities'] .= !empty($pdoTools)
-        ? $pdoTools->getChunk($cityTpl, $placeholders)
-        : $modx->getChunk($cityTpl, $placeholders);
-}
-
 $modx->setPlaceholder('cityselector.phone', $output['cityselector.phone']);
-$modx->setPlaceholder('cityselector.cities', $output['cityselector.cities']);

@@ -1,33 +1,65 @@
 <?php
 
+function jsonResponse($data) {
+    echo json_encode($data);
+    header('Content-Type: application/json');
+    exit;
+}
+
 // Require MODX API
 require_once $_SERVER['DOCUMENT_ROOT'].'/config.core.php';
 require_once MODX_CORE_PATH.'model/modx/modx.class.php';
 $modx = new modX();
 $modx->initialize('web');
 $modx->getService('error','error.modError', '', '');
-$pdoTools = $modx->getService('pdoTools');
 
-$citiesShortInfo = $pdoTools->runSnippet('@FILE snippets/dmCities.php', ['mode' => 'shortInfo']);
-$selectedCity = !empty($_REQUEST['selected_city']) ? $_REQUEST['selected_city'] : '';
+$domain = $_REQUEST['domain'] ?: null;
+if (null === $domain) {
+    jsonResponse([
+        'success' => false,
+        'message' => 'Домен не может быть пустым.',
+    ]);
+}
 
-$output = [];
-if (!array_key_exists($selectedCity, $citiesShortInfo)) {
+$domainExists = false;
+
+// NOTE: `$modx->newQuery('SeodomainsCity')` produces `Could not load class: SeodomainsCity from mysql.seodomainscity.`
+
+$tablePrefix = $modx->getOption(xPDO::OPT_TABLE_PREFIX);
+$queryString = <<<EOQ
+SELECT
+    domain
+FROM
+    `{$tablePrefix}seodomains_city`
+EOQ;
+
+$query = new xPDOCriteria($modx, $queryString);
+if ($query->stmt->execute()) {
+    $cities = $query->stmt->fetchAll(PDO::FETCH_OBJ);
+
+    foreach ($cities as $city) {
+        if ('www' !== mb_substr($city->domain, 0, 3)) {
+            $domainExists = true;
+        }
+    }
+
+    if ($domainExists) {
+        setcookie('redirect_to_domain', $domain, 0, '/', $_SERVER['SERVER_NAME']);
+
+        $output = [
+            'success' => true,
+        ];
+    } else {
+        $output = [
+            'success' => false,
+            'message' => 'Домен не существует.',
+        ];
+    }
+} else {
     $output = [
         'success' => false,
-        'message' => 'Указан не существующий город.',
-    ];
-} else {
-    $_SESSION['cityselector.current_city'] = $selectedCity;
-    $_SESSION['cityselector.current_phone'] = $citiesShortInfo[$selectedCity]['phone'];
-    $_SESSION['cityselector.current_phone_href'] = $citiesShortInfo[$selectedCity]['phone_href'];
-    $_SESSION['cityselector.current_product_remain_tv'] = $citiesShortInfo[$selectedCity]['product_remain_tv'];
-    $_SESSION['cityselector.current_product_price_tv'] = $citiesShortInfo[$selectedCity]['product_price_tv'];
-    setcookie('city_was_chosen', true, 0, '/');
-    $output = [
-        'success' => true,
+        'message' => 'Произошла ошибка при получении доменов. Попробуйте позже.',
     ];
 }
 
-echo json_encode($output);
-exit;
+jsonResponse($output);
