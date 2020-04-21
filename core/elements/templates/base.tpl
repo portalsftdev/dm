@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+    [[$jivosite]]
 	<head>
         {block 'head'}
         {$_modx->getChunk('@FILE chunks/html.head.tpl')}

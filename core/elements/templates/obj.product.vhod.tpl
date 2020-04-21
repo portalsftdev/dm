@@ -14,27 +14,107 @@
                     'frontend_js' => '',
                     ])}
                     <div class="col-xl-6 ">
-                        <div class="container pt-4 pb-1">
+                        <div class="container pt-4">
                             <div class="row">
-                                <div class="col">
-                                    <h1 class="expo-title{if $_modx->resource.parent in [$_modx->config.'resources.room_doors', $_modx->config.'resources.steel_doors']} model{/if}">{$_modx->runSnippet('!msProductOptions', ['tpl' => '@INLINE {$options.model.value[0]}', 'onlyOptions' => 'model'])} ({$_pls['vendor.name'] | escape})</h1>
-                                    <meta itemprop="name" content="{$_modx->resource.pagetitle | escape}" />
-                                    <link itemprop="url" href="{$_modx->config.site_url ~ $_modx->resource.uri}" />
-                                    <meta itemprop="model" content="{$_pls['model.value'] | escape}" />
-                                </div>
-                                <div class="col">
-                                    <div class="row mx-0">
-                                        <div>
-                                            <a class="no_underline" title="{$_pls['vendor.name'] | escape}" href="{$_modx->makeUrl($_modx->resource.parent, '', ['trademark' => $vendor | escape])}"><img src="{$_pls['vendor.logo']}" class="expo-logo" alt="Бренд «{$_pls['vendor.name'] | escape}»"></a>
-                                            <meta itemprop="brand" content="{$_pls['vendor.name'] | escape}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6 product-buttons-container">
+                              <div class="col-12 col-md-6">
+                                  <h1 class="mb-3 expo-title">{$_modx->runSnippet('!msProductOptions', ['tpl' => '@INLINE {$options.model.value[0]}', 'onlyOptions' => 'model'])} ({$_pls['vendor.name']|escape})</h1>
+                                  <meta itemprop="name" content="{$_modx->resource.pagetitle|escape}" />
+                                  <link itemprop="url" href="{$_modx->config.site_url ~ $_modx->resource.uri}" />
+                                  <meta itemprop="model" content="{$_pls['model.value']|escape}" />
+                                  <div itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+                                      <meta itemprop="price" content="{$price|replace:' ':''}" />
+                                      <meta itemprop="priceCurrency" content="RUB" />
+                                      <link itemprop="availability" href="http://schema.org/InStock" />
+                                  </div>
+                                  <div class="row">
+                                      {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                          'conditions' => [
+                                              'parent' => $_modx->resource.parent,
+                                              'vendor' => $vendor,
+                                              'model' => $_pls['model.value'],
+                                              'doorType' => $_pls['doorType.value'],
+                                              'mscolor' => $_pls['mscolor.value'],
+                                              'glass' => $_pls['glass.value'],
+                                              'height' => $_pls['height.value'],
+                                          ],
+                                          'currentOptionValue' => $_pls['width.value'],
+                                          'optionKey' => 'width',
+                                          'optionLabel' => 'Ширина (мм):',
+                                          'showSingleOption' => true,
+                                          'tpl' => '@FILE chunks/product.otherOptionOfTheModel.item.tpl',
+                                          'tplWrapper' => '@FILE chunks/product.otherOptionOfTheModel.wrapper.tpl',
+                                      ])}
+                                      {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                          'conditions' => [
+                                              'parent' => $_modx->resource.parent,
+                                              'vendor' => $vendor,
+                                              'model' => $_pls['model.value'],
+                                              'doorType' => $_pls['doorType.value'],
+                                              'mscolor' => $_pls['mscolor.value'],
+                                              'glass' => $_pls['glass.value'],
+                                              'width' => $_pls['width.value'],
+                                          ],
+                                          'currentOptionValue' => $_pls['height.value'],
+                                          'optionKey' => 'height',
+                                          'optionLabel' => 'Высота (мм):',
+                                          'showSingleOption' => true,
+                                          'tpl' => '@FILE chunks/product.otherOptionOfTheModel.item.tpl',
+                                          'tplWrapper' => '@FILE chunks/product.otherOptionOfTheModel.wrapper.tpl',
+                                      ])}
+                                      <div class="col-12"><hr></div>
+                                      {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                          'conditions' => [
+                                              'parent' => $_modx->resource.parent,
+                                              'vendor' => $vendor,
+                                              'model' => $_pls['model.value'],
+                                              'height' => $_pls['height.value'],
+                                              'width' => $_pls['width.value'],
+                                              'mscolor' => $_pls['mscolor.value'],
+                                          ],
+                                          'currentOptionValue' => $_pls['doorType.value'],
+                                          'optionKey' => 'doorType',
+                                          'tpl' => '@FILE chunks/product.otherOptionOfTheModel.item.tpl',
+                                          'tplWrapper' => '@FILE chunks/product.otherOptionOfTheModel.wrapper.tpl',
+                                      ])}
+                                      {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                          'conditions' => [
+                                              'parent' => $_modx->resource.parent,
+                                              'vendor' => $vendor,
+                                              'model' => $_pls['model.value'],
+                                              'height' => $_pls['height.value'],
+                                              'width' => $_pls['width.value'],
+                                              'doorType' => $_pls['doorType.value'],
+                                              'glass' => $_pls['glass.value'],
+                                          ],
+                                          'currentOptionValue' => $_pls['mscolor.value'],
+                                          'optionKey' => 'mscolor',
+                                          'optionLabel' => 'Другие цвета',
+                                          'withImage' => true,
+                                          'tpl' => '@FILE chunks/product.otherColorOfTheModel.item.tpl',
+                                          'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
+                                      ])}
+                                      {if $_pls['doorType.value'] == 'Остекленная'}
+                                          {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
+                                              'conditions' => [
+                                                  'parent' => $_modx->resource.parent,
+                                                  'vendor' => $vendor,
+                                                  'model' => $_pls['model.value'],
+                                                  'height' => $_pls['height.value'],
+                                                  'width' => $_pls['width.value'],
+                                                  'mscolor' => $_pls['mscolor.value'],
+                                              ],
+                                              'currentOptionValue' => $_pls['glass.value'],
+                                              'optionKey' => 'glass',
+                                              'optionLabel' => 'Другие остекления',
+                                              'withImage' => true,
+                                              'tpl' => '@FILE chunks/product.otherColorOfTheModel.item.tpl',
+                                              'tplWrapper' => '@FILE chunks/product.otherColorOfTheModel.wrapper.tpl',
+                                          ])}
+                                      {/if}
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 pb-3">
+                                  <div class="mb-3 p-3 text-center rounded bordered-container total-cost-description">
                                     {if $price == 0}
                                         <div class="mb-3" data-toggle="modal" data-target="#product-price-order"><i class="btn-icon btn-icon-dvmk icon-phone text-primary"></i><a class="c-pointer">Запросить цену</a></div>
                                         <input type="hidden" name="pagetitle" value="{$_modx->resource.pagetitle | escape}" />
@@ -55,7 +135,7 @@
                                             {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
                                         </div>
                                     {/if}
-                                    {$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
+                                    <!--{$_modx->runSnippet('@FILE snippets/dmProductOptionCombinations.php', [
                                         'conditions' => [
                                             'parent' => $_modx->resource.parent,
                                             'vendor' => $vendor,
@@ -103,16 +183,58 @@
                                                 "title":"Много"
                                             }
                                         }',
-                                    ])}
-                                    <div class="product-buttons">
-                                        <button type="button" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light product-size-toggle" data-show="#product-sizes" data-hide=".product-buttons" aria-expanded="false"><span class="icon-cart"></span> В корзину</button>
-                                        <div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-info-circled text-primary"></a><a>Уточнить наличие</a></div>
-                                        <div>
+                                    ])}-->
+
+                                    <!-- <div class="product-buttons"> -->
+                                        <!-- <button type="button" class="btn btn-dvmk mb-md-3 waves-effect waves-light product-size-toggle" data-show="#product-sizes" data-hide=".product-buttons" aria-expanded="false"><span class="icon-cart"></span> В корзину</button> -->
+                                        <!-- <button type="button" class="btn btn-dvmk waves-effect waves-light mb-md-3" data-action="add-to-cart"><span class="icon-cart"></span> В корзину</button> -->
+                                        <div class="d-inline d-md-block">
+                                            <form class="custom-ms2-form">
+                                                <input name="products[{$_modx->resource.id}][count]" type="hidden" value="1">
+                                                <input name="products[{$_modx->resource.id}][options]" type="hidden" value="[]">
+                                            </form>
+                                            <button type="button" class="btn btn-dvmk waves-effect waves-light mb-md-3" data-action="add-to-cart"><span class="icon-cart"></span> В корзину</button>
+                                        </div>
+                                        <div class="d-inline d-md-block">
+                                            <button type="button" class="btn btn-outline-dvmk waves-effect waves-light" data-toggle="modal" data-target="#measurement-order">Заказать замер</button>
+                                        </div>
+                                        <!--<div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-info-circled text-primary"></a><a>Уточнить наличие</a></div>-->
+                                        <!--<div>
                                             {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
+                                        </div>-->
+
+                                <!--    </div> -->
+
+                              </div>
+                                <div class="d-inline-block tab-open c-pointer" data-target="#product-availability">
+                                    <a class="btn-icon btn-icon-dvmk icon-info-circled text-primary"></a><a>Уточнить наличие</a>
+                                </div>
+
+                                <div class="d-inline-block">
+                                    {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+{* Used as a temporary solution. *}
+                            <div id="added-to-cart" class="modal fade" tabindex="-1" role="dialog" >
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Уведомление</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">Товары добавлены в корзину.</div>
+                                        <div class="modal-footer">
+                                            <a role="button" class="btn btn-dvmk" href="{$_modx->makeUrl($_modx->config.'resources.cart')}">Перейти в корзину</a>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+{$_modx->getChunk('@FILE chunks/modal.measurementOrder.tpl')}
                             <hr>
                             {$_modx->runSnippet('@FILE snippets/dmProductOptions.php', [
                                 'conditions' => [

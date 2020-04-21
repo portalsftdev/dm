@@ -1379,3 +1379,61 @@ input:disabled ~ label {
 .modal-city-list .active {
     color: #ff9225;
 }
+/**
+*for settingsDoors
+*/
+.ust-table {
+    width: 75%;
+	max-width: 75%;	
+    border-collapse: collapse;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	margin: auto;
+	margin-bottom: 36px;
+    font-weight: normal;
+}
+.first-table {
+	padding: 15px;
+}
+.settings-container{
+	
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+
+}
+.text-container{
+	margin: 16px;
+    width: 100%;
+    display: block;
+    padding-right: 10%;
+    padding-left: 10%;
+	
+}
+@media (max-width: 480px){
+.text-container{
+	padding-right: 6px;
+    padding-left: 6px;
+}
+}
+.fs15{
+  font-size: 15pt;
+  }
+.fs10{
+  font-size: 10pt;
+  }
+.fs8{
+  font-size: 8pt;
+}
+.fs11{
+  font-size: 11pt;
+}
+.tac{
+	text-align: center;
+}
+.bc{
+	background-color: #EF7F1B;
+}

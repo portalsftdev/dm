@@ -36,13 +36,14 @@
                         </div>
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 pb-3">
+								<div class="mb-3 p-3 text-center rounded bordered-container total-cost-description">
                                     {if $price == 0}
                                         <div class="mb-3" data-toggle="modal" data-target="#product-price-order"><i class="btn-icon btn-icon-dvmk icon-phone text-primary"></i><a class="c-pointer">Запросить цену</a></div>
                                         <input type="hidden" name="pagetitle" value="{$_modx->resource.pagetitle | escape}" />
                                         {$_modx->getChunk('@FILE chunks/modal.productPriceOrder.tpl')}
                                     {else}
-                                        <div>
+                                        <div class="total">
                                             Цена{if $old_price > 0}&nbsp;<span class="expo-price-old"><del><span class="ms2-old_price">{$old_price}</span>&nbsp;<span class="icon-rub"></span></del></span>{/if}
                                         </div>
                                         <div class="expo-price" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
@@ -57,18 +58,55 @@
                                             {$_modx->getChunk('@FILE chunks/tpl.product.rating.tpl', ['reviewsCount' => $reviewsCount])}
                                         </div>
                                     {/if}
-                                    <form method="post" class="ms2_form">
+									<div class="d-inline d-md-block">
+                                            <form class="custom-ms2-form">
+                                                <input name="products[{$_modx->resource.id}][count]" type="hidden" value="1">
+                                                <input name="products[{$_modx->resource.id}][options]" type="hidden" value="[]">
+                                            </form>
+                                            <button type="button" class="btn btn-dvmk waves-effect waves-light mb-md-3" data-action="add-to-cart"><span class="icon-cart"></span> В корзину</button>
+                                        </div>
+										<div class="d-inline d-md-block">
+                                            <button type="button" class="btn btn-outline-dvmk waves-effect waves-light" data-toggle="modal" data-target="#measurement-order">Заказать звонок</button>
+                                        </div>
+                                    <!-- <form method="post" class="ms2_form">
                                         <button type="submit" name="ms2_action" value="cart/add" class="btn btn-dvmk mb-3 mr-3 waves-effect waves-light"><span class="icon-cart"></span> В корзину</button>
                                         <input type="hidden" name="id" value="{$_modx->resource.id}">
                                         <input type="hidden" name="count" value="1">
                                         <input type="hidden" name="options" value="[]">
-                                    </form>
-                                    <div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div>
-                                    <div>
+                                    </form> -->
+									
+                                    <!-- <div class="tab-open c-pointer" data-target="#product-availability"><a class="btn-icon btn-icon-dvmk icon-phone text-primary"></a><a>Уточнить наличие</a></div> -->
+									
+                                    <!-- <div>
+                                        {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
+                                    </div> -->
+								</div>
+								<div class="d-inline-block tab-open c-pointer" data-target="#product-availability">
+                                        <a class="btn-icon btn-icon-dvmk icon-info-circled text-primary"></a><a>Уточнить наличие</a>
+                               </div>
+							   <div class="d-inline-block">
                                         {$_modx->getChunk('@FILE chunks/tpl.product.favoriteLink.tpl')}
                                     </div>
-                                </div>
+                               </div>
+							   
                             </div>
+							{* Used as a temporary solution. *}
+    <div id="added-to-cart" class="modal fade" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Уведомление</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">Товары добавлены в корзину.</div>
+                <div class="modal-footer">
+                    <a role="button" class="btn btn-dvmk" href="{$_modx->makeUrl($_modx->config.'resources.cart')}">Перейти в корзину</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {$_modx->getChunk('@FILE chunks/modal.measurementOrder.tpl')}
                             <hr>
                             {set $conditions = [
                                 'parent' => $_modx->resource.parent,
